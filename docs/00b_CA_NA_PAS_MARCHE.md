@@ -19,6 +19,7 @@ désactivée dans le BIOS, pas de droits administrateur, Windows trop ancien, `[
 | efforts nuls (0), ou qui changent beaucoup avec le nombre d'éléments | calcul en ligne portante non convergé (près du décrochage, ou trop d'éléments, souvent dès 30) | revenir à 10-20 éléments ; comparer 10 et 20 : s'ils diffèrent de plus de 1 %, ne pas retenir le point |
 | `[ MANQUE ] aile elliptique : C_L = …` différent de 0,3655 | autre version de l'outil, ou fichier modifié | vérifier la version (v0.5.1) ; refaire `git checkout -- cas/` pour retrouver les fichiers d'origine |
 | `ModuleNotFoundError: No module named 'yaml'` | module Python absent | `sudo apt install python3-yaml python3-matplotlib` |
+| un résultat de l'outil vous semble faux, ou vous ne savez pas si l'outil marche | à établir | lancez `python3 scripts/test_valeurs_connues.py` depuis le dossier du dépôt et collez **toute** sa sortie dans votre message à l'enseignant |
 
 Chaque lancement **écrase** `results.csv` du dossier courant : le renommer avant de relancer s'il faut le garder.
 Ne modifiez pas les fichiers de `cas/` : copiez-les d'abord (`cp aile_caboteur.yml essai.yml`) et travaillez sur la copie.
