@@ -1,0 +1,179 @@
+rotations convention: [psi, theta', phi''] 
+
+environmental constants:
+    g: {value: 9.8067, unit: m/s^2}
+    rho: {value: 1025., unit: kg/m^3}
+    nu: {value: 1.48e-5, unit: m^2/s}
+    air rho: {value: 1.225, unit: kg/m^2}
+
+environment models:
+  - model: power law wind profile
+    velocity: {unit: m/s, value: 10.288}
+    direction: {unit: deg, value: 90.}
+    reference height: {unit: m, value: 10.}
+    alpha: 0.
+    output:
+        frame of reference: NED
+        mesh:
+            xmin: {value: -55., unit: m}
+            xmax: {value: 55., unit: m}
+            nx: 3
+            ymin: {value: -22., unit: m}
+            ymax: {value: 22., unit: m}
+            ny: 2
+            zmin: {value: 0, unit: m}
+            zmax: {value: -99., unit: m}
+            nz: 10
+  - model: no waves
+    constant sea elevation in NED frame: {value: 0, unit: m}
+    
+bodies: # All bodies have NED as parent frame
+  - name: ship
+    position of body frame relative to mesh:
+        frame: mesh
+        x: {value: 0., unit: m}
+        y: {value: 0, unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 3.1415926535, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial position of body frame relative to NED:
+        frame: NED
+        x: {value: 0., unit: m}
+        y: {value: 0., unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 0, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial velocity of body frame relative to NED:
+        frame: ship
+        u: {value: 7.2016, unit: m/s}
+        v: {value: 0, unit: m/s}
+        w: {value: 0, unit: m/s}
+        p: {value: 0, unit: rad/s}
+        q: {value: 0, unit: rad/s}
+        r: {value: 0, unit: rad/s}
+    dynamics:
+        hydrodynamic forces calculation point in body frame:
+            x: {value: 0., unit: m}
+            y: {value: 0., unit: m}
+            z: {value: 0., unit: m}
+        centre of inertia:
+            frame: ship
+            x: {value: 0, unit: m}
+            y: {value: 0, unit: m}
+            z: {value: 0., unit: m}
+        rigid body inertia matrix at the center of gravity and projected in the body frame:
+            row 1: [1E6,0,0,0,0,0]
+            row 2: [0,1E6,0,0,0,0]
+            row 3: [0,0,1E6,0,0,0]
+            row 4: [0,0,0,1E6,0,0]
+            row 5: [0,0,0,0,1E6,0]
+            row 6: [0,0,0,0,0,1E6]
+        added mass matrix at the center of gravity and projected in the body frame:
+            row 1: [0,0,0,0,0,0]
+            row 2: [0,0,0,0,0,0]
+            row 3: [0,0,0,0,0,0]
+            row 4: [0,0,0,0,0,0]
+            row 5: [0,0,0,0,0,0]
+            row 6: [0,0,0,0,0,0]
+    external forces:
+      - name: interactions
+        model: strip theory
+        control: maxThrust
+        options:
+            useAWSsquare: false
+            useBentHorseshoeVortex: false
+            verbose: false
+            searchInterval: 0.1
+        plane of symmetry:
+            point:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -15., unit: m}
+            normal vector:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -1., unit: m}
+            frame: ship
+        wind propulsion system:
+          - name: WPU_1
+            geometry: uniform
+            data:
+                root:
+                    x: {value: 24., unit: m}
+                    y: {value: -11., unit: m}
+                    z: {value: -15., unit: m}
+                tip:
+                    x: {value: 24., unit: m}
+                    y: {value: -11., unit: m}
+                    z: {value: -43., unit: m}
+                aspect ratio: 3.
+                discretization: 
+                    number of elements: 20
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+          - name: WPU_2
+            geometry: uniform
+            data:
+                root:
+                    x: {value: 24., unit: m}
+                    y: {value: 11., unit: m}
+                    z: {value: -15., unit: m}
+                tip:
+                    x: {value: 24., unit: m}
+                    y: {value: 11., unit: m}
+                    z: {value: -43., unit: m}
+                aspect ratio: 3.
+                discretization: 
+                    number of elements: 20
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+          - name: WPU_3
+            geometry: uniform
+            data:
+                root:
+                    x: {value: -24., unit: m}
+                    y: {value: -11., unit: m}
+                    z: {value: -15., unit: m}
+                tip:
+                    x: {value: -24., unit: m}
+                    y: {value: -11., unit: m}
+                    z: {value: -43., unit: m}
+                aspect ratio: 3.
+                discretization: 
+                    number of elements: 20
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml 
+          - name: WPU_4
+            geometry: uniform
+            data:
+                root:
+                    x: {value: -24., unit: m}
+                    y: {value: 11., unit: m}
+                    z: {value: -15., unit: m}
+                tip:
+                    x: {value: -24., unit: m}
+                    y: {value: 11., unit: m}
+                    z: {value: -43., unit: m}
+                aspect ratio: 3.
+                discretization: 
+                    number of elements: 20
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+
+commands:
+  - name: WPU_1
+    t: [0, 100]
+    setting: {unit: deg, values: [34.4, 34.4]}
+  - name: WPU_2
+    t: [0, 100]
+    setting: {unit: deg, values: [28.8, 28.8]}
+  - name: WPU_3
+    t: [0, 100]
+    setting: {unit: deg, values: [33.7, 33.7]}
+  - name: WPU_4
+    t: [0, 100]
+    setting: {unit: deg, values: [27.8, 27.8]}
+ 
+

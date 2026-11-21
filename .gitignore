@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+
+# Sorties produites pendant le TD (les élèves les régénèrent)
+*.png
+results.csv
+*_0000.csv
+*.vtk
+
+# Éditeurs / OS
+.vscode/
+*.Zone.Identifier
+.DS_Store
+
+# Ne jamais committer de travail d’élève nominatif
+rendus/
+
+# Versant enseignant — domicile unique et ignoré (fiches enseignant, corrigés)
+/enseignant/
+
+# Fiches des séances suivantes : publiées au fil des séances, jamais avant
+/docs/_a_venir/

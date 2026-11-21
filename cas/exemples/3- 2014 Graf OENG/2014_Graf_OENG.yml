@@ -1,0 +1,133 @@
+rotations convention: [psi, theta', phi''] 
+
+environmental constants:
+    g: {value: 9.8067, unit: m/s^2}
+    rho: {value: 1025., unit: kg/m^3}
+    nu: {value: 1.48e-5, unit: m^2/s}
+    air rho: {value: 1.225, unit: kg/m^2}
+
+environment models:
+  - model: uniform wind
+    velocity: {unit: m/s, value: 3.88}
+    direction: {unit: deg, value: 90.}
+    output:
+        frame of reference: NED
+        mesh:
+            xmin: {value: -4, unit: m}
+            xmax: {value: 4, unit: m}
+            nx: 5
+            ymin: {value: -2.5, unit: m}
+            ymax: {value: 2.5, unit: m}
+            ny: 3
+            zmin: {value: 0, unit: m}
+            zmax: {value: -13, unit: m}
+            nz: 5
+  - model: no waves
+    constant sea elevation in NED frame: {value: 0, unit: m}
+    
+bodies: # All bodies have NED as parent frame
+  - name: ship
+    position of body frame relative to mesh:
+        frame: mesh
+        x: {value: 0., unit: m}
+        y: {value: 0, unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 3.1415926535, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial position of body frame relative to NED:
+        frame: NED
+        x: {value: 0., unit: m}
+        y: {value: 0., unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 0, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial velocity of body frame relative to NED:
+        frame: ship
+        u: {value: 0, unit: m/s}
+        v: {value: 0, unit: m/s}
+        w: {value: 0, unit: m/s}
+        p: {value: 0, unit: rad/s}
+        q: {value: 0, unit: rad/s}
+        r: {value: 0, unit: rad/s}
+    dynamics:
+        hydrodynamic forces calculation point in body frame:
+            x: {value: 0., unit: m}
+            y: {value: 0., unit: m}
+            z: {value: 0., unit: m}
+        centre of inertia:
+            frame: ship
+            x: {value: 0, unit: m}
+            y: {value: 0, unit: m}
+            z: {value: 0., unit: m}
+        rigid body inertia matrix at the center of gravity and projected in the body frame:
+            row 1: [1E6,0,0,0,0,0]
+            row 2: [0,1E6,0,0,0,0]
+            row 3: [0,0,1E6,0,0,0]
+            row 4: [0,0,0,1E6,0,0]
+            row 5: [0,0,0,0,1E6,0]
+            row 6: [0,0,0,0,0,1E6]
+        added mass matrix at the center of gravity and projected in the body frame:
+            row 1: [0,0,0,0,0,0]
+            row 2: [0,0,0,0,0,0]
+            row 3: [0,0,0,0,0,0]
+            row 4: [0,0,0,0,0,0]
+            row 5: [0,0,0,0,0,0]
+            row 6: [0,0,0,0,0,0]
+    external forces:
+      - model: nonlinear lifting line
+        control: commands
+        name: test 3
+        options:
+            verbose: false
+            useAWSsquare: true
+        plane of symmetry:
+            point:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: 0., unit: m}
+            normal vector:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -1., unit: m}
+            frame: ship
+        wind propulsion system:
+          - name: 2014_Graf_OENG
+            geometry: uniform
+            data:
+                root:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: 0., unit: m}
+                tip:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -1.8, unit: m}
+                aspect ratio: 4.5
+                end conditions:
+                    root: embedded
+                    tip: free
+                discretization: 
+                    number of elements: 21
+                foil data: 
+                  - type: NACA0012
+                  - Re: 5000.
+                    AoA: {unit: deg, values: [-90.,-20,-18,-16,-14,-13.75,-13.5,-13.25,-13,-12.75,-12.25,-12,-11.75,-11,-10,-9,-8,-6,-4,-2,0,2,4,6,8,9,10,11,11.75,12,12.25,12.75,13,13.25,13.5,13.75,14,16,18,20,90.]}
+                    lift coefficient: [0., -0.59238,-0.57132,-0.5587,-0.5737,-0.58058,-0.59005,-0.97148,-0.98988,-1.00297,-1.01227,-1.0129,-1.00925,-0.98533,-0.93152,-0.86214,-0.78232,-0.60299,-0.40836,-0.20598,0,0.20598,0.40836,0.60299,0.78232,0.86214,0.93152,0.98533,1.00925,1.0129,1.01227,1.00297,0.98988,0.97148,0.59005,0.58058,0.5737,0.5587,0.57132,0.59238,0.]
+                    drag coefficient: [0.26328, 0.26328,0.22885,0.19398,0.15602,0.15026,0.14398,0.0657,0.05951,0.05398,0.046,0.04284,0.04022,0.0343,0.02902,0.02536,0.02262,0.01891,0.01673,0.01561,0.01527,0.01561,0.01673,0.01891,0.02262,0.02536,0.02902,0.0343,0.04022,0.04284,0.046,0.05398,0.05951,0.0657,0.14398,0.15026,0.15602,0.19398,0.22885,0.26328,0.26328]
+                  - Re: 128000.
+                    AoA: {unit: deg, values: [-90.,-20,-18,-16,-14,-13.75,-13.5,-13.25,-13,-12.75,-12.25,-12,-11.75,-11,-10,-9,-8,-6,-4,-2,0,2,4,6,8,9,10,11,11.75,12,12.25,12.75,13,13.25,13.5,13.75,14,16,18,20,90.]}
+                    lift coefficient: [0., -0.59238,-0.57132,-0.5587,-0.5737,-0.58058,-0.59005,-0.97148,-0.98988,-1.00297,-1.01227,-1.0129,-1.00925,-0.98533,-0.93152,-0.86214,-0.78232,-0.60299,-0.40836,-0.20598,0,0.20598,0.40836,0.60299,0.78232,0.86214,0.93152,0.98533,1.00925,1.0129,1.01227,1.00297,0.98988,0.97148,0.59005,0.58058,0.5737,0.5587,0.57132,0.59238,0.]
+                    drag coefficient: [0.26328, 0.26328,0.22885,0.19398,0.15602,0.15026,0.14398,0.0657,0.05951,0.05398,0.046,0.04284,0.04022,0.0343,0.02902,0.02536,0.02262,0.01891,0.01673,0.01561,0.01527,0.01561,0.01673,0.01891,0.02262,0.02536,0.02902,0.0343,0.04022,0.04284,0.046,0.05398,0.05951,0.0657,0.14398,0.15026,0.15602,0.19398,0.22885,0.26328,0.26328]
+                  - Re: 10000000.
+                    AoA: {unit: deg, values: [-90.,-20,-18,-16,-14,-13.75,-13.5,-13.25,-13,-12.75,-12.25,-12,-11.75,-11,-10,-9,-8,-6,-4,-2,0,2,4,6,8,9,10,11,11.75,12,12.25,12.75,13,13.25,13.5,13.75,14,16,18,20,90.]}
+                    lift coefficient: [0., -0.59238,-0.57132,-0.5587,-0.5737,-0.58058,-0.59005,-0.97148,-0.98988,-1.00297,-1.01227,-1.0129,-1.00925,-0.98533,-0.93152,-0.86214,-0.78232,-0.60299,-0.40836,-0.20598,0,0.20598,0.40836,0.60299,0.78232,0.86214,0.93152,0.98533,1.00925,1.0129,1.01227,1.00297,0.98988,0.97148,0.59005,0.58058,0.5737,0.5587,0.57132,0.59238,0.]
+                    drag coefficient: [0.26328, 0.26328,0.22885,0.19398,0.15602,0.15026,0.14398,0.0657,0.05951,0.05398,0.046,0.04284,0.04022,0.0343,0.02902,0.02536,0.02262,0.01891,0.01673,0.01561,0.01527,0.01561,0.01673,0.01891,0.02262,0.02536,0.02902,0.0343,0.04022,0.04284,0.046,0.05398,0.05951,0.0657,0.14398,0.15026,0.15602,0.19398,0.22885,0.26328,0.26328]
+
+commands:
+  - name: 2014_Graf_OENG
+    t: [0, 100]
+    setting: {unit: deg, values: [78., 78.]}
+ 
+

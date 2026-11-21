@@ -1,0 +1,249 @@
+rotations convention: [psi, theta', phi''] 
+
+environmental constants:
+    g: {value: 9.8067, unit: m/s^2}
+    rho: {value: 1025., unit: kg/m^3}
+    nu: {value: 1.48e-5, unit: m^2/s}
+    air rho: {value: 1.225, unit: kg/m^2}
+
+environment models:
+  - model: uniform wind
+    velocity: {unit: m/s, value: 7.879}
+    direction: {unit: deg, value: 195.}
+    output:
+        frame of reference: NED
+        mesh:
+            xmin: {value: -86.4, unit: m}
+            xmax: {value: 86.4, unit: m}
+            nx: 5
+            ymin: {value: -23.1, unit: m}
+            ymax: {value: 23.1, unit: m}
+            ny: 3
+            zmin: {value: 0, unit: m}
+            zmax: {value: -86.4, unit: m}
+            nz: 5
+  - model: no waves
+    constant sea elevation in NED frame: {value: 0, unit: m}
+    
+bodies: # All bodies have NED as parent frame
+  - name: ship
+    position of body frame relative to mesh:
+        frame: mesh
+        x: {value: 0., unit: m}
+        y: {value: 0, unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 3.1415926535, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial position of body frame relative to NED:
+        frame: NED
+        x: {value: 0., unit: m}
+        y: {value: 0., unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 0, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial velocity of body frame relative to NED:
+        frame: ship
+        u: {value: 0, unit: m/s}
+        v: {value: 0, unit: m/s}
+        w: {value: 0, unit: m/s}
+        p: {value: 0, unit: rad/s}
+        q: {value: 0, unit: rad/s}
+        r: {value: 0, unit: rad/s}
+    dynamics:
+        hydrodynamic forces calculation point in body frame:
+            x: {value: 0., unit: m}
+            y: {value: 0., unit: m}
+            z: {value: 0., unit: m}
+        centre of inertia:
+            frame: ship
+            x: {value: 0, unit: m}
+            y: {value: 0, unit: m}
+            z: {value: 0., unit: m}
+        rigid body inertia matrix at the center of gravity and projected in the body frame:
+            row 1: [1E6,0,0,0,0,0]
+            row 2: [0,1E6,0,0,0,0]
+            row 3: [0,0,1E6,0,0,0]
+            row 4: [0,0,0,1E6,0,0]
+            row 5: [0,0,0,0,1E6,0]
+            row 6: [0,0,0,0,0,1E6]
+        added mass matrix at the center of gravity and projected in the body frame:
+            row 1: [0,0,0,0,0,0]
+            row 2: [0,0,0,0,0,0]
+            row 3: [0,0,0,0,0,0]
+            row 4: [0,0,0,0,0,0]
+            row 5: [0,0,0,0,0,0]
+            row 6: [0,0,0,0,0,0]
+    external forces:
+      - model: ISILL
+        name: example_15
+        options:
+            verbose: false
+            useAWSsquare: true
+            coordinates of center of velocity: 0.5
+        plane of symmetry:
+            point:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: 0., unit: m}
+            normal vector:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -1., unit: m}
+            frame: ship
+        wind propulsion system:
+          - name: 2024_Malmek
+            geometry: 3D
+            data:
+              - element: 1
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: 0., unit: m}
+                chord: {value: 23., unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 2
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -5.7, unit: m}
+                chord: {value: 23., unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 3
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -11.5, unit: m}
+                chord: {value: 22.8, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml                  
+              - element: 4
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -17., unit: m}
+                chord: {value: 22.5, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 5
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -22.5, unit: m}
+                chord: {value: 22.2, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 6
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -27.8, unit: m}
+                chord: {value: 21.8, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml      
+              - element: 7
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -32.9, unit: m}
+                chord: {value: 21.2, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml                  
+              - element: 8
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -37.8, unit: m}
+                chord: {value: 20.8, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 9
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -42.5, unit: m}
+                chord: {value: 20., unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml                  
+              - element: 10
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -46.9, unit: m}
+                chord: {value: 19.5, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml                  
+              - element: 11
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -50.9, unit: m}
+                chord: {value: 18.4, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml                  
+              - element: 12
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -54.8, unit: m}
+                chord: {value: 17.3, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml 
+              - element: 13
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -57.8, unit: m}
+                chord: {value: 16.2, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml                  
+              - element: 14
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -60.9, unit: m}
+                chord: {value: 15.2, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 15
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -63.4, unit: m}
+                chord: {value: 14., unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 16
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -65.5, unit: m}
+                chord: {value: 13.2, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 17
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -67.1, unit: m}
+                chord: {value: 12.7, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+              - element: 18
+                center:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -69.2, unit: m}
+                chord: {value: 11.9, unit: m}                
+                foil data: 
+                  - file: ../airfoil_data/NACA0015_v2.yml
+ 
+commands:
+  - name: 2024_Malmek
+    t: [0, 100]
+    setting: {unit: deg, values: [0., 0.]}
+ 
+
