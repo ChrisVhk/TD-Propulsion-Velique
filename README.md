@@ -20,8 +20,8 @@ La théorie est dans le **cours**, sur Vega. Ce dépôt contient le TD seulement
 ```
 TD-Propulsion-Velique/
 ├── docs/     — 00 pré-vol · 00b dépannage · 01 programme · une fiche par séance (TD-S1, puis les suivantes)
-├── scripts/  — installer_cnaero.sh (outil + Python) · verifie_mon_install.py (vérification) · test_valeurs_connues.py (C_L elliptique, F_x cas ENSM) · tracer_table.py
-└── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM), exemples/ (dépôt LHEEA) ; EPL 2.0
+├── scripts/  — installer_cnaero.sh (outil + Python) · verifie_mon_install.py (vérification) · test_valeurs_connues.py (C_L elliptique, F_x cas ENSM) · tracer_table.py · voir_aile_caboteur.py (vue ParaView, repli)
+└── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM, et paraview/aile_caboteur.pvsm, l'état ParaView de sa vue), exemples/ (dépôt LHEEA) ; EPL 2.0
 ```
 
 ## Rien de sensible
@@ -29,4 +29,5 @@ TD-Propulsion-Velique/
 Dépôt **public**. Aucune donnée nominative, aucun corrigé, aucun extrait de support sous droits. Les énoncés qui
 s'appuient sur des supports de formation non libres sont distribués sur Vega. Provenance des fichiers :
 [`PROVENANCE.md`](PROVENANCE.md). Licences : code sous Apache 2.0 ([`LICENSE`](LICENSE)), textes sous CC BY 4.0
-([`LICENSE-docs`](LICENSE-docs)), fichiers de `cas/` sous EPL 2.0 ([`cas/LICENSE_CN-AeroModels.txt`](cas/LICENSE_CN-AeroModels.txt)).
+([`LICENSE-docs`](LICENSE-docs)), fichiers de `cas/` sous EPL 2.0 ([`cas/LICENSE_CN-AeroModels.txt`](cas/LICENSE_CN-AeroModels.txt)), sauf l'état
+ParaView `cas/Cas-ENSM_aile-du-caboteur/paraview/aile_caboteur.pvsm` (ENSM, Apache 2.0, comme le code).

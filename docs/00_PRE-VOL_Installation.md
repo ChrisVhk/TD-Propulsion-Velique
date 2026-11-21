@@ -5,8 +5,8 @@
 > du poste. **Pendant le TD 1**, l'installation se fait de 0:00 à 0:40, pendant que le binôme avance les premiers
 > exercices à la main. En cas de blocage : [`00b_CA_NA_PAS_MARCHE.md`](00b_CA_NA_PAS_MARCHE.md).
 
-On installe **quatre choses**, dans cet ordre. Tout le TD se fait dans le **terminal Ubuntu** (WSL), jamais dans
-PowerShell, sauf l'étape ①.
+On installe **cinq choses**, dans cet ordre. Tout le TD se fait dans le **terminal Ubuntu** (WSL), jamais dans
+PowerShell, sauf l'étape ① ; la visualisation se fait dans **ParaView pour Windows** (étape ⑤).
 
 ## ① L'environnement : WSL + Ubuntu (par le dépôt du cours S5)
 
@@ -69,6 +69,32 @@ l'enseignant.
 
 - Que des `[ OK ]` → rien d'autre à faire.
 - Un `[ MANQUE ]` → [`00b_CA_NA_PAS_MARCHE.md`](00b_CA_NA_PAS_MARCHE.md), puis renvoyez quand même le bloc.
+
+## ⑤ ParaView pour Windows (visualisation, dès le TD 1)
+
+ParaView est le logiciel libre de visualisation de Kitware (licence BSD). Au TD 1 (manipulation 2 bis), il ouvre les
+fichiers `.vtk` que CN-AeroModels écrit avec l'option `--vtk 1` : l'aile, ses efforts, le vent. On l'installe
+**côté Windows** (pas dans WSL), comme au bloc 4 du cours S5 :
+
+1. <https://www.paraview.org/download/> → choisir **Windows**, version stable la plus récente (**6.2.1** au
+   22/11/2026), fichier **`ParaView-6.2.1-Windows-Python3.12-msvc2017-AMD64.msi`** (environ 580 Mo ; **pas** la
+   version `MPI`). Les fichiers sont aussi listés sur <https://www.paraview.org/files/v6.2/>.
+2. Lancer l'installateur `.msi`, sans réglage particulier (droits d'administrateur demandés). Sans droits
+   d'administrateur : prendre le `.zip` de la même version (environ 1,5 Go), le décompresser dans un dossier personnel
+   et lancer `bin\paraview.exe`.
+3. Vérifier : lancer ParaView (menu Démarrer), *File > Open*, aucune fenêtre d'erreur au démarrage.
+
+Une version 6.x déjà installée convient (l'état du TD a été chargé sans erreur sous ParaView 6.0.1 et 6.1.1 ; la 6.2.1
+n'a pas encore été essayée : en cas de souci, prenez la 6.1.1 sur <https://www.paraview.org/files/v6.1/>).
+
+**Repli, si ParaView pour Windows ne s'installe pas** : l'installer dans WSL, dans le terminal Ubuntu,
+
+```bash
+sudo apt install paraview
+```
+
+(plusieurs centaines de Mo), puis, depuis le dossier du dépôt, `pvpython scripts/voir_aile_caboteur.py` : le script
+relance le cas avec `--vtk 1` dans un dossier temporaire et ouvre la même vue dans une fenêtre.
 
 ## En binôme : une machine qui marche suffit
 

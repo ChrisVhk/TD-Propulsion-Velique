@@ -21,5 +21,13 @@ désactivée dans le BIOS, pas de droits administrateur, Windows trop ancien, `[
 | `ModuleNotFoundError: No module named 'yaml'` | module Python absent | `sudo apt install python3-yaml python3-matplotlib` |
 | un résultat de l'outil vous semble faux, ou vous ne savez pas si l'outil marche | à établir | lancez `python3 scripts/test_valeurs_connues.py` depuis le dossier du dépôt et collez **toute** sa sortie dans votre message à l'enseignant |
 
+## Pannes propres à ParaView (TD 1, manipulation 2 bis)
+
+| Symptôme | Cause | Remède |
+|---|---|---|
+| ParaView pour Windows ne trouve pas les fichiers du TD (ni `C:\` ni « Documents ») | les fichiers sont dans WSL, que Windows voit par une adresse réseau | dans le terminal Ubuntu, depuis le dossier du cas : `wslpath -w .` ; coller l'adresse affichée (`\\wsl.localhost\Ubuntu\home\<nom>\…`, ou `\\wsl$\Ubuntu\home\<nom>\…`) dans le champ du nom de fichier |
+| après *File > Load State*, seuls le repère, la légende et les textes s'affichent (ni aile, ni mer, ni flèches), ou `Could not open file` dans *Output Messages* | ParaView cherche les données à un mauvais endroit | dans *Load State Options* : *Search files under specified directory*, et *Data Directory* = le **dossier du cas** (celui des `.vtk`), pas le dossier `paraview` proposé par défaut ; vérifier aussi que `ls *.vtk` montre quatre fichiers (sinon relancer `CN-AeroModels aile_caboteur.yml --vtk 1`) |
+| `pvpython scripts/voir_aile_caboteur.py` : aucune fenêtre, ou erreur d'affichage (*display*, *Qt*) | affichage graphique de WSL absent (Windows 10 ancien, ou WSL non à jour) | dans PowerShell : `wsl --update`, puis rouvrir Ubuntu ; sinon ParaView pour Windows (pré-vol, étape ⑤) |
+
 Chaque lancement **écrase** `results.csv` du dossier courant : le renommer avant de relancer s'il faut le garder.
 Ne modifiez pas les fichiers de `cas/` : copiez-les d'abord (`cp aile_caboteur.yml essai.yml`) et travaillez sur la copie.

@@ -19,7 +19,9 @@ ou lecture critique d'une source.
   niveau 1) ;
 - lire une table de profil réelle : maximum de portance, décrochage, finesse, effet du nombre de Reynolds, et
   retrouver dans les sorties de l'outil le nombre de Reynolds qu'il utilise réellement (A04, niveau 2) ;
-- installer CN-AeroModels et vérifier votre installation sur deux cas dont le résultat est connu.
+- installer CN-AeroModels et vérifier votre installation sur deux cas dont le résultat est connu ;
+- ouvrir dans ParaView les fichiers de visualisation de l'outil et y lire le sens des efforts et le repère NED
+  (manipulation 2 bis).
 
 # Vos armes : les formules utiles (cours S7-01, § 5)
 
@@ -48,7 +50,8 @@ apparent corrigé du réglage m de l'aile : AoA = AWA + m, avec les angles sign�
 
 # Matériel
 
-Tout se fait dans **Ubuntu sous Windows (WSL)**, dans le terminal Ubuntu.
+Tout se fait dans **Ubuntu sous Windows (WSL)**, dans le terminal Ubuntu, sauf la visualisation (manipulation 2 bis),
+qui se fait dans **ParaView pour Windows**.
 
 - **Le dépôt du TD**, `TD-Propulsion-Velique` (public, GitHub) : la fiche de chaque séance (`docs/`), les scripts
   d'installation et de tracé (`scripts/`), et les fichiers d'entrée des cas de l'outil (`cas/`).
@@ -56,11 +59,13 @@ Tout se fait dans **Ubuntu sous Windows (WSL)**, dans le terminal Ubuntu.
   License 2.0). Le script `scripts/installer_cnaero.sh` le télécharge sur la page *Releases* officielle,
   <https://gitlab.com/lheea/CN-AeroModels/-/releases>, et l'installe ; l'enseignant ne redistribue pas le binaire.
 - **Python 3** avec les modules `yaml` et `matplotlib` (installés par le même script), ou à défaut un tableur.
+- **ParaView pour Windows** (logiciel libre de visualisation, Kitware), installé selon le pré-vol (étape ⑤).
 - Une calculatrice.
 
 **Déroulé de la séance.** De 0:00 à 0:40, un membre du binôme installe (manipulations 0 et 1) pendant que l'autre
-commence A01 et A02 à la main ; puis, jusqu'à 2:00, A03, A04 et le tracé de la table (manipulations 2 et 3). Si
-l'installation coince, continuez les exercices : ils se font tous sans l'outil.
+commence A01 et A02 à la main ; puis la manipulation 2 et, juste après, la manipulation 2 bis (ParaView, 15 min) ;
+puis, jusqu'à 2:00, A03, le tracé de la table (manipulation 3) et A04. Si l'installation coince, continuez les
+exercices : ils se font tous sans l'outil.
 
 # Manipulations pas à pas
 
@@ -127,6 +132,62 @@ comparez des valeurs absolues.
 
 L'outil écrit aussi dans le dossier du cas un fichier par aile, `aile-caboteur_WPU-1_0000.csv` (une ligne par bande,
 séparateur `;`) : gardez-le, la question 2 d'A04 s'en sert.
+
+## Manipulation 2 bis — Voir le cas dans ParaView (15 min, juste après la manipulation 2)
+
+Il faut **ParaView pour Windows** (pré-vol, étape ⑤). On relance le même cas en demandant à l'outil d'écrire, en plus,
+des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un état préparé (une vue déjà réglée).
+
+1. **Relancer le cas avec l'option `--vtk 1`**, dans le terminal Ubuntu, toujours depuis le dossier du cas :
+
+   ```bash
+   cd ~/TD-Propulsion-Velique/cas/Cas-ENSM_aile-du-caboteur
+   CN-AeroModels aile_caboteur.yml --vtk 1
+   ls *.vtk
+   ```
+
+   **Auto-contrôle** : l'écran redonne exactement F_x = 45 015,9 N et F_y = 34 203,7 N (l'option ne change pas le
+   calcul) ; `ls` affiche quatre fichiers : `aile-caboteur_WPU-1_0000.vtk` (l'aile et ses bandes),
+   `aile-caboteur_WPU-1_force_0000.vtk` (les efforts par bande), `wind_0000.vtk` (le vent vrai) et
+   `FreeSurface_0000.vtk` (la surface de la mer).
+2. **Afficher l'adresse Windows du dossier du cas**, toujours dans le terminal Ubuntu :
+
+   ```bash
+   wslpath -w .
+   ```
+
+   Le terminal affiche une adresse du type `\\wsl.localhost\Ubuntu\home\<votre nom>\TD-Propulsion-Velique\cas\Cas-ENSM_aile-du-caboteur`
+   (le nom `Ubuntu` peut varier selon votre installation). C'est par cette adresse que Windows voit les fichiers de WSL.
+   Sélectionnez-la à la souris et copiez-la avec **Ctrl+Maj+C** (dans le terminal, un clic droit sans sélection
+   *colle* au lieu de copier) ; ne copiez pas le retour à la ligne.
+3. **Ouvrir ParaView** (pour Windows, depuis le menu Démarrer).
+4. **Charger l'état** : menu *File > Load State…*. Dans le champ du nom de fichier (*File name*), collez l'adresse
+   copiée à l'étape 2 et appuyez sur **Entrée** : la boîte affiche le contenu du dossier du cas. **Double-cliquez** sur
+   le dossier `paraview`, sélectionnez `aile_caboteur.pvsm`, puis cliquez sur *OK*.
+5. **Dire à ParaView où sont les données.** Une fenêtre *Load State Options* s'ouvre :
+   - *Load State Data File Options* : choisir **Search files under specified directory** ;
+   - *Data Directory* : ParaView y propose le dossier `paraview`, qui ne contient pas les `.vtk` (il ne cherche pas
+     dans le dossier au-dessus). **Effacez tout le champ** et collez l'adresse du dossier du cas (celle de l'étape 2),
+     ou supprimez simplement `\paraview` à la fin : le champ doit se terminer par `Cas-ENSM_aile-du-caboteur` ;
+   - laissez la case *Only Use Files In Data Directory* telle quelle ;
+   - *OK*.
+
+**Ce que vous devez voir** (l'enseignant l'a montré en fin de cours) : l'aile, debout au-dessus de la mer, en bleu
+foncé, avec une légende de couleur « C_L de chaque bande (Cl, signe de l'outil) », graduée de −2 à 2 : le bleu foncé
+correspond à C_L ≈ −1,6, la valeur de la manipulation 2 avec le signe de l'outil ; trois flèches vertes, une par bande (l'effort par unité de
+surface, en N/m²) ; trois flèches grises (le vent vrai, au vent de l'aile, à 25 m de haut) ; un plan vert pâle (la
+surface de la mer, z = 0) ; trois flèches de repère au pied de l'aile, x, y et z. Faites tourner la vue à la souris
+(clic gauche et glisser) ; pour retrouver la vue de départ, rechargez l'état. **Si vous voyez seulement le repère x, y,
+z, la légende et les textes, sans aile, sans mer et sans flèches**, ou une fenêtre *Output Messages* avec
+`Could not open file`, ParaView n'a pas trouvé les données : recommencez *File > Load State* (étape 4) et corrigez
+*Data Directory* (étape 5).
+
+**Deux questions d'observation** (aucune valeur à calculer ; deux ou trois lignes chacune) :
+
+- **P1.** Le sens des flèches vertes est-il cohérent avec F_x > 0 et F_y > 0 lus à la manipulation 2 ? Situez-les
+  par rapport aux flèches x et y du repère.
+- **P2.** Dans quel sens pointe l'axe z ? Pourquoi la vue a-t-elle dû être retournée pour montrer l'aile debout ?
+  Faites le lien avec la convention NED de l'exercice A02.
 
 ## Manipulation 3 — Tracer la table de coefficients du profil (pour A04)
 
@@ -211,7 +272,8 @@ qu'il faudrait vérifier avant de s'y fier pour une aile réelle ?
 
 Un compte rendu (une à deux pages), selon les consignes de dépôt données par l'enseignant, avec :
 
-1. les réponses d'A01, A02, A03 et A04 (questions 1 et 2), **calculs posés** et unités ;
+1. les réponses d'A01, A02, A03 et A04 (questions 1 et 2), **calculs posés** et unités, et vos réponses aux deux
+   questions d'observation P1 et P2 (manipulation 2 bis) ;
 2. le tracé `table_NACA0015_v2.png` (ou celui du tableur) ;
 3. une copie d'écran des deux auto-contrôles (manipulations 1 et 2), ou, si l'outil n'a pas pu être installé, la
    panne rencontrée et le message d'erreur ;
@@ -219,7 +281,10 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 
 # Sources
 
-- LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 5-9, 21-26.
+- LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 5-9, 21-26 (p. 26 : fichiers
+  `.vtk` et visualisation dans ParaView).
+- ParaView, Kitware, <https://www.paraview.org> (logiciel libre, licence BSD) ; état de la vue
+  `cas/Cas-ENSM_aile-du-caboteur/paraview/aile_caboteur.pvsm` et script `scripts/voir_aile_caboteur.py` (ENSM).
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `1_element.yml` de l'exemple 1 (point de départ du cas de l'aile du caboteur), `airfoil_data/NACA0015_v2.yml`,
   `elliptic.yml` de l'exemple 2.
