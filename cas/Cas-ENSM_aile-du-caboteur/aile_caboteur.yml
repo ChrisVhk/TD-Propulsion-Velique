@@ -11,8 +11,8 @@ rotations convention: [psi, theta', phi'']
 environmental constants:
     g: {value: 9.8067, unit: m/s^2}
     rho: {value: 1025., unit: kg/m^3}
-    nu: {value: 1.48e-5, unit: m^2/s}
-    air rho: {value: 1.225, unit: kg/m^2}
+    nu: {value: 1.48e-5, unit: m^2/s}   # viscosité cinématique de l'air ; comment l'outil s'en sert pour Re : exercice A04, question 2
+    air rho: {value: 1.225, unit: kg/m^3}
 
 environment models:
   - model: uniform wind

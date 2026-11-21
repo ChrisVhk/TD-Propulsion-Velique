@@ -17,8 +17,8 @@ ou lecture critique d'une source.
   niveau 1) ;
 - évaluer le nombre de Reynolds d'une voile de cargo et dire ce qu'il implique pour l'usage d'une table de profil (A03,
   niveau 1) ;
-- lire une table de profil réelle : maximum de portance, décrochage, finesse, effet du nombre de Reynolds, et la façon
-  dont l'outil l'interpole (A04, niveau 2) ;
+- lire une table de profil réelle : maximum de portance, décrochage, finesse, effet du nombre de Reynolds, et
+  retrouver dans les sorties de l'outil le nombre de Reynolds qu'il utilise réellement (A04, niveau 2) ;
 - installer CN-AeroModels et vérifier votre installation sur deux cas dont le résultat est connu.
 
 # Vos armes : les formules utiles (cours S7-01, § 5)
@@ -121,8 +121,12 @@ sa table de profil par un chemin relatif à ce dossier (`../exemples/airfoil_dat
 
 **Auto-contrôle (valeur de référence : sortie de l'outil v0.5.1 ; le LHEEA donne le même résultat pour un cas voisin de sa formation, LH p. 25)** : à l'écran, **F_x = 45 015,9 N** et **F_y = 34 203,7 N** ; dans
 `results.csv`, **45,0159** et **34,2037 kN** (le fichier donne les efforts en kN, l'écran en N). Comparez ensuite
-les colonnes `AWS`, `AWA` et `AoA/SR` de l'écran à vos réponses de l'exercice A02 : les signes suivent les conventions
-de l'outil, comparez des valeurs absolues.
+les colonnes `AWS`, `AWA` et `AoA/SR` de la **ligne `WPU-1`** de l'écran à vos réponses de l'exercice A02 (la ligne
+`Total` affiche l'AWA dans la colonne `AoA/SR`, pas l'angle d'attaque) : les signes suivent les conventions de l'outil,
+comparez des valeurs absolues.
+
+L'outil écrit aussi dans le dossier du cas un fichier par aile, `aile-caboteur_WPU-1_0000.csv` (une ligne par bande,
+séparateur `;`) : gardez-le, la question 2 d'A04 s'en sert.
 
 ## Manipulation 3 — Tracer la table de coefficients du profil (pour A04)
 
@@ -182,16 +186,24 @@ jusqu'à 10⁶, CFD au-delà, d'après les commentaires du fichier). Appuyez-vou
 les valeurs du fichier.
 
 1. Pour chaque Re, relever C_L,max et son angle, ainsi que la finesse maximale et son angle.
-2. À AoA = 20,61° et Re = 9,33 · 10⁶ (le cas de l'aile du caboteur), interpoler C_L et C_D entre les tables à 3,2 · 10⁶ et 1,5 · 10⁷,
-   linéairement en Re puis linéairement en log Re. Laquelle des deux retrouve la sortie de l'outil (C_L = 1,611,
-   C_D = 0,0629) ?
+2. Quel nombre de Reynolds l'outil utilise-t-il pour le cas de l'aile du caboteur ?
+
+   a) À AoA = 20,61° et Re = 9,33 · 10⁶ (le Re d'A03), interpoler C_L et C_D entre les tables à 3,2 · 10⁶ et
+      1,5 · 10⁷, linéairement en Re, puis linéairement en log Re.
+   b) Comparer à la sortie de l'outil (manipulation 2, ligne `WPU-1` : C_L = −1,611, C_D = 0,0629 ; l'outil sort des
+      signes, comparez des valeurs absolues). Puis ouvrir le fichier par bande `aile-caboteur_WPU-1_0000.csv`
+      (manipulation 2 ; séparateur `;`) et relever la colonne `Re` : quel nombre de Reynolds l'outil a-t-il utilisé ?
+   c) Ce Re n'est pas celui d'A03. Calculer le rapport des deux : à quelle donnée du fichier `aile_caboteur.yml`
+      correspond-il ? Qu'en concluez-vous sur la façon dont l'outil se sert de la valeur `nu` du fichier ?
+   d) Interpoler C_L linéairement en Re, au Re de l'outil, toujours à 20,61° (les deux valeurs de C_L lues en a)
+      resservent, seul le poids change). Retrouvez-vous sa sortie ?
 
    *AoA = 20,61° et Re = 9,33 · 10⁶ sont donnés par l'énoncé : valeurs à comparer à vos réponses d'A02 c) et d'A03.*
 
 # Question d'interprétation physique
 
-Placez sur votre tracé le point de fonctionnement de l'aile du caboteur (AoA = 20,61°, Re = 9,33 · 10⁶, entre les
-courbes à 3,2 · 10⁶ et à 1,5 · 10⁷). Ce point est-il avant ou après le maximum de portance de chacune de ces deux
+Placez sur votre tracé le point de fonctionnement de l'aile du caboteur (AoA = 20,61° ; Re = 9,33 · 10⁶ selon A03,
+celui de l'outil selon A04 question 2 : dans les deux cas entre les courbes à 3,2 · 10⁶ et à 1,5 · 10⁷). Ce point est-il avant ou après le maximum de portance de chacune de ces deux
 courbes ? Qu'en concluez-vous sur la confiance à accorder à l'effort que l'outil calcule pour cette aile, et sur ce
 qu'il faudrait vérifier avant de s'y fier pour une aile réelle ?
 
