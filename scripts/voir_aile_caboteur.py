@@ -17,10 +17,16 @@ UNE LIGNE, dans le terminal Ubuntu (WSL), depuis le dossier du dépôt :
 Ce que fait le script :
   1. il copie le cas de l'aile du caboteur et sa table de profil dans un dossier temporaire
      (rien n'est écrit dans le dépôt) et y lance CN-AeroModels avec l'option --vtk 1 ;
-  2. il ouvre les quatre fichiers .vtk écrits par l'outil et construit la vue :
+  2. il ouvre les quatre fichiers .vtk écrits par l'outil, plus la coque caboteur_serie60.vtk (fournie avec le cas),
+     et construit la vue :
        - l'aile, découpée en trois bandes, colorée par le coefficient de portance C_L (Cl) ;
        - une flèche d'effort par bande (dForce, effort par unité de surface, N/m^2) ;
-       - le vent vrai (flèches grises, TWS) et la surface de la mer (plan z = 0) ;
+       - le vent vrai (flèches grises, TWS) et la surface de la mer (plan z = 0, semi-transparente) ;
+       - le caboteur (session 11 i) : coque Série 60, carène mère C_B = 0,65 (Todd 1963, DTMB Report 1712, table 4,
+         domaine public), mise à l'échelle du caboteur d'EGN-S9 (L 110 m, B 17,5 m, T 6,5 m, D 9,0 m), sans bulbe ;
+         flottaison en z = 0, pont en z = -2,5 m, quille en z = +6,5 m : l'aile du modèle part de la flottaison et
+         traverse le pont (ARB-EGN-S7-035). Fichier caboteur_serie60.vtk, versionné dans le dossier du cas
+         (ce n'est pas une sortie de l'outil) ; construit par construire_coque_serie60.py (dépôt de l'enseignant) ;
        - le repère : les fichiers sont en NED (x vers le nord = l'avant, y vers l'est = tribord,
          z vers le BAS) ; la vue est donc retournée (haut de l'écran = -z) pour voir l'aile debout ;
        - à l'écran : un titre court, la barre de couleur de C_L et les étiquettes x, y, z ; la légende des
@@ -63,9 +69,15 @@ FICHIERS = {
     "efforts": "aile-caboteur_WPU-1_force_0000.vtk",  # une cellule par bande : Cl, Cd, Re, dForce...
     "vent": "wind_0000.vtk",                          # grille du vent vrai, vecteur TWS
     "mer": "FreeSurface_0000.vtk",                    # surface de la mer, plan z = 0
+    "coque": "caboteur_serie60.vtk",                  # coque Série 60 C_B 0,65 à l'échelle du caboteur (versionnée)
 }
+GRIS_CLAIR = _rgb("#D9D9D9")
+OPACITE_MER = 0.5       # mer semi-transparente : on voit la carène sous la flottaison (session 11 i)
 ECHELLE_EFFORT = 0.12   # m par N/m^2 : 155 N/m^2 -> flèche de 19 m (aile de 33 m)
 ECHELLE_VENT = 1.5      # m par m/s : 10,3 m/s -> flèche de 15 m
+# Coque à 0,6 d'opacité (ARB-EGN-S7-037, 22/11) : opaque, elle cachait la flèche x du repère et le pied de l'aile, qui
+# sont sur la flottaison, à l'intérieur de la coque fermée au pont (P1 n'était plus faisable).
+OPACITE_COQUE = 0.6
 PLAGE_CL = [-2.0, 2.0]  # palette de C_L, symétrique : le signe de l'outil se lit dans la couleur
 # Graduations de la barre : format automatique, sans étiquettes d'extrémité. Aucune chaîne de format n'est alors
 # utilisée : ni avertissement « printf format » (ParaView 6.1 et plus), ni « {:.1f} » affiché en clair (ParaView 6.0,
@@ -74,9 +86,9 @@ PLAGE_CL = [-2.0, 2.0]  # palette de C_L, symétrique : le signe de l'outil se l
 # Depuis tribord (+y), 20° en arrière du travers (-x), 30° au-dessus de la mer (-z en NED) : on voit la face
 # de l'aile (ses trois bandes) et les flèches d'effort presque en long ; à l'écran, x (l'avant) part à droite
 # en montant, y (tribord) à droite en descendant, l'effort entre les deux.
-CAMERA_VISEE = [0.0, -12.0, -14.0]
+CAMERA_VISEE = [0.0, -12.0, -12.0]
 CAMERA_DIRECTION = [-0.296, 0.814, -0.500]
-CAMERA_DEMI_HAUTEUR = 39.0   # m (projection parallèle)
+CAMERA_DEMI_HAUTEUR = 42.0   # m (projection parallèle) ; 39 avant la 11 i : 42 garde le caboteur entier (110 m)
 
 
 def racine_depot(depot=None):
@@ -105,7 +117,8 @@ def lancer_cas(depot=None):
     tmp = tempfile.mkdtemp(prefix="aile_caboteur_vtk_")
     dossier_cas = os.path.join(tmp, "cas", "Cas-ENSM_aile-du-caboteur")
     os.makedirs(dossier_cas)
-    shutil.copy(os.path.join(racine, "cas", "Cas-ENSM_aile-du-caboteur", "aile_caboteur.yml"), dossier_cas)
+    for f in ("aile_caboteur.yml", FICHIERS["coque"]):   # la coque est un fichier du cas, pas une sortie de l'outil
+        shutil.copy(os.path.join(racine, "cas", "Cas-ENSM_aile-du-caboteur", f), dossier_cas)
     shutil.copytree(os.path.join(racine, "cas", "exemples", "airfoil_data"),
                     os.path.join(tmp, "cas", "exemples", "airfoil_data"))
     p = subprocess.run([trouver_binaire(), "aile_caboteur.yml", "--vtk", "1"], cwd=dossier_cas,
@@ -117,7 +130,7 @@ def lancer_cas(depot=None):
 
 
 def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquettes=28):
-    """Construit la vue à partir des quatre .vtk de `dossier` ; renvoie la vue.
+    """Construit la vue à partir des cinq .vtk de `dossier` (quatre de l'outil et la coque) ; renvoie la vue.
 
     La vue est rangée dans un layout (sans layout, l'interface graphique n'affiche rien après Load State).
     `vue` : vue de rendu déjà rangée dans un layout (interface graphique) ; sinon, vue et layout sont créés.
@@ -127,8 +140,9 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
         if not os.path.isfile(os.path.join(dossier, f)):
             sys.exit(f"Fichier absent : {os.path.join(dossier, f)} (l'outil a-t-il été lancé avec --vtk 1 ?)")
     # Noms du Pipeline Browser (session 11 h) : chaque nom est unique ; les fichiers lus portent leur nom de fichier ;
-    # les objets visibles sont numérotés dans l'ordre de la légende de la fiche (1 à 5, puis 6 pour le titre) ;
+    # les objets visibles sont numérotés dans l'ordre de la légende de la fiche (1 à 6, puis 7 pour le titre) ;
     # les filtres intermédiaires commencent par « (calcul) » et ne sont pas affichés (œil éteint).
+    # (numéros 1 à 7 depuis la session 11 i : 6 = caboteur, 7 = titre)
     lire = lambda cle: LegacyVTKReader(registrationName=FICHIERS[cle],
                                        FileNames=[os.path.join(dossier, FICHIERS[cle])])
 
@@ -257,15 +271,23 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
         re_.Bold = 1
         re_.Color = couleur
 
-    # Surface de la mer : plan z = 0 (copie à une entrée du fichier lu, qui garde le nom du fichier).
+    # Surface de la mer : plan z = 0 (copie à une entrée du fichier lu, qui garde le nom du fichier), semi-transparente.
     rep_mer = Show(MergeBlocks(registrationName="4 · Surface de la mer", Input=mer), vue)
     rep_mer.ColorArrayName = ["POINTS", ""]
     rep_mer.AmbientColor = TEAL
     rep_mer.DiffuseColor = TEAL
-    rep_mer.Opacity = 0.22
+    rep_mer.Opacity = OPACITE_MER
+
+    # Caboteur (session 11 i) : coque Série 60 C_B 0,65 à l'échelle, gris clair (copie à une entrée du fichier lu).
+    rep_coque = Show(MergeBlocks(registrationName="6 · Caboteur (Série 60 C_B 0,65, à l'échelle)", Input=lire("coque")),
+                     vue)
+    rep_coque.ColorArrayName = ["POINTS", ""]
+    rep_coque.AmbientColor = GRIS_CLAIR
+    rep_coque.DiffuseColor = GRIS_CLAIR
+    rep_coque.Opacity = OPACITE_COQUE
 
     # Un seul texte à l'écran, court (ARB-EGN-S7-032) : la légende des objets et le repère NED sont dans la fiche.
-    titre = Text(registrationName="6 · Titre (texte à l'écran)")
+    titre = Text(registrationName="7 · Titre (texte à l'écran)")
     titre.Text = "Aile du caboteur (CN-AeroModels --vtk 1)"
     rt = Show(titre, vue)
     rt.WindowLocation = "Upper Left Corner"

@@ -147,9 +147,10 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
    ```
 
    **Auto-contrôle** : l'écran redonne exactement F_x = 45 015,9 N et F_y = 34 203,7 N (l'option ne change pas le
-   calcul) ; `ls` affiche quatre fichiers : `aile-caboteur_WPU-1_0000.vtk` (l'aile et ses bandes),
-   `aile-caboteur_WPU-1_force_0000.vtk` (les efforts par bande), `wind_0000.vtk` (le vent vrai) et
-   `FreeSurface_0000.vtk` (la surface de la mer).
+   calcul) ; `ls` affiche cinq fichiers : les quatre que l'outil vient d'écrire, `aile-caboteur_WPU-1_0000.vtk`
+   (l'aile et ses bandes), `aile-caboteur_WPU-1_force_0000.vtk` (les efforts par bande), `wind_0000.vtk` (le vent vrai)
+   et `FreeSurface_0000.vtk` (la surface de la mer), plus `caboteur_serie60.vtk` (la coque du navire), fourni avec le
+   cas : l'outil ne l'écrit pas.
 2. **Afficher l'adresse Windows du dossier du cas**, toujours dans le terminal Ubuntu :
 
    ```bash
@@ -172,7 +173,8 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
    - *OK*.
 
 **Ce que vous devez voir** (l'enseignant l'a montré en fin de cours) : un onglet *Aile du caboteur*, avec une vue déjà
-réglée, prise de côté : depuis tribord, un peu en arrière de l'aile et un peu au-dessus de la mer. L'écran ne porte que
+réglée, prise de côté : depuis tribord, un peu en arrière de l'aile et un peu au-dessus de la mer ; le navire est
+entier à l'écran. L'écran ne porte que
 trois textes : un titre court, la barre de couleur « C_L (Cl) », graduée de −2 à 2, et les lettres x, y et z du repère.
 La légende est ici :
 
@@ -180,8 +182,12 @@ La légende est ici :
   bleu foncé correspond à C_L ≈ −1,6, la valeur de la manipulation 2 avec le signe de l'outil ;
 - **trois flèches vertes**, une par bande : l'effort par unité de surface de la bande (`dForce`, en N/m²) ;
 - **trois flèches grises** : le vent vrai (`TWS`), au vent de l'aile, à environ 25 m de haut ;
-- **un plan vert pâle** : la surface de la mer (z = 0) ;
-- **trois flèches de repère** au pied de l'aile, x, y et z.
+- **un plan vert pâle, semi-transparent** : la surface de la mer (z = 0) ; on voit au travers la carène, la partie
+  immergée de la coque ;
+- **trois flèches de repère** au pied de l'aile, x, y et z ;
+- **le caboteur**, en gris clair, un peu transparent : la coque du caboteur du cours EGN-S9 (110 m de long, 17,5 m de
+  large, 6,5 m de tirant d'eau, 9,0 m de creux), dessinée d'après une carène d'essais publiée (Série 60, C_B = 0,65 ;
+  Todd, 1963, domaine public), sans bulbe ; la flottaison est à z = 0, le pont 2,5 m plus haut.
 
 **Le repère des fichiers est le repère NED** : x vers le nord (l'avant du navire, au cap 000°), y vers l'est (tribord),
 z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son sommet est à
@@ -197,18 +203,20 @@ au-dessus de la vue, sont utiles :
 
 Les boutons ±X et ±Y montrent l'aile la tête en bas : ParaView y met +z en haut de l'écran (voir P2).
 
-**Si l'onglet ne montre que le titre, la barre de couleur et le repère x, y, z, sans aile, sans mer et sans flèches**,
-ou si une fenêtre *Output Messages* s'ouvre avec `Could not open file`, ParaView n'a pas trouvé les données : vérifiez
-que `ls *.vtk` affiche bien les quatre fichiers (étape 1), puis recommencez *File > Load State* (étape 4) en vérifiant
+**Si l'onglet ne montre que le titre, la barre de couleur et le repère x, y, z, sans aile, sans mer, sans navire et
+sans flèches**, ou si une fenêtre *Output Messages* s'ouvre avec `Could not open file`, ParaView n'a pas trouvé les
+données : vérifiez que `ls *.vtk` affiche bien les cinq fichiers (étape 1), puis recommencez *File > Load State* (étape 4) en vérifiant
 que *Data Directory* se termine par `Cas-ENSM_aile-du-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
 fenêtre *Output Messages*.
 
-**Deux questions d'observation** (aucune valeur à calculer ; deux ou trois lignes chacune) :
+**Deux questions d'observation, et une troisième facultative** (aucune valeur à calculer ; deux ou trois lignes chacune) :
 
 - **P1.** Le sens des flèches vertes est-il cohérent avec F_x > 0 et F_y > 0 lus à la manipulation 2 ? Situez-les
   par rapport aux flèches x et y du repère.
 - **P2.** Dans quel sens pointe l'axe z ? Pourquoi la vue a-t-elle dû être retournée pour montrer l'aile debout ?
   Faites le lien avec la convention NED de l'exercice A02.
+- **P3** (facultative, si votre groupe a fini en avance ; aucune valeur à calculer). Où commence l'aile dans le modèle,
+  où commencerait-elle à bord ? Quel effet sur le moment de gîte M_x ?
 
 ## Manipulation 3 — Tracer la table de coefficients du profil (pour A04)
 
@@ -294,7 +302,7 @@ qu'il faudrait vérifier avant de s'y fier pour une aile réelle ?
 Un compte rendu (une à deux pages), selon les consignes de dépôt données par l'enseignant, avec :
 
 1. les réponses d'A01, A02, A03 et A04 (questions 1 et 2), **calculs posés** et unités, et vos réponses aux deux
-   questions d'observation P1 et P2 (manipulation 2 bis) ;
+   questions d'observation P1 et P2 (manipulation 2 bis ; P3 si vous l'avez traitée) ;
 2. le tracé `table_NACA0015_v2.png` (ou celui du tableur) ;
 3. une copie d'écran des deux auto-contrôles (manipulations 1 et 2), ou, si l'outil n'a pas pu être installé, la
    panne rencontrée et le message d'erreur ;
