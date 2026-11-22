@@ -124,7 +124,12 @@ CN-AeroModels aile_caboteur.yml
 Toujours **se placer dans le dossier du cas** : l'outil écrit ses sorties dans le dossier courant, et le cas lit
 sa table de profil par un chemin relatif à ce dossier (`../exemples/airfoil_data/NACA0015_v2.yml`). Mettre des guillemets autour des noms qui contiennent des espaces.
 
-**Auto-contrôle (valeur de référence : sortie de l'outil v0.5.1 ; le LHEEA donne le même résultat pour un cas voisin de sa formation, LH p. 25)** : à l'écran, **F_x = 45 015,9 N** et **F_y = 34 203,7 N** ; dans
+**Le cas.** Une aile rigide NACA0015 de 33 m de haut et 11 m de corde (AR = 3, 363 m²), réglée à 34,4°, sur le caboteur à
+14 nœuds, vent vrai de 20 nœuds par le travers bâbord. Le pied de l'aile est **posé sur le pont**, 2,5 m au-dessus de la
+flottaison (z = −2,5 m) ; son sommet est à 35,5 m (z = −35,5 m). L'origine du cas (x = y = z = 0) est au couple milieu,
+sur l'axe, à la flottaison.
+
+**Auto-contrôle (valeur de référence : sortie de l'outil v0.5.1 ; mêmes forces que le tutoriel 1 du LHEEA, LH p. 25 ; moments différents, l'aile étant posée sur le pont)** : à l'écran, **F_x = 45 015,9 N** et **F_y = 34 203,7 N** ; dans
 `results.csv`, **45,0159** et **34,2037 kN** (le fichier donne les efforts en kN, l'écran en N). Comparez ensuite
 les colonnes `AWS`, `AWA` et `AoA/SR` de la **ligne `WPU-1`** de l'écran à vos réponses de l'exercice A02 (la ligne
 `Total` affiche l'AWA dans la colonne `AoA/SR`, pas l'angle d'attaque) : les signes suivent les conventions de l'outil,
@@ -178,20 +183,22 @@ entier à l'écran. L'écran ne porte que
 trois textes : un titre court, la barre de couleur « C_L (Cl) », graduée de −2 à 2, et les lettres x, y et z du repère.
 La légende est ici :
 
-- **l'aile**, debout au-dessus de la mer, découpée en trois bandes, toute en bleu foncé : sa couleur est son C_L, et le
+- **l'aile**, debout sur le pont du caboteur (son pied est 2,5 m au-dessus de la mer), découpée en trois bandes, toute en bleu foncé : sa couleur est son C_L, et le
   bleu foncé correspond à C_L ≈ −1,6, la valeur de la manipulation 2 avec le signe de l'outil ;
 - **trois flèches vertes**, une par bande : l'effort par unité de surface de la bande (`dForce`, en N/m²) ;
 - **trois flèches grises** : le vent vrai (`TWS`), au vent de l'aile, à environ 25 m de haut ;
 - **un plan vert pâle, semi-transparent** : la surface de la mer (z = 0) ; on voit au travers la carène, la partie
   immergée de la coque ;
-- **trois flèches de repère** au pied de l'aile, x, y et z ;
+- **trois flèches de repère**, x, y et z, à l'origine du cas : sur la flottaison, 2,5 m sous le pied de l'aile, donc à
+  l'intérieur de la coque, qu'on voit en transparence ;
 - **le caboteur**, en gris clair, un peu transparent : la coque du caboteur du cours EGN-S9 (110 m de long, 17,5 m de
   large, 6,5 m de tirant d'eau, 9,0 m de creux), dessinée d'après une carène d'essais publiée (Série 60, C_B = 0,65 ;
-  Todd, 1963, domaine public), sans bulbe ; la flottaison est à z = 0, le pont 2,5 m plus haut.
+  Todd, 1963, domaine public), sans bulbe ; la flottaison est à z = 0, le pont 2,5 m plus haut : l'aile part du pont, rien d'elle n'est sous le
+  pont.
 
 **Le repère des fichiers est le repère NED** : x vers le nord (l'avant du navire, au cap 000°), y vers l'est (tribord),
-z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son sommet est à
-z = −33 m.
+z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son pied est à
+z = −2,5 m (le pont), son sommet à z = −35,5 m.
 
 Faites tourner la vue à la souris (clic gauche et glisser ; molette pour zoomer). Trois boutons de la barre de caméra,
 au-dessus de la vue, sont utiles :
@@ -209,14 +216,16 @@ données : vérifiez que `ls *.vtk` affiche bien les cinq fichiers (étape 1), p
 que *Data Directory* se termine par `Cas-ENSM_aile-du-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
 fenêtre *Output Messages*.
 
-**Deux questions d'observation, et une troisième facultative** (aucune valeur à calculer ; deux ou trois lignes chacune) :
+**Deux questions d'observation, et une troisième facultative** (aucune valeur à calculer pour P1 et P2 ; une division
+pour P3 ; deux ou trois lignes chacune) :
 
 - **P1.** Le sens des flèches vertes est-il cohérent avec F_x > 0 et F_y > 0 lus à la manipulation 2 ? Situez-les
   par rapport aux flèches x et y du repère.
 - **P2.** Dans quel sens pointe l'axe z ? Pourquoi la vue a-t-elle dû être retournée pour montrer l'aile debout ?
   Faites le lien avec la convention NED de l'exercice A02.
-- **P3** (facultative, si votre groupe a fini en avance ; aucune valeur à calculer). Où commence l'aile dans le modèle,
-  où commencerait-elle à bord ? Quel effet sur le moment de gîte M_x ?
+- **P3** (facultative, si votre groupe a fini en avance ; sans calcul lourd). L'aile est posée sur le pont, 2,5 m
+  au-dessus de la flottaison. (a) Pourquoi F_x et F_y ne dépendent-ils pas ici de cette hauteur ? (b) À partir du
+  moment de gîte M_x affiché par l'outil, quel est le bras de levier de F_y, et depuis quel niveau est-il compté ?
 
 ## Manipulation 3 — Tracer la table de coefficients du profil (pour A04)
 
@@ -317,8 +326,8 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `1_element.yml` de l'exemple 1 (point de départ du cas de l'aile du caboteur), `airfoil_data/NACA0015_v2.yml`,
   `elliptic.yml` de l'exemple 2.
-- Cas de l'aile du caboteur, `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.yml` (ENSM) ; le LHEEA propose un cas
-  voisin dans sa formation.
+- Cas de l'aile du caboteur, `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.yml` (ENSM) ; mêmes forces que le
+  tutoriel 1 de la formation du LHEEA ; moments différents, l'aile étant posée sur le pont.
 - Cours EGN-S7, S7-01 « Technologies et systèmes de propulsion vélique », § 5.
 - Banque d'exercices EGN-S7, exercices A01 à A04 ; dépôt public du TD, `TD-Propulsion-Velique` (pré-vol, scripts,
   cas).

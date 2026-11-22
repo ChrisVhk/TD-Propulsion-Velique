@@ -21,7 +21,7 @@ La théorie est dans le **cours**, sur Vega. Ce dépôt contient le TD seulement
 TD-Propulsion-Velique/
 ├── docs/     — 00 pré-vol · 00b dépannage · 01 programme · une fiche par séance (TD-S1, puis les suivantes)
 ├── scripts/  — installer_cnaero.sh (outil + Python) · verifie_mon_install.py (vérification) · test_valeurs_connues.py (C_L elliptique, F_x cas ENSM) · tracer_table.py · voir_aile_caboteur.py (vue ParaView, repli)
-└── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM, et aile_caboteur.pvsm, l'état ParaView de sa vue, à côté des .vtk que l'outil y écrit ; caboteur_serie60.vtk, la coque du navire), exemples/ (dépôt LHEEA) ; EPL 2.0
+└── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM : aile posée sur le pont du caboteur ; mêmes forces que le tutoriel 1 du LHEEA, moments différents ; et aile_caboteur.pvsm, l'état ParaView de sa vue, à côté des .vtk que l'outil y écrit ; caboteur_serie60.vtk, la coque du navire), exemples/ (dépôt LHEEA) ; EPL 2.0
 ```
 
 ## Rien de sensible

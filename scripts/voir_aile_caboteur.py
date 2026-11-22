@@ -24,8 +24,9 @@ Ce que fait le script :
        - le vent vrai (flèches grises, TWS) et la surface de la mer (plan z = 0, semi-transparente) ;
        - le caboteur (session 11 i) : coque Série 60, carène mère C_B = 0,65 (Todd 1963, DTMB Report 1712, table 4,
          domaine public), mise à l'échelle du caboteur d'EGN-S9 (L 110 m, B 17,5 m, T 6,5 m, D 9,0 m), sans bulbe ;
-         flottaison en z = 0, pont en z = -2,5 m, quille en z = +6,5 m : l'aile du modèle part de la flottaison et
-         traverse le pont (ARB-EGN-S7-035). Fichier caboteur_serie60.vtk, versionné dans le dossier du cas
+         flottaison en z = 0, pont en z = -2,5 m, quille en z = +6,5 m ; l'aile part du pont (pied en z = -2,5 m,
+         sommet en z = -35,5 m : le cas lui-même place l'aile sur le pont, session 11 j, ARB-EGN-S7-038 ; avant,
+         elle partait de la flottaison). Fichier caboteur_serie60.vtk, versionné dans le dossier du cas
          (ce n'est pas une sortie de l'outil) ; construit par construire_coque_serie60.py (dépôt de l'enseignant) ;
        - le repère : les fichiers sont en NED (x vers le nord = l'avant, y vers l'est = tribord,
          z vers le BAS) ; la vue est donc retournée (haut de l'écran = -z) pour voir l'aile debout ;
@@ -75,8 +76,9 @@ GRIS_CLAIR = _rgb("#D9D9D9")
 OPACITE_MER = 0.5       # mer semi-transparente : on voit la carène sous la flottaison (session 11 i)
 ECHELLE_EFFORT = 0.12   # m par N/m^2 : 155 N/m^2 -> flèche de 19 m (aile de 33 m)
 ECHELLE_VENT = 1.5      # m par m/s : 10,3 m/s -> flèche de 15 m
-# Coque à 0,6 d'opacité (ARB-EGN-S7-037, 22/11) : opaque, elle cachait la flèche x du repère et le pied de l'aile, qui
-# sont sur la flottaison, à l'intérieur de la coque fermée au pont (P1 n'était plus faisable).
+# Coque à 0,6 d'opacité (ARB-EGN-S7-037, 22/11) : opaque, elle cachait la flèche x du repère, qui est à l'origine du
+# cas, sur la flottaison, à l'intérieur de la coque fermée au pont (P1 n'était plus faisable). Depuis la session 11 j,
+# l'aile part du pont (ARB-EGN-S7-038) ; le repère reste à l'origine, 2,5 m sous le pied de l'aile.
 OPACITE_COQUE = 0.6
 PLAGE_CL = [-2.0, 2.0]  # palette de C_L, symétrique : le signe de l'outil se lit dans la couleur
 # Graduations de la barre : format automatique, sans étiquettes d'extrémité. Aucune chaîne de format n'est alors
@@ -219,7 +221,8 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
     rep_f.DiffuseColor = TEAL
 
     # Vent vrai : flèches grises sur la grille de l'outil, réduites à une rangée, au vent de l'aile
-    # (côté bâbord, y = -50 m), à mi-hauteur (z = -25 m), pour x = -25, 0 et 25 m : la grille du fichier a 75 points
+    # (côté bâbord, y = -50 m), à 25 m de haut (z = -25 m, dans la hauteur de l'aile, 2,5 à 35,5 m depuis la session
+    # 11 j), pour x = -25, 0 et 25 m : la grille du fichier a 75 points
     # jusqu'à 100 m de haut, qui cacheraient l'aile de 33 m.
     fl_vent = Glyph(registrationName="(calcul) flèches du vent sur toute la grille", Input=vent, GlyphType="Arrow")
     fl_vent.OrientationArray = ["POINTS", "TWS"]
@@ -246,7 +249,8 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
     rep_v.DiffuseColor = GREY
     rep_v.Opacity = 0.5
 
-    # Repère NED à l'origine (pied de l'aile) : trois flèches de 20 m, z vers le BAS (sous la mer).
+    # Repère NED à l'origine du cas (flottaison, 2,5 m sous le pied de l'aile, posé sur le pont) : trois flèches de
+    # 20 m, z vers le BAS (sous la mer).
     for nom, rot, couleur, texte, pos in (
             ("x", [0, 0, 0], MARINE, "x", [21.0, 0.0, 1.0]),
             ("y", [0, 0, 90], MARINE, "y", [0.0, 21.5, 1.0]),
@@ -297,7 +301,8 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
 
     Render(vue)   # premier rendu d'abord : il recadre la caméra, qu'on pose ensuite
     # Caméra de côté, depuis tribord, un peu en arrière et un peu au-dessus de la mer : l'aile debout
-    # (haut de l'écran = -z, NED), ses trois bandes, les flèches d'effort vers l'avant et le repère au pied.
+    # (haut de l'écran = -z, NED), ses trois bandes, les flèches d'effort vers l'avant et le repère à
+    # l'origine (flottaison), sous le pied de l'aile.
     vue.CameraFocalPoint = CAMERA_VISEE
     vue.CameraPosition = [CAMERA_VISEE[i] + 200.0 * CAMERA_DIRECTION[i] for i in range(3)]
     vue.CameraViewUp = [0.0, 0.0, -1.0]
