@@ -18,7 +18,7 @@ reproduite dans `cas/LICENSE_CN-AeroModels.txt`. Les `data.csv` sont les mesures
 |---|---|
 | `cas/Cas-ENSM_aile-du-caboteur/` | `aile_caboteur.yml` : cas ENSM, construit sur l'exemple 1 de CN-AeroModels (`exemples/1- 2D model/1_element.yml`, EPL 2.0) : vent de 10,288 m/s (20 nœuds), direction 90°, navire à 7,2016 m/s (14 nœuds, le caboteur d'EGN-S9), aile NACA0015 de 33 m, AR = 3, réglage 34,4° ; table `exemples/airfoil_data/NACA0015_v2.yml`. Œuvre dérivée d'un fichier sous EPL 2.0, distribuée sous la même licence. Le LHEEA propose un cas voisin dans sa formation |
 | `cas/exemples/` | exemples 1, 2, 3, 7, 9, 15, 17, 19 et `airfoil_data/` |
-| `cas/Cas-ENSM_aile-du-caboteur/paraview/` | `aile_caboteur.pvsm` : état ParaView de la vue du cas (aile colorée par C_L, efforts par bande, vent vrai, mer, repère NED), construit de zéro à l'ENSM le 22/11/2026 (pas de reprise de l'état `tutorial-1.pvsm` du LHEEA) et écrit par `scripts/voir_aile_caboteur.py --etat` sous ParaView 6.0.1 ; il ne contient aucune donnée, seulement les noms des quatre fichiers `.vtk` que l'outil écrit avec `--vtk 1`. Apache 2.0 |
+| `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm` | état ParaView de la vue du cas (aile colorée par C_L, efforts par bande, vent vrai, mer, repère NED), construit de zéro à l'ENSM le 22/11/2026 (pas de reprise de l'état `tutorial-1.pvsm` du LHEEA), avec la même fonction que `scripts/voir_aile_caboteur.py`, et enregistré par l'interface graphique de ParaView 6.1.1 pour Windows ; il ne contient aucune donnée, seulement les noms des quatre fichiers `.vtk` que l'outil écrit avec `--vtk 1` dans le même dossier. Apache 2.0 |
 
 ## Exercices
 

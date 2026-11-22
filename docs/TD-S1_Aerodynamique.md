@@ -162,25 +162,46 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
    *colle* au lieu de copier) ; ne copiez pas le retour à la ligne.
 3. **Ouvrir ParaView** (pour Windows, depuis le menu Démarrer).
 4. **Charger l'état** : menu *File > Load State…*. Dans le champ du nom de fichier (*File name*), collez l'adresse
-   copiée à l'étape 2 et appuyez sur **Entrée** : la boîte affiche le contenu du dossier du cas. **Double-cliquez** sur
-   le dossier `paraview`, sélectionnez `aile_caboteur.pvsm`, puis cliquez sur *OK*.
+   copiée à l'étape 2 et appuyez sur **Entrée** : la boîte affiche le contenu du dossier du cas. Sélectionnez
+   `aile_caboteur.pvsm` (il est à côté des `.vtk`), puis cliquez sur *OK*.
 5. **Dire à ParaView où sont les données.** Une fenêtre *Load State Options* s'ouvre :
    - *Load State Data File Options* : choisir **Search files under specified directory** ;
-   - *Data Directory* : ParaView y propose le dossier `paraview`, qui ne contient pas les `.vtk` (il ne cherche pas
-     dans le dossier au-dessus). **Effacez tout le champ** et collez l'adresse du dossier du cas (celle de l'étape 2),
-     ou supprimez simplement `\paraview` à la fin : le champ doit se terminer par `Cas-ENSM_aile-du-caboteur` ;
+   - *Data Directory* : **laissez la valeur proposée**. C'est le dossier de l'état, qui est aussi celui des `.vtk` ;
+     elle se termine par `Cas-ENSM_aile-du-caboteur` (sinon, effacez le champ et collez l'adresse de l'étape 2) ;
    - laissez la case *Only Use Files In Data Directory* telle quelle ;
    - *OK*.
 
-**Ce que vous devez voir** (l'enseignant l'a montré en fin de cours) : l'aile, debout au-dessus de la mer, en bleu
-foncé, avec une légende de couleur « C_L de chaque bande (Cl, signe de l'outil) », graduée de −2 à 2 : le bleu foncé
-correspond à C_L ≈ −1,6, la valeur de la manipulation 2 avec le signe de l'outil ; trois flèches vertes, une par bande (l'effort par unité de
-surface, en N/m²) ; trois flèches grises (le vent vrai, au vent de l'aile, à 25 m de haut) ; un plan vert pâle (la
-surface de la mer, z = 0) ; trois flèches de repère au pied de l'aile, x, y et z. Faites tourner la vue à la souris
-(clic gauche et glisser) ; pour retrouver la vue de départ, rechargez l'état. **Si vous voyez seulement le repère x, y,
-z, la légende et les textes, sans aile, sans mer et sans flèches**, ou une fenêtre *Output Messages* avec
-`Could not open file`, ParaView n'a pas trouvé les données : recommencez *File > Load State* (étape 4) et corrigez
-*Data Directory* (étape 5).
+**Ce que vous devez voir** (l'enseignant l'a montré en fin de cours) : un onglet *Aile du caboteur*, avec une vue déjà
+réglée, prise de côté : depuis tribord, un peu en arrière de l'aile et un peu au-dessus de la mer. L'écran ne porte que
+trois textes : un titre court, la barre de couleur « C_L (Cl) », graduée de −2 à 2, et les lettres x, y et z du repère.
+La légende est ici :
+
+- **l'aile**, debout au-dessus de la mer, découpée en trois bandes, toute en bleu foncé : sa couleur est son C_L, et le
+  bleu foncé correspond à C_L ≈ −1,6, la valeur de la manipulation 2 avec le signe de l'outil ;
+- **trois flèches vertes**, une par bande : l'effort par unité de surface de la bande (`dForce`, en N/m²) ;
+- **trois flèches grises** : le vent vrai (`TWS`), au vent de l'aile, à environ 25 m de haut ;
+- **un plan vert pâle** : la surface de la mer (z = 0) ;
+- **trois flèches de repère** au pied de l'aile, x, y et z.
+
+**Le repère des fichiers est le repère NED** : x vers le nord (l'avant du navire, au cap 000°), y vers l'est (tribord),
+z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son sommet est à
+z = −33 m.
+
+Faites tourner la vue à la souris (clic gauche et glisser ; molette pour zoomer). Trois boutons de la barre de caméra,
+au-dessus de la vue, sont utiles :
+
+- *Reset Camera* : recadre toute la scène, sans changer la direction de vue (si l'aile est sortie de l'écran) ;
+- *Set view direction to +Z* : vue **de dessus** (on regarde vers +z, donc vers le bas) ; x part vers la gauche, y vers
+  le haut de l'écran : c'est la vue la plus commode pour P1 ;
+- pour retrouver la vue de départ, rechargez l'état (étapes 4 et 5).
+
+Les boutons ±X et ±Y montrent l'aile la tête en bas : ParaView y met +z en haut de l'écran (voir P2).
+
+**Si l'onglet ne montre que le titre, la barre de couleur et le repère x, y, z, sans aile, sans mer et sans flèches**,
+ou si une fenêtre *Output Messages* s'ouvre avec `Could not open file`, ParaView n'a pas trouvé les données : vérifiez
+que `ls *.vtk` affiche bien les quatre fichiers (étape 1), puis recommencez *File > Load State* (étape 4) en vérifiant
+que *Data Directory* se termine par `Cas-ENSM_aile-du-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
+fenêtre *Output Messages*.
 
 **Deux questions d'observation** (aucune valeur à calculer ; deux ou trois lignes chacune) :
 
@@ -284,7 +305,7 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 - LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 5-9, 21-26 (p. 26 : fichiers
   `.vtk` et visualisation dans ParaView).
 - ParaView, Kitware, <https://www.paraview.org> (logiciel libre, licence BSD) ; état de la vue
-  `cas/Cas-ENSM_aile-du-caboteur/paraview/aile_caboteur.pvsm` et script `scripts/voir_aile_caboteur.py` (ENSM).
+  `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm` et script `scripts/voir_aile_caboteur.py` (ENSM).
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `1_element.yml` de l'exemple 1 (point de départ du cas de l'aile du caboteur), `airfoil_data/NACA0015_v2.yml`,
   `elliptic.yml` de l'exemple 2.

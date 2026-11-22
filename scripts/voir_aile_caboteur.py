@@ -3,8 +3,10 @@
 """
 Voir l'aile du caboteur dans ParaView — TD Propulsion vélique (EGN-S7, ENSM)
 
-Repli de l'état ParaView cas/Cas-ENSM_aile-du-caboteur/paraview/aile_caboteur.pvsm :
-ce script construit la même vue sans passer par l'état.
+Repli de l'état ParaView cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm :
+ce script construit la même vue sans passer par l'état. (L'état lui-même est fabriqué par l'enseignant dans
+l'interface graphique de ParaView pour Windows, à partir de la même fonction construire_vue : un état destiné
+à l'interface se fabrique et se teste dans l'interface.)
 
 UNE LIGNE, dans le terminal Ubuntu (WSL), depuis le dossier du dépôt :
 
@@ -21,14 +23,16 @@ Ce que fait le script :
        - le vent vrai (flèches grises, TWS) et la surface de la mer (plan z = 0) ;
        - le repère : les fichiers sont en NED (x vers le nord = l'avant, y vers l'est = tribord,
          z vers le BAS) ; la vue est donc retournée (haut de l'écran = -z) pour voir l'aile debout ;
+       - à l'écran : un titre court, la barre de couleur de C_L et les étiquettes x, y, z ; la légende des
+         objets et la note sur le repère NED sont dans la fiche du TD (manipulation 2 bis), pas dans la vue ;
+       - caméra de côté, depuis tribord, un peu en arrière et un peu au-dessus de la mer ;
   3. il ouvre une fenêtre (fermer la fenêtre pour finir), ou écrit une image sans fenêtre.
 
 Options :
   --donnees DOSSIER   ne relance pas l'outil : lit les .vtk déjà écrits dans DOSSIER
   --depot DOSSIER     dossier du dépôt du TD, si le script n'est pas rangé dans son dossier scripts/
   --png FICHIER       écrit une capture (1920 x 1080 par défaut)
-  --etat FICHIER      enregistre l'état ParaView (.pvsm) de la vue
-  --sans-fenetre      n'ouvre pas de fenêtre (avec --png ou --etat)
+  --sans-fenetre      n'ouvre pas de fenêtre (avec --png)
 
 Couleurs : charte ENSM (MARINE #1A346D, TEALD #147A6D, TEAL #1A9988, GREY #595959), fond blanc.
 CN-AeroModels v0.5.1, LHEEA (Centrale Nantes / CNRS), EPL 2.0 ; vue et script : ENSM.
@@ -41,10 +45,10 @@ import subprocess
 import sys
 import tempfile
 
-from paraview.simple import (Arrow, CellCenters, Clip, ColorBy, CreateView, GetColorTransferFunction,
-                             GetOpacityTransferFunction, Glyph, Interact, LegacyVTKReader,
-                             PointDatasetInterpolator, Render, SaveScreenshot, SaveState, SetActiveView,
-                             Show, Text, Transform)
+from paraview.simple import (Arrow, AssignViewToLayout, CellCenters, Clip, ColorBy, CreateLayout, CreateView,
+                             GetColorTransferFunction, GetOpacityTransferFunction, Glyph, Interact,
+                             LegacyVTKReader, PointDatasetInterpolator, Render, SaveScreenshot,
+                             SetActiveView, Show, Text, Transform)
 
 # --- Charte ENSM (s9gm/visu.py) -------------------------------------------------------------
 def _rgb(h):
@@ -63,10 +67,16 @@ FICHIERS = {
 ECHELLE_EFFORT = 0.12   # m par N/m^2 : 155 N/m^2 -> flèche de 19 m (aile de 33 m)
 ECHELLE_VENT = 1.5      # m par m/s : 10,3 m/s -> flèche de 15 m
 PLAGE_CL = [-2.0, 2.0]  # palette de C_L, symétrique : le signe de l'outil se lit dans la couleur
-# Dossier des données inscrit dans l'état enregistré (--etat) : celui d'un élève dans WSL. Il ne sert
-# qu'à nommer les fichiers ; au chargement, ParaView les cherche dans le dossier qu'on lui indique
-# (File > Load State, « Search files under specified directory »).
-DOSSIER_NEUTRE = "/home/eleve/TD-Propulsion-Velique/cas/Cas-ENSM_aile-du-caboteur"
+# Graduations de la barre : format automatique, sans étiquettes d'extrémité. Aucune chaîne de format n'est alors
+# utilisée : ni avertissement « printf format » (ParaView 6.1 et plus), ni « {:.1f} » affiché en clair (ParaView 6.0,
+# qui ne connaît pas encore la syntaxe std::format). Le pré-vol accepte toute version 6.x.
+# Caméra de côté : point visé, direction de visée (du point visé vers la caméra) et demi-hauteur de l'écran.
+# Depuis tribord (+y), 20° en arrière du travers (-x), 30° au-dessus de la mer (-z en NED) : on voit la face
+# de l'aile (ses trois bandes) et les flèches d'effort presque en long ; à l'écran, x (l'avant) part à droite
+# en montant, y (tribord) à droite en descendant, l'effort entre les deux.
+CAMERA_VISEE = [0.0, -12.0, -14.0]
+CAMERA_DIRECTION = [-0.296, 0.814, -0.500]
+CAMERA_DEMI_HAUTEUR = 39.0   # m (projection parallèle)
 
 
 def racine_depot(depot=None):
@@ -106,14 +116,21 @@ def lancer_cas(depot=None):
     return dossier_cas
 
 
-def construire_vue(dossier, largeur=1920, hauteur=1080):
-    """Construit la vue à partir des quatre .vtk de `dossier` ; renvoie la vue."""
+def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquettes=28):
+    """Construit la vue à partir des quatre .vtk de `dossier` ; renvoie la vue.
+
+    La vue est rangée dans un layout (sans layout, l'interface graphique n'affiche rien après Load State).
+    `vue` : vue de rendu déjà rangée dans un layout (interface graphique) ; sinon, vue et layout sont créés.
+    `taille_etiquettes` : police des étiquettes x, y, z (texte 3D). L'interface graphique les rend environ deux fois
+    plus petites que pvpython à même valeur (constaté sous 6.1.1 et 6.2.1) : construire_etat.py passe 32, pvpython garde 28."""
     for f in FICHIERS.values():
         if not os.path.isfile(os.path.join(dossier, f)):
             sys.exit(f"Fichier absent : {os.path.join(dossier, f)} (l'outil a-t-il été lancé avec --vtk 1 ?)")
     lire = lambda cle, nom: LegacyVTKReader(registrationName=nom, FileNames=[os.path.join(dossier, FICHIERS[cle])])
 
-    vue = CreateView("RenderView")
+    if vue is None:
+        vue = CreateView("RenderView")
+        AssignViewToLayout(view=vue, layout=CreateLayout("Aile du caboteur"), hint=0)
     SetActiveView(vue)
     vue.ViewSize = [largeur, hauteur]
     vue.Background = BLANC
@@ -154,16 +171,16 @@ def construire_vue(dossier, largeur=1920, hauteur=1080):
     if barre is None:
         from paraview.simple import GetScalarBar
         barre = GetScalarBar(lut, vue)
-    barre.Title = "C_L de chaque bande (Cl, signe de l'outil)"
+    barre.Title = "C_L (Cl)"
     barre.ComponentTitle = ""
     barre.TitleColor = MARINE
     barre.LabelColor = MARINE
-    barre.TitleFontSize = 20
-    barre.LabelFontSize = 18
-    barre.RangeLabelFormat = "%-#6.3g"
-    barre.WindowLocation = "Any Location"
-    barre.Position = [0.89, 0.30]
-    barre.ScalarBarLength = 0.45
+    barre.TitleFontSize = 16
+    barre.LabelFontSize = 14
+    barre.AutomaticLabelFormat = 1
+    barre.AddRangeLabels = 0
+    barre.WindowLocation = "Upper Right Corner"
+    barre.ScalarBarLength = 0.4
 
     # Flèches d'effort : une par bande, dans la direction de dForce, longueur proportionnelle.
     fleches = Glyph(registrationName="Flèches d'effort (dForce)", Input=centres, GlyphType="Arrow")
@@ -205,9 +222,9 @@ def construire_vue(dossier, largeur=1920, hauteur=1080):
 
     # Repère NED à l'origine (pied de l'aile) : trois flèches de 20 m, z vers le BAS (sous la mer).
     for nom, rot, couleur, texte, pos in (
-            ("x", [0, 0, 0], MARINE, "x : nord (avant)", [23.0, 0.0, 0.0]),
-            ("y", [0, 0, 90], MARINE, "y : est (tribord)", [0.0, 23.0, 0.0]),
-            ("z", [0, -90, 0], GREY, "z : vers le BAS", [-15.0, -6.0, 15.0])):
+            ("x", [0, 0, 0], MARINE, "x", [21.0, 0.0, 1.0]),
+            ("y", [0, 0, 90], MARINE, "y", [0.0, 21.5, 1.0]),
+            ("z", [0, -90, 0], GREY, "z", [1.0, 0.0, 21.0])):
         fl = Arrow(registrationName=f"Axe {nom} (NED)")
         fl.TipRadius = 0.06
         fl.ShaftRadius = 0.018
@@ -224,7 +241,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080):
         re_ = Show(et, vue)
         re_.TextPropMode = "Billboard 3D Text"
         re_.BillboardPosition = pos
-        re_.FontSize = 22
+        re_.FontSize = taille_etiquettes
         re_.Bold = 1
         re_.Color = couleur
 
@@ -235,43 +252,23 @@ def construire_vue(dossier, largeur=1920, hauteur=1080):
     rep_mer.DiffuseColor = TEAL
     rep_mer.Opacity = 0.22
 
-    # Textes.
+    # Un seul texte à l'écran, court (ARB-EGN-S7-032) : la légende des objets et le repère NED sont dans la fiche.
     titre = Text(registrationName="Titre")
-    titre.Text = "Aile du caboteur : CN-AeroModels v0.5.1, option --vtk 1 (théorie des bandes, 3 bandes)"
+    titre.Text = "Aile du caboteur (CN-AeroModels --vtk 1)"
     rt = Show(titre, vue)
     rt.WindowLocation = "Upper Left Corner"
-    rt.FontSize = 26
+    rt.FontSize = 18
     rt.Color = MARINE
     rt.Bold = 1
 
-    legende = Text(registrationName="Légende")
-    legende.Text = ("Aile : colorée par C_L (une valeur par bande)\n"
-                    "Flèches vertes : effort par bande, dForce (N/m²)\n"
-                    "Flèches grises : vent vrai, TWS (m/s), au vent de l'aile, à 25 m de haut\n"
-                    "Plan vert pâle : surface de la mer (z = 0)")
-    rl = Show(legende, vue)
-    rl.WindowLocation = "Lower Left Corner"
-    rl.FontSize = 20
-    rl.Color = TEALD
-
-    ned = Text(registrationName="Repère NED")
-    ned.Text = ("Fichiers en NED : x vers le nord (l'avant), y vers l'est (tribord), z vers le BAS.\n"
-                "Vue retournée (haut de l'écran = -z) pour voir l'aile debout : son sommet est à z = -33 m.")
-    rn = Show(ned, vue)
-    rn.WindowLocation = "Lower Right Corner"
-    rn.FontSize = 20
-    rn.Color = MARINE
-
     Render(vue)   # premier rendu d'abord : il recadre la caméra, qu'on pose ensuite
-    # Caméra : depuis tribord un peu en arrière, 35° au-dessus de la mer, à mi-chemin entre la normale
-    # de l'aile (pour voir ses bandes) et la perpendiculaire aux flèches d'effort (pour les voir en long).
-    # Sur l'écran, x (l'avant) part en haut à droite, y (tribord) en bas à droite, l'effort entre
-    # les deux ; haut de l'écran = -z (NED).
-    vue.CameraFocalPoint = [0.0, -14.0, -10.0]
-    vue.CameraPosition = [-41.0, 90.0, -85.0]
+    # Caméra de côté, depuis tribord, un peu en arrière et un peu au-dessus de la mer : l'aile debout
+    # (haut de l'écran = -z, NED), ses trois bandes, les flèches d'effort vers l'avant et le repère au pied.
+    vue.CameraFocalPoint = CAMERA_VISEE
+    vue.CameraPosition = [CAMERA_VISEE[i] + 200.0 * CAMERA_DIRECTION[i] for i in range(3)]
     vue.CameraViewUp = [0.0, 0.0, -1.0]
     vue.CameraParallelProjection = 1   # projection parallèle : toutes les flèches à la même échelle
-    vue.CameraParallelScale = 40.0     # demi-hauteur de l'écran, en m
+    vue.CameraParallelScale = CAMERA_DEMI_HAUTEUR
     Render(vue)
     return vue
 
@@ -281,7 +278,6 @@ def main():
     ap.add_argument("--donnees", help="dossier des .vtk déjà écrits (sinon : le cas est relancé)")
     ap.add_argument("--depot", help="dossier du dépôt TD-Propulsion-Velique, si le script n'y est pas rangé")
     ap.add_argument("--png", help="écrit une capture PNG")
-    ap.add_argument("--etat", help="enregistre l'état ParaView (.pvsm)")
     ap.add_argument("--sans-fenetre", action="store_true", help="n'ouvre pas de fenêtre")
     ap.add_argument("--largeur", type=int, default=1920)
     ap.add_argument("--hauteur", type=int, default=1080)
@@ -292,13 +288,6 @@ def main():
     if a.png:
         SaveScreenshot(a.png, vue, ImageResolution=[a.largeur, a.hauteur], OverrideColorPalette="WhiteBackground")
         print("Capture écrite :", a.png)
-    if a.etat:
-        SaveState(a.etat)
-        with open(a.etat, encoding="utf-8") as f:
-            texte = f.read()
-        with open(a.etat, "w", encoding="utf-8") as f:
-            f.write(texte.replace(dossier, DOSSIER_NEUTRE))
-        print("État écrit :", a.etat)
     if not a.sans_fenetre:
         print("Fenêtre ParaView ouverte : souris pour tourner, molette pour zoomer ; fermer la fenêtre pour finir.")
         Interact(vue)

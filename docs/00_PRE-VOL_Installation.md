@@ -84,8 +84,9 @@ fichiers `.vtk` que CN-AeroModels écrit avec l'option `--vtk 1` : l'aile, ses e
    et lancer `bin\paraview.exe`.
 3. Vérifier : lancer ParaView (menu Démarrer), *File > Open*, aucune fenêtre d'erreur au démarrage.
 
-Une version 6.x déjà installée convient (l'état du TD a été chargé sans erreur sous ParaView 6.0.1 et 6.1.1 ; la 6.2.1
-n'a pas encore été essayée : en cas de souci, prenez la 6.1.1 sur <https://www.paraview.org/files/v6.1/>).
+Une version 6.x déjà installée convient : l'état du TD a été chargé sans aucun message dans l'interface de ParaView
+6.2.1 et 6.1.1 pour Windows, et 6.0.1 de WSL (en cas de souci, prenez la 6.1.1 sur
+<https://www.paraview.org/files/v6.1/>).
 
 **Repli, si ParaView pour Windows ne s'installe pas** : l'installer dans WSL, dans le terminal Ubuntu,
 
