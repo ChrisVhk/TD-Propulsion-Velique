@@ -47,7 +47,7 @@ import tempfile
 
 from paraview.simple import (Arrow, AssignViewToLayout, CellCenters, Clip, ColorBy, CreateLayout, CreateView,
                              GetColorTransferFunction, GetOpacityTransferFunction, Glyph, Interact,
-                             LegacyVTKReader, PointDatasetInterpolator, Render, SaveScreenshot,
+                             LegacyVTKReader, MergeBlocks, PointDatasetInterpolator, Render, SaveScreenshot,
                              SetActiveView, Show, Text, Transform)
 
 # --- Charte ENSM (s9gm/visu.py) -------------------------------------------------------------
@@ -126,7 +126,11 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
     for f in FICHIERS.values():
         if not os.path.isfile(os.path.join(dossier, f)):
             sys.exit(f"Fichier absent : {os.path.join(dossier, f)} (l'outil a-t-il été lancé avec --vtk 1 ?)")
-    lire = lambda cle, nom: LegacyVTKReader(registrationName=nom, FileNames=[os.path.join(dossier, FICHIERS[cle])])
+    # Noms du Pipeline Browser (session 11 h) : chaque nom est unique ; les fichiers lus portent leur nom de fichier ;
+    # les objets visibles sont numérotés dans l'ordre de la légende de la fiche (1 à 5, puis 6 pour le titre) ;
+    # les filtres intermédiaires commencent par « (calcul) » et ne sont pas affichés (œil éteint).
+    lire = lambda cle: LegacyVTKReader(registrationName=FICHIERS[cle],
+                                       FileNames=[os.path.join(dossier, FICHIERS[cle])])
 
     if vue is None:
         vue = CreateView("RenderView")
@@ -141,21 +145,26 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
     vue.OrientationAxesYColor = TEALD
     vue.OrientationAxesZColor = GREY
 
-    aile = lire("aile", "Aile (bandes)")
-    efforts = lire("efforts", "Efforts par bande")
-    vent = lire("vent", "Vent vrai")
-    mer = lire("mer", "Surface de la mer")
+    aile = lire("aile")
+    efforts = lire("efforts")
+    vent = lire("vent")
+    mer = lire("mer")
 
     # Efforts : une cellule (dégénérée) par bande -> un point par bande, au centre de la bande.
-    centres = CellCenters(registrationName="Centres des bandes", Input=efforts)
+    centres = CellCenters(registrationName="(calcul) centres des bandes", Input=efforts)
     centres.VertexCells = 1
 
     # Aile colorée par C_L : la valeur de chaque bande est portée sur les sommets de l'aile
     # (noyau de Voronoï : le centre de bande le plus proche ; filtre natif, sans Python).
-    aile_cl = PointDatasetInterpolator(registrationName="Aile colorée par C_L", Input=centres, Source=aile)
+    # Ce filtre a deux entrées : le Pipeline Browser l'affiche sous chacune (lien) et une fois pour lui-même. Il reste
+    # donc un intermédiaire, et l'aile affichée est sa copie à une seule entrée (Merge Blocks : copie à l'identique
+    # d'un jeu de données simple), qui n'apparaît qu'une fois dans l'arbre.
+    aile_cl = PointDatasetInterpolator(registrationName="(calcul) C_L de chaque bande porté sur l'aile",
+                                       Input=centres, Source=aile)
     aile_cl.Kernel = "VoronoiKernel"
+    aile_vue = MergeBlocks(registrationName="1 · Aile (3 bandes, colorée par C_L)", Input=aile_cl)
 
-    rep_aile = Show(aile_cl, vue)
+    rep_aile = Show(aile_vue, vue)
     rep_aile.SetRepresentationType("Surface With Edges")
     rep_aile.EdgeColor = GREY
     rep_aile.LineWidth = 2.0
@@ -183,7 +192,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
     barre.ScalarBarLength = 0.4
 
     # Flèches d'effort : une par bande, dans la direction de dForce, longueur proportionnelle.
-    fleches = Glyph(registrationName="Flèches d'effort (dForce)", Input=centres, GlyphType="Arrow")
+    fleches = Glyph(registrationName="2 · Efforts par bande (flèches dForce)", Input=centres, GlyphType="Arrow")
     fleches.OrientationArray = ["POINTS", "dForce(N/m^2)"]
     fleches.ScaleArray = ["POINTS", "dForce(N/m^2)"]
     fleches.ScaleFactor = ECHELLE_EFFORT
@@ -198,18 +207,21 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
     # Vent vrai : flèches grises sur la grille de l'outil, réduites à une rangée, au vent de l'aile
     # (côté bâbord, y = -50 m), à mi-hauteur (z = -25 m), pour x = -25, 0 et 25 m : la grille du fichier a 75 points
     # jusqu'à 100 m de haut, qui cacheraient l'aile de 33 m.
-    fl_vent = Glyph(registrationName="Flèches du vent vrai (TWS)", Input=vent, GlyphType="Arrow")
+    fl_vent = Glyph(registrationName="(calcul) flèches du vent sur toute la grille", Input=vent, GlyphType="Arrow")
     fl_vent.OrientationArray = ["POINTS", "TWS"]
     fl_vent.ScaleArray = ["POINTS", "TWS"]
     fl_vent.ScaleFactor = ECHELLE_VENT
     fl_vent.GlyphMode = "All Points"
     vent_bas = fl_vent
-    for nom, origine, normale in (("sous 37 m", [0.0, 0.0, -37.0], [0.0, 0.0, -1.0]),    # garde z > -37
+    decoupes = (("sous 37 m", [0.0, 0.0, -37.0], [0.0, 0.0, -1.0]),    # garde z > -37
                                   ("au-dessus de 12 m", [0.0, 0.0, -12.0], [0.0, 0.0, 1.0]),  # garde z < -12
                                   ("côté bâbord", [0.0, -25.0, 0.0], [0.0, 1.0, 0.0]),      # garde y < -25
                                   ("x > -37 m", [-37.0, 0.0, 0.0], [-1.0, 0.0, 0.0]),         # garde x > -37
-                                  ("x < 37 m", [37.0, 0.0, 0.0], [1.0, 0.0, 0.0])):           # garde x < 37
-        vent_bas = Clip(registrationName=f"Vent : {nom}", Input=vent_bas)
+                                  ("x < 37 m", [37.0, 0.0, 0.0], [1.0, 0.0, 0.0]))            # garde x < 37
+    for k, (nom, origine, normale) in enumerate(decoupes):
+        # La dernière découpe est l'objet affiché : elle porte le nom de ce qu'on voit.
+        nom_objet = "3 · Vent vrai (flèches TWS)" if k == len(decoupes) - 1 else f"(calcul) vent : {nom}"
+        vent_bas = Clip(registrationName=nom_objet, Input=vent_bas)
         vent_bas.ClipType = "Plane"
         vent_bas.ClipType.Origin = origine
         vent_bas.ClipType.Normal = normale
@@ -224,11 +236,11 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
     for nom, rot, couleur, texte, pos in (
             ("x", [0, 0, 0], MARINE, "x", [21.0, 0.0, 1.0]),
             ("y", [0, 0, 90], MARINE, "y", [0.0, 21.5, 1.0]),
-            ("z", [0, -90, 0], GREY, "z", [1.0, 0.0, 21.0])):
-        fl = Arrow(registrationName=f"Axe {nom} (NED)")
+            ("z (vers le bas)", [0, -90, 0], GREY, "z", [1.0, 0.0, 21.0])):
+        fl = Arrow(registrationName=f"(calcul) flèche de l'axe {texte}")
         fl.TipRadius = 0.06
         fl.ShaftRadius = 0.018
-        tr = Transform(registrationName=f"Axe {nom} (NED), 20 m", Input=fl)
+        tr = Transform(registrationName=f"5 · Repère NED : axe {nom}", Input=fl)
         tr.Transform = "Transform"
         tr.Transform.Scale = [20.0, 20.0, 20.0]
         tr.Transform.Rotate = rot
@@ -236,7 +248,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
         ra.ColorArrayName = ["POINTS", ""]
         ra.AmbientColor = couleur
         ra.DiffuseColor = couleur
-        et = Text(registrationName=f"Étiquette {nom}")
+        et = Text(registrationName=f"5 · Repère NED : lettre {texte}")
         et.Text = texte
         re_ = Show(et, vue)
         re_.TextPropMode = "Billboard 3D Text"
@@ -245,15 +257,15 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, taille_etiquet
         re_.Bold = 1
         re_.Color = couleur
 
-    # Surface de la mer : plan z = 0.
-    rep_mer = Show(mer, vue)
+    # Surface de la mer : plan z = 0 (copie à une entrée du fichier lu, qui garde le nom du fichier).
+    rep_mer = Show(MergeBlocks(registrationName="4 · Surface de la mer", Input=mer), vue)
     rep_mer.ColorArrayName = ["POINTS", ""]
     rep_mer.AmbientColor = TEAL
     rep_mer.DiffuseColor = TEAL
     rep_mer.Opacity = 0.22
 
     # Un seul texte à l'écran, court (ARB-EGN-S7-032) : la légende des objets et le repère NED sont dans la fiche.
-    titre = Text(registrationName="Titre")
+    titre = Text(registrationName="6 · Titre (texte à l'écran)")
     titre.Text = "Aile du caboteur (CN-AeroModels --vtk 1)"
     rt = Show(titre, vue)
     rt.WindowLocation = "Upper Left Corner"
