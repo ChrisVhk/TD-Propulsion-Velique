@@ -1,3 +1,5 @@
+<!-- destinations: github -->
+<!-- word : par generer_td_S1.py, conversion mécanique des formules (ARB-EGN-S7-041) -->
 # TD 1 — Aérodynamique avec CN-AeroModels · fiche élève
 
 **EGN-S7 Propulsion assistée par le vent · séance de TD S1 · durée 2 h.** Prérequis : le cours du matin (S7-01,
@@ -26,26 +28,26 @@ ou lecture critique d'une source.
 # Vos armes : les formules utiles (cours S7-01, § 5)
 
 **Vent apparent** (S7-01 § 5.1). Le vent apparent est le vent vrai moins la vitesse du navire :
-V_app = V_vrai − V_navire. Avec TWA compté depuis l'avant du navire (0° : vent debout) et BS la vitesse du navire :
+$`V_{app} = V_{vrai} - V_{navire}`$. Avec TWA compté depuis l'avant du navire (0° : vent debout) et BS la vitesse du navire :
 
-- AWS² = TWS² + BS² + 2 · TWS · BS · cos TWA ;
-- tan AWA = TWS · sin TWA / (TWS · cos TWA + BS).
+- $`\mathrm{AWS}^{2} = \mathrm{TWS}^{2} + \mathrm{BS}^{2} + 2 \cdot \mathrm{TWS} \cdot \mathrm{BS} \cdot \cos\,\mathrm{TWA}`$ ;
+- $`\tan\,\mathrm{AWA} = \mathrm{TWS} \cdot \sin\,\mathrm{TWA} / (\mathrm{TWS} \cdot \cos\,\mathrm{TWA} + \mathrm{BS})`$.
 
-Cas limites : vent debout, AWS = TWS + BS ; vent arrière, AWS = |TWS − BS|.
+Cas limites : vent debout, $`\mathrm{AWS} = \mathrm{TWS} + \mathrm{BS}`$ ; vent arrière, $`\mathrm{AWS} = |\mathrm{TWS} - \mathrm{BS}|`$.
 
 **Convention de l'outil** (S7-01 § 5.1). Le fichier d'entrée donne la direction **vers laquelle** le vent souffle,
-dans le repère NED (nord, est, bas) : β = 180° + TWD, où TWD est la direction **d'où** vient le vent.
+dans le repère NED (nord, est, bas) : $`\beta = 180^{\circ} + \mathrm{TWD}`$, où TWD est la direction **d'où** vient le vent.
 
 **Angle d'attaque** (S7-01 § 5.1 et § 5.4). Pour une unité vélique, l'angle d'attaque AoA est l'angle de vent
-apparent corrigé du réglage m de l'aile : AoA = AWA + m, avec les angles signés de l'outil.
+apparent corrigé du réglage m de l'aile : $`\mathrm{AoA} = \mathrm{AWA} + m`$, avec les angles signés de l'outil.
 
 **Profil 2D** (S7-01 § 5.2). Pour un profil de corde c dans un écoulement de vitesse V, par unité d'envergure :
 
-- L = ½ ρ C_L(α, Re) c V² et D = ½ ρ C_D(α, Re) c V² ;
-- Re = ρ V c / μ = V c / ν ;
-- finesse : C_L / C_D.
+- $`L = \frac{1}{2} \rho C_{L}(\alpha, \mathrm{Re}) c V^{2}`$ et $`D = \frac{1}{2} \rho C_{D}(\alpha, \mathrm{Re}) c V^{2}`$ ;
+- $`\mathrm{Re} = \rho V c / \mu = V c / \nu`$ ;
+- finesse : $`C_{L} / C_{D}`$.
 
-**Données communes** (fichier `aile_caboteur.yml`) : ρ_air = 1,225 kg/m³ ; ν_air = 1,48 · 10⁻⁵ m²/s.
+**Données communes** (fichier `aile_caboteur.yml`) : $`\rho_{air} = 1{,}225`$ kg/m³ ; $`\nu_{air} = 1{,}48 \cdot 10^{-5}`$ m²/s.
 14 nœuds = 7,2016 m/s ; 20 nœuds = 10,288 m/s.
 
 # Matériel
