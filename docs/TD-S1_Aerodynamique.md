@@ -196,6 +196,8 @@ La légende est ici :
   Todd, 1963, domaine public), sans bulbe ; la flottaison est à z = 0, le pont 2,5 m plus haut : l'aile part du pont, rien d'elle n'est sous le
   pont.
 
+![Figure 1 — La vue attendue dans ParaView : le caboteur (Série 60, à l'échelle), l'aile posée sur le pont colorée par C_L, les efforts par bande (vert) et le vent vrai (gris), repère NED](img/aile_caboteur_paraview.png)
+
 **Le repère des fichiers est le repère NED** : x vers le nord (l'avant du navire, au cap 000°), y vers l'est (tribord),
 z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son pied est à
 z = −2,5 m (le pont), son sommet à z = −35,5 m.

@@ -8,6 +8,8 @@ results.csv
 *.vtk
 # Exception : la coque du caboteur n'est pas une sortie de l'outil, c'est une donnée du cas (Série 60, domaine public)
 !cas/Cas-ENSM_aile-du-caboteur/caboteur_serie60.vtk
+# Exception : les figures des fiches publiées (docs/img/) sont des données de la fiche, pas des sorties du TD
+!docs/img/*.png
 
 # Éditeurs / OS
 .vscode/
