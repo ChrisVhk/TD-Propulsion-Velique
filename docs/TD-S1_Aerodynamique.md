@@ -2,8 +2,8 @@
 <!-- word : par generer_td_S1.py, conversion mécanique des formules (ARB-EGN-S7-041) -->
 # TD 1 — Aérodynamique avec CN-AeroModels · fiche élève
 
-**EGN-S7 Propulsion assistée par le vent · séance de TD S1 · durée 2 h.** Prérequis : le cours du matin (S7-01,
-§ 5.1 à 5.3 : vent apparent, profil 2D, passage à l'aile 3D ; support sur Vega). Cette fiche est aussi dans le
+**EGN-S7 Propulsion assistée par le vent · séance de TD S1 · durée 2 h.** Prérequis : le cours du matin (deck S03 sur Vega,
+diapos 5 à 22 : vent apparent, profil 2D, passage à l'aile 3D). Cette fiche est aussi dans le
 dépôt public du TD, `docs/TD-S1_Aerodynamique.md` : <https://github.com/ChrisVhk/TD-Propulsion-Velique>.
 
 Les exercices sont tirés de la banque d'exercices d'EGN-S7 (A01 à A04). Chaque exercice porte son **niveau** :
@@ -25,9 +25,9 @@ ou lecture critique d'une source.
 - ouvrir dans ParaView les fichiers de visualisation de l'outil et y lire le sens des efforts et le repère NED
   (manipulation 2 bis).
 
-# Vos armes : les formules utiles (cours S7-01, § 5)
+# Vos armes : les formules utiles (cours du matin, deck S03)
 
-**Vent apparent** (S7-01 § 5.1). Le vent apparent est le vent vrai moins la vitesse du navire :
+**Vent apparent** (deck S03, diapos 6 à 10). Le vent apparent est le vent vrai moins la vitesse du navire :
 $`V_{app} = V_{vrai} - V_{navire}`$. Avec TWA compté depuis l'avant du navire (0° : vent debout) et BS la vitesse du navire :
 
 - $`\mathrm{AWS}^{2} = \mathrm{TWS}^{2} + \mathrm{BS}^{2} + 2 \cdot \mathrm{TWS} \cdot \mathrm{BS} \cdot \cos\,\mathrm{TWA}`$ ;
@@ -35,13 +35,13 @@ $`V_{app} = V_{vrai} - V_{navire}`$. Avec TWA compté depuis l'avant du navire (
 
 Cas limites : vent debout, $`\mathrm{AWS} = \mathrm{TWS} + \mathrm{BS}`$ ; vent arrière, $`\mathrm{AWS} = |\mathrm{TWS} - \mathrm{BS}|`$.
 
-**Convention de l'outil** (S7-01 § 5.1). Le fichier d'entrée donne la direction **vers laquelle** le vent souffle,
+**Convention de l'outil** (deck S03, diapo 12). Le fichier d'entrée donne la direction **vers laquelle** le vent souffle,
 dans le repère NED (nord, est, bas) : $`\beta = 180^{\circ} + \mathrm{TWD}`$, où TWD est la direction **d'où** vient le vent.
 
-**Angle d'attaque** (S7-01 § 5.1 et § 5.4). Pour une unité vélique, l'angle d'attaque AoA est l'angle de vent
+**Angle d'attaque** (deck S03, diapos 9 et 11). Pour une unité vélique, l'angle d'attaque AoA est l'angle de vent
 apparent corrigé du réglage m de l'aile : $`\mathrm{AoA} = \mathrm{AWA} + m`$, avec les angles signés de l'outil.
 
-**Profil 2D** (S7-01 § 5.2). Pour un profil de corde c dans un écoulement de vitesse V, par unité d'envergure :
+**Profil 2D** (deck S03, diapos 14 à 16). Pour un profil de corde c dans un écoulement de vitesse V, par unité d'envergure :
 
 - $`L = \frac{1}{2} \rho C_{L}(\alpha, \mathrm{Re}) c V^{2}`$ et $`D = \frac{1}{2} \rho C_{D}(\alpha, \mathrm{Re}) c V^{2}`$ ;
 - $`\mathrm{Re} = \rho V c / \mu = V c / \nu`$ ;
@@ -131,7 +131,7 @@ sa table de profil par un chemin relatif à ce dossier (`../exemples/airfoil_dat
 flottaison (z = −2,5 m) ; son sommet est à 35,5 m (z = −35,5 m). L'origine du cas (x = y = z = 0) est au couple milieu,
 sur l'axe, à la flottaison.
 
-**Auto-contrôle (valeur de référence : sortie de l'outil v0.5.1 ; mêmes forces que le tutoriel 1 du LHEEA, LH p. 25 ; moments différents, l'aile étant posée sur le pont)** : à l'écran, **F_x = 45 015,9 N** et **F_y = 34 203,7 N** ; dans
+**Auto-contrôle (valeur de référence : sortie de l'outil v0.5.1 ; mêmes forces que le tutoriel 1 de la formation du LHEEA (deck S03, diapos 39 et 40) ; moments différents, l'aile étant posée sur le pont)** : à l'écran, **F_x = 45 015,9 N** et **F_y = 34 203,7 N** ; dans
 `results.csv`, **45,0159** et **34,2037 kN** (le fichier donne les efforts en kN, l'écran en N). Comparez ensuite
 les colonnes `AWS`, `AWA` et `AoA/SR` de la **ligne `WPU-1`** de l'écran à vos réponses de l'exercice A02 (la ligne
 `Total` affiche l'AWA dans la colonne `AoA/SR`, pas l'angle d'attaque) : les signes suivent les conventions de l'outil,
@@ -255,9 +255,9 @@ C_L ≈ 0 à AoA = 0°. Sans Python : copiez les listes d'un ou deux nombres de 
 
 ## A01 — Vent apparent d'un cargo · niveau 1
 
-**Objectif.** Calculer un vent apparent dans le repère navire (S7-01 § 5.1).
+**Objectif.** Calculer un vent apparent dans le repère navire (deck S03, diapos 6 à 10).
 
-1. Nommer WPS, WPU, TWD, TWS, TWA, AWA, AWS, AoA et SR (LH p. 5-7).
+1. Nommer WPS, WPU, TWD, TWS, TWA, AWA, AWS, AoA et SR (deck S03, diapos 8, 9 et 11).
 2. Un navire fait route au 000° à 14 nœuds (7,2016 m/s). Le vent vrai **vient du** 045° à 20 nœuds (10,288 m/s).
    Calculer le vent apparent en composantes, puis AWS et AWA.
 
@@ -332,6 +332,6 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
   `elliptic.yml` de l'exemple 2.
 - Cas de l'aile du caboteur, `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.yml` (ENSM) ; mêmes forces que le
   tutoriel 1 de la formation du LHEEA ; moments différents, l'aile étant posée sur le pont.
-- Cours EGN-S7, S7-01 « Technologies et systèmes de propulsion vélique », § 5.
+- Cours EGN-S7 du 23/11, deck S03 « Aérodynamique et passage au TD » (Vega).
 - Banque d'exercices EGN-S7, exercices A01 à A04 ; dépôt public du TD, `TD-Propulsion-Velique` (pré-vol, scripts,
   cas).

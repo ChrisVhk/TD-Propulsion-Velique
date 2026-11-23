@@ -2,7 +2,7 @@
 
 Référentiel EGN-FISE (juillet 2025, p. 16) : TD de 12 h, dont 11 h sur « Aérodynamique, Hydrodynamique » et
 « Modélisation », et 1 h de « Réglementation » (analyse de risque pour l'acceptation d'une technologie par
-l'administration). Prérequis : le cours EGN-S7 (S7-01, § 5 à 7 ; S7-02, § 4 pour la séance 7), sur Vega.
+l'administration). Prérequis : le cours EGN-S7, dont les supports (decks) sont sur Vega.
 
 Chaque exercice porte un **niveau** : 1, application directe ; 2, plusieurs étapes ou lecture critique d'une source.
 
