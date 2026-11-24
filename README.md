@@ -19,16 +19,43 @@ La théorie est dans le **cours**, sur Vega. Ce dépôt contient le TD seulement
 
 ```
 TD-Propulsion-Velique/
-├── docs/     — 00 pré-vol · 00b dépannage · 01 programme · une fiche par séance (TD-S1, TD-S2, puis les suivantes)
-├── scripts/  — installer_cnaero.sh (outil + Python) · verifie_mon_install.py (vérification) · test_valeurs_connues.py (C_L elliptique, F_x cas ENSM) · tracer_table.py · voir_aile_caboteur.py (vue ParaView, repli) · voir_envergure.py (vue ParaView du TD 2, repli)
-└── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM : aile posée sur le pont du caboteur ; mêmes forces que le tutoriel 1 du LHEEA, moments différents ; et aile_caboteur.pvsm, l'état ParaView de sa vue, à côté des .vtk que l'outil y écrit ; caboteur_serie60.vtk, la coque du navire), TD2_envergure/ (TD 2 : lancer_les_trois.sh et envergure.pvsm, l'état ParaView de la vue le long de l'envergure), exemples/ (dépôt LHEEA) ; EPL 2.0
+├── README.md
+├── PROVENANCE.md                         origine et licence de chaque fichier
+├── LICENSE                               Apache 2.0 (code et fichiers faits à l'ENSM)
+├── LICENSE-docs                          CC BY 4.0 (textes)
+├── docs/
+│   ├── 00_PRE-VOL_Installation.md        à faire avant le TD 1
+│   ├── 00b_CA_NA_PAS_MARCHE.md           dépannage
+│   ├── 01_PROGRAMME.md                   les sept séances
+│   ├── TD-S1_Aerodynamique.md            fiche du TD 1
+│   ├── TD-S2_Bandes-et-ligne-portante.md fiche du TD 2
+│   └── img/
+│       ├── TD1_vue-paraview.png          figure de la fiche du TD 1
+│       └── TD2_envergure-paraview.png    figure de la fiche du TD 2
+├── scripts/
+│   ├── installer_cnaero.sh               installe CN-AeroModels et les modules Python
+│   ├── verifie_mon_install.py            vérification à renvoyer (pré-vol, étape ④)
+│   ├── test_valeurs_connues.py           C_L de l'aile elliptique, F_x de l'aile du caboteur
+│   ├── tracer_table.py                   trace une table de profil
+│   ├── TD1_voir_cas.py                   TD 1 : vue ParaView du cas (repli de TD1_vue.pvsm)
+│   └── TD2_voir_envergure.py             TD 2 : vue ParaView le long de l'envergure (repli de TD2_envergure.pvsm)
+└── cas/
+    ├── LICENSE_CN-AeroModels.txt         EPL 2.0
+    ├── aile-caboteur/                    le cas ENSM : aile posée sur le pont du caboteur
+    │   ├── aile-caboteur.yml             fichier d'entrée de CN-AeroModels
+    │   ├── caboteur-serie60.vtk          coque du navire (Série 60), pour la vue
+    │   ├── TD1_vue.pvsm                  TD 1 : état ParaView, à côté des .vtk que l'outil écrit ici
+    │   └── TD2_envergure/
+    │       ├── lancer_les_trois.sh       TD 2 : les trois calculs (bandes, NLL pied libre, NLL pont)
+    │       └── TD2_envergure.pvsm        TD 2 : état ParaView le long de l'envergure
+    └── exemples/                         exemples du dépôt de CN-AeroModels (LHEEA), noms d'origine
 ```
 
 ## Rien de sensible
 
 Dépôt **public**. Aucune donnée nominative, aucun corrigé, aucun extrait de support sous droits. Les énoncés qui
 s'appuient sur des supports de formation non libres sont distribués sur Vega. Provenance des fichiers :
-[`PROVENANCE.md`](PROVENANCE.md). Licences : code sous Apache 2.0 ([`LICENSE`](LICENSE)), textes sous CC BY 4.0
-([`LICENSE-docs`](LICENSE-docs)), fichiers de `cas/` sous EPL 2.0 ([`cas/LICENSE_CN-AeroModels.txt`](cas/LICENSE_CN-AeroModels.txt)), sauf l'état
-ParaView `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm`, le dossier `cas/TD2_envergure/` et la coque `caboteur_serie60.vtk` (ENSM, Apache 2.0, comme le code ;
-la géométrie de la coque vient d'un rapport du domaine public, voir `PROVENANCE.md`).
+[`PROVENANCE.md`](PROVENANCE.md). Licences, la règle : fichiers d'entrée de CN-AeroModels issus du LHEEA (et ceux qui en dérivent, dont
+`aile-caboteur.yml`) : EPL 2.0 ([`cas/LICENSE_CN-AeroModels.txt`](cas/LICENSE_CN-AeroModels.txt)) ; fichiers faits
+à l'ENSM (coque du caboteur, états ParaView, scripts) : Apache 2.0 ([`LICENSE`](LICENSE)) ; textes : CC BY 4.0
+([`LICENSE-docs`](LICENSE-docs)). Le détail, fichier par fichier : [`PROVENANCE.md`](PROVENANCE.md).

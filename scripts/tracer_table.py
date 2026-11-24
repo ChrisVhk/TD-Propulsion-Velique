@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Trace une table de profil de CN-AeroModels : C_L(AoA) et finesse C_L/C_D, une courbe par nombre de Reynolds.
-TD Propulsion vélique (EGN-S7, ENSM), TD 1, manipulation 3 (pour A04).
+TD Propulsion vélique (EGN-S7, ENSM), TD 1, manipulation 4 (pour A04).
 
 Usage, depuis le dossier du dépôt :
     python3 scripts/tracer_table.py                    # table du cas de l'aile du caboteur (NACA0015_v2.yml)

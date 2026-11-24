@@ -23,9 +23,9 @@ ou lecture critique d'une source.
   retrouver dans les sorties de l'outil le nombre de Reynolds qu'il utilise réellement (A04, niveau 2) ;
 - installer CN-AeroModels et vérifier votre installation sur deux cas dont le résultat est connu ;
 - ouvrir dans ParaView les fichiers de visualisation de l'outil et y lire le sens des efforts et le repère NED
-  (manipulation 2 bis).
+  (manipulation 3).
 
-# Vos armes : les formules utiles (cours du matin, deck S03)
+# Vos armes : les formules utiles (deck S03)
 
 **Vent apparent** (deck S03, diapos 6 à 10). Le vent apparent est le vent vrai moins la vitesse du navire :
 $`V_{app} = V_{vrai} - V_{navire}`$. Avec TWA compté depuis l'avant du navire (0° : vent debout) et BS la vitesse du navire :
@@ -47,12 +47,12 @@ apparent corrigé du réglage m de l'aile : $`\mathrm{AoA} = \mathrm{AWA} + m`$,
 - $`\mathrm{Re} = \rho V c / \mu = V c / \nu`$ ;
 - finesse : $`C_{L} / C_{D}`$.
 
-**Données communes** (fichier `aile_caboteur.yml`) : $`\rho_{air} = 1{,}225`$ kg/m³ ; $`\nu_{air} = 1{,}48 \cdot 10^{-5}`$ m²/s.
+**Données communes** (fichier `aile-caboteur.yml`) : $`\rho_{air} = 1{,}225`$ kg/m³ ; $`\nu_{air} = 1{,}48 \cdot 10^{-5}`$ m²/s.
 14 nœuds = 7,2016 m/s ; 20 nœuds = 10,288 m/s.
 
 # Matériel
 
-Tout se fait dans **Ubuntu sous Windows (WSL)**, dans le terminal Ubuntu, sauf la visualisation (manipulation 2 bis),
+Tout se fait dans **Ubuntu sous Windows (WSL)**, dans le terminal Ubuntu, sauf la visualisation (manipulation 3),
 qui se fait dans **ParaView pour Windows**.
 
 - **Le dépôt du TD**, `TD-Propulsion-Velique` (public, GitHub) : la fiche de chaque séance (`docs/`), les scripts
@@ -65,8 +65,8 @@ qui se fait dans **ParaView pour Windows**.
 - Une calculatrice.
 
 **Déroulé de la séance.** De 0:00 à 0:40, un membre du binôme installe (manipulations 0 et 1) pendant que l'autre
-commence A01 et A02 à la main ; puis la manipulation 2 et, juste après, la manipulation 2 bis (ParaView, 15 min) ;
-puis, jusqu'à 2:00, A03, le tracé de la table (manipulation 3) et A04. Si l'installation coince, continuez les
+commence A01 et A02 à la main ; puis la manipulation 2 et, juste après, la manipulation 3 (ParaView, 15 min) ;
+puis, jusqu'à 2:00, A03, le tracé de la table (manipulation 4) et A04. Si l'installation coince, continuez les
 exercices : ils se font tous sans l'outil.
 
 # Manipulations pas à pas
@@ -119,8 +119,8 @@ pour le TD ». Sinon, voir `docs/00b_CA_NA_PAS_MARCHE.md`, et renvoyez le bloc e
 Faire d'abord l'exercice A02 à la main, puis :
 
 ```bash
-cd ~/TD-Propulsion-Velique/cas/Cas-ENSM_aile-du-caboteur
-CN-AeroModels aile_caboteur.yml
+cd ~/TD-Propulsion-Velique/cas/aile-caboteur
+CN-AeroModels aile-caboteur.yml
 ```
 
 Toujours **se placer dans le dossier du cas** : l'outil écrit ses sorties dans le dossier courant, et le cas lit
@@ -140,7 +140,7 @@ comparez des valeurs absolues.
 L'outil écrit aussi dans le dossier du cas un fichier par aile, `aile-caboteur_WPU-1_0000.csv` (une ligne par bande,
 séparateur `;`) : gardez-le, la question 2 d'A04 s'en sert.
 
-## Manipulation 2 bis — Voir le cas dans ParaView (15 min, juste après la manipulation 2)
+## Manipulation 3 — Voir le cas dans ParaView (15 min, juste après la manipulation 2)
 
 Il faut **ParaView pour Windows** (pré-vol, étape ⑤). On relance le même cas en demandant à l'outil d'écrire, en plus,
 des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un état préparé (une vue déjà réglée).
@@ -148,15 +148,15 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
 1. **Relancer le cas avec l'option `--vtk 1`**, dans le terminal Ubuntu, toujours depuis le dossier du cas :
 
    ```bash
-   cd ~/TD-Propulsion-Velique/cas/Cas-ENSM_aile-du-caboteur
-   CN-AeroModels aile_caboteur.yml --vtk 1
+   cd ~/TD-Propulsion-Velique/cas/aile-caboteur
+   CN-AeroModels aile-caboteur.yml --vtk 1
    ls *.vtk
    ```
 
    **Auto-contrôle** : l'écran redonne exactement F_x = 45 015,9 N et F_y = 34 203,7 N (l'option ne change pas le
    calcul) ; `ls` affiche cinq fichiers : les quatre que l'outil vient d'écrire, `aile-caboteur_WPU-1_0000.vtk`
    (l'aile et ses bandes), `aile-caboteur_WPU-1_force_0000.vtk` (les efforts par bande), `wind_0000.vtk` (le vent vrai)
-   et `FreeSurface_0000.vtk` (la surface de la mer), plus `caboteur_serie60.vtk` (la coque du navire), fourni avec le
+   et `FreeSurface_0000.vtk` (la surface de la mer), plus `caboteur-serie60.vtk` (la coque du navire), fourni avec le
    cas : l'outil ne l'écrit pas.
 2. **Afficher l'adresse Windows du dossier du cas**, toujours dans le terminal Ubuntu :
 
@@ -164,18 +164,18 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
    wslpath -w .
    ```
 
-   Le terminal affiche une adresse du type `\\wsl.localhost\Ubuntu\home\<votre nom>\TD-Propulsion-Velique\cas\Cas-ENSM_aile-du-caboteur`
+   Le terminal affiche une adresse du type `\\wsl.localhost\Ubuntu\home\<votre nom>\TD-Propulsion-Velique\cas\aile-caboteur`
    (le nom `Ubuntu` peut varier selon votre installation). C'est par cette adresse que Windows voit les fichiers de WSL.
    Sélectionnez-la à la souris et copiez-la avec **Ctrl+Maj+C** (dans le terminal, un clic droit sans sélection
    *colle* au lieu de copier) ; ne copiez pas le retour à la ligne.
 3. **Ouvrir ParaView** (pour Windows, depuis le menu Démarrer).
 4. **Charger l'état** : menu *File > Load State…*. Dans le champ du nom de fichier (*File name*), collez l'adresse
    copiée à l'étape 2 et appuyez sur **Entrée** : la boîte affiche le contenu du dossier du cas. Sélectionnez
-   `aile_caboteur.pvsm` (il est à côté des `.vtk`), puis cliquez sur *OK*.
+   `TD1_vue.pvsm` (il est à côté des `.vtk`), puis cliquez sur *OK*.
 5. **Dire à ParaView où sont les données.** Une fenêtre *Load State Options* s'ouvre :
    - *Load State Data File Options* : choisir **Search files under specified directory** ;
    - *Data Directory* : **laissez la valeur proposée**. C'est le dossier de l'état, qui est aussi celui des `.vtk` ;
-     elle se termine par `Cas-ENSM_aile-du-caboteur` (sinon, effacez le champ et collez l'adresse de l'étape 2) ;
+     elle se termine par `aile-caboteur` (sinon, effacez le champ et collez l'adresse de l'étape 2) ;
    - laissez la case *Only Use Files In Data Directory* telle quelle ;
    - *OK*.
 
@@ -198,7 +198,7 @@ La légende est ici :
   Todd, 1963, domaine public), sans bulbe ; la flottaison est à z = 0, le pont 2,5 m plus haut : l'aile part du pont, rien d'elle n'est sous le
   pont.
 
-![Figure 1 — La vue attendue dans ParaView : le caboteur (Série 60, à l'échelle), l'aile posée sur le pont colorée par C_L, les efforts par bande (vert) et le vent vrai (gris), repère NED](img/aile_caboteur_paraview.png)
+![Figure 1 — La vue attendue dans ParaView : le caboteur (Série 60, à l'échelle), l'aile posée sur le pont colorée par C_L, les efforts par bande (vert) et le vent vrai (gris), repère NED](img/TD1_vue-paraview.png)
 
 **Le repère des fichiers est le repère NED** : x vers le nord (l'avant du navire, au cap 000°), y vers l'est (tribord),
 z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son pied est à
@@ -217,7 +217,7 @@ Les boutons ±X et ±Y montrent l'aile la tête en bas : ParaView y met +z en ha
 **Si l'onglet ne montre que le titre, la barre de couleur et le repère x, y, z, sans aile, sans mer, sans navire et
 sans flèches**, ou si une fenêtre *Output Messages* s'ouvre avec `Could not open file`, ParaView n'a pas trouvé les
 données : vérifiez que `ls *.vtk` affiche bien les cinq fichiers (étape 1), puis recommencez *File > Load State* (étape 4) en vérifiant
-que *Data Directory* se termine par `Cas-ENSM_aile-du-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
+que *Data Directory* se termine par `aile-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
 fenêtre *Output Messages*.
 
 **Deux questions d'observation, et une troisième facultative** (aucune valeur à calculer pour P1 et P2 ; une division
@@ -231,7 +231,7 @@ pour P3 ; deux ou trois lignes chacune) :
   au-dessus de la flottaison. (a) Pourquoi F_x et F_y ne dépendent-ils pas ici de cette hauteur ? (b) À partir du
   moment de gîte M_x affiché par l'outil, quel est le bras de levier de F_y, et depuis quel niveau est-il compté ?
 
-## Manipulation 3 — Tracer la table de coefficients du profil (pour A04)
+## Manipulation 4 — Tracer la table de coefficients du profil (pour A04)
 
 Le fichier `cas/exemples/airfoil_data/NACA0015_v2.yml` est la table de profil que l'outil utilise pour le cas de l'aile du caboteur. Ouvrez-le dans un éditeur de
 texte : il commence par le nom du profil (`type: NACA0015`), puis donne, **pour chaque nombre de Reynolds** (`Re`), la
@@ -263,9 +263,9 @@ C_L ≈ 0 à AoA = 0°. Sans Python : copiez les listes d'un ou deux nombres de 
 
 ## A02 — Le vent du cas de l'aile du caboteur : d'où vient-il ? · niveau 1
 
-**Objectif.** Lire la convention NED d'un fichier d'entrée (`aile_caboteur.yml` : `direction: 90`).
+**Objectif.** Lire la convention NED d'un fichier d'entrée (`aile-caboteur.yml` : `direction: 90`).
 
-Le cas de l'aile du caboteur (`cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.yml`) donne un vent uniforme de 10,288 m/s, de direction 90° (NED), et un navire au cap 000° à
+Le cas de l'aile du caboteur (`cas/aile-caboteur/aile-caboteur.yml`) donne un vent uniforme de 10,288 m/s, de direction 90° (NED), et un navire au cap 000° à
 7,2016 m/s ; le réglage de l'aile est de 34,4°.
 
 a) D'où vient le vent ?
@@ -285,7 +285,7 @@ Que conclure pour l'usage de tables de profils mesurées à Re = 10⁵ à 10⁶ 
 s'interpole.
 
 La table `NACA0015_v2.yml` du cas de l'aile du caboteur donne C_L et C_D pour sept nombres de Reynolds, de 5 · 10⁴ à 1,5 · 10⁷ (XFOIL
-jusqu'à 10⁶, CFD au-delà, d'après les commentaires du fichier). Appuyez-vous sur votre tracé (manipulation 3) et sur
+jusqu'à 10⁶, CFD au-delà, d'après les commentaires du fichier). Appuyez-vous sur votre tracé (manipulation 4) et sur
 les valeurs du fichier.
 
 1. Pour chaque Re, relever C_L,max et son angle, ainsi que la finesse maximale et son angle.
@@ -296,7 +296,7 @@ les valeurs du fichier.
    b) Comparer à la sortie de l'outil (manipulation 2, ligne `WPU-1` : C_L = −1,611, C_D = 0,0629 ; l'outil sort des
       signes, comparez des valeurs absolues). Puis ouvrir le fichier par bande `aile-caboteur_WPU-1_0000.csv`
       (manipulation 2 ; séparateur `;`) et relever la colonne `Re` : quel nombre de Reynolds l'outil a-t-il utilisé ?
-   c) Ce Re n'est pas celui d'A03. Calculer le rapport des deux : à quelle donnée du fichier `aile_caboteur.yml`
+   c) Ce Re n'est pas celui d'A03. Calculer le rapport des deux : à quelle donnée du fichier `aile-caboteur.yml`
       correspond-il ? Qu'en concluez-vous sur la façon dont l'outil se sert de la valeur `nu` du fichier ?
    d) Interpoler C_L linéairement en Re, au Re de l'outil, toujours à 20,61° (les deux valeurs de C_L lues en a)
       resservent, seul le poids change). Retrouvez-vous sa sortie ?
@@ -315,7 +315,7 @@ qu'il faudrait vérifier avant de s'y fier pour une aile réelle ?
 Un compte rendu (une à deux pages), selon les consignes de dépôt données par l'enseignant, avec :
 
 1. les réponses d'A01, A02, A03 et A04 (questions 1 et 2), **calculs posés** et unités, et vos réponses aux deux
-   questions d'observation P1 et P2 (manipulation 2 bis ; P3 si vous l'avez traitée) ;
+   questions d'observation P1 et P2 (manipulation 3 ; P3 si vous l'avez traitée) ;
 2. le tracé `table_NACA0015_v2.png` (ou celui du tableur) ;
 3. une copie d'écran des deux auto-contrôles (manipulations 1 et 2), ou, si l'outil n'a pas pu être installé, la
    panne rencontrée et le message d'erreur ;
@@ -326,11 +326,11 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 - LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 5-9, 21-26 (p. 26 : fichiers
   `.vtk` et visualisation dans ParaView).
 - ParaView, Kitware, <https://www.paraview.org> (logiciel libre, licence BSD) ; état de la vue
-  `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm` et script `scripts/voir_aile_caboteur.py` (ENSM).
+  `cas/aile-caboteur/TD1_vue.pvsm` et script `scripts/TD1_voir_cas.py` (ENSM).
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `1_element.yml` de l'exemple 1 (point de départ du cas de l'aile du caboteur), `airfoil_data/NACA0015_v2.yml`,
   `elliptic.yml` de l'exemple 2.
-- Cas de l'aile du caboteur, `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.yml` (ENSM) ; mêmes forces que le
+- Cas de l'aile du caboteur, `cas/aile-caboteur/aile-caboteur.yml` (ENSM) ; mêmes forces que le
   tutoriel 1 de la formation du LHEEA ; moments différents, l'aile étant posée sur le pont.
 - Cours EGN-S7 du 23/11, deck S03 « Aérodynamique et passage au TD » (Vega).
 - Banque d'exercices EGN-S7, exercices A01 à A04 ; dépôt public du TD, `TD-Propulsion-Velique` (pré-vol, scripts,

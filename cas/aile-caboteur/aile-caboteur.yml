@@ -6,7 +6,7 @@
 # Aile NACA0015, 33 m de haut, AR = 3, trois bandes (théorie des bandes), réglage 34,4°.
 # Pied de l'aile posé sur le pont (2,5 m au-dessus de la flottaison), sommet à 35,5 m (ARB-EGN-S7-038).
 # Table de profil : cas/exemples/airfoil_data/NACA0015_v2.yml (dépôt de CN-AeroModels, EPL 2.0).
-# Lancer depuis ce dossier : CN-AeroModels aile_caboteur.yml
+# Lancer depuis ce dossier : CN-AeroModels aile-caboteur.yml
 rotations convention: [psi, theta', phi''] 
 
 environmental constants:

@@ -3,21 +3,21 @@
 """
 Voir l'aile du caboteur dans ParaView — TD Propulsion vélique (EGN-S7, ENSM)
 
-Repli de l'état ParaView cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm :
+Repli de l'état ParaView cas/aile-caboteur/TD1_vue.pvsm :
 ce script construit la même vue sans passer par l'état. (L'état lui-même est fabriqué par l'enseignant dans
 l'interface graphique de ParaView pour Windows, à partir de la même fonction construire_vue : un état destiné
 à l'interface se fabrique et se teste dans l'interface.)
 
 UNE LIGNE, dans le terminal Ubuntu (WSL), depuis le dossier du dépôt :
 
-    pvpython scripts/voir_aile_caboteur.py
+    pvpython scripts/TD1_voir_cas.py
 
 (pvpython vient avec ParaView de WSL : sudo apt install paraview)
 
 Ce que fait le script :
   1. il copie le cas de l'aile du caboteur et sa table de profil dans un dossier temporaire
      (rien n'est écrit dans le dépôt) et y lance CN-AeroModels avec l'option --vtk 1 ;
-  2. il ouvre les quatre fichiers .vtk écrits par l'outil, plus la coque caboteur_serie60.vtk (fournie avec le cas),
+  2. il ouvre les quatre fichiers .vtk écrits par l'outil, plus la coque caboteur-serie60.vtk (fournie avec le cas),
      et construit la vue :
        - l'aile, découpée en trois bandes, colorée par le coefficient de portance C_L (Cl) ;
        - une flèche d'effort par bande (dForce, effort par unité de surface, N/m^2) ;
@@ -26,12 +26,12 @@ Ce que fait le script :
          domaine public), mise à l'échelle du caboteur d'EGN-S9 (L 110 m, B 17,5 m, T 6,5 m, D 9,0 m), sans bulbe ;
          flottaison en z = 0, pont en z = -2,5 m, quille en z = +6,5 m ; l'aile part du pont (pied en z = -2,5 m,
          sommet en z = -35,5 m : le cas lui-même place l'aile sur le pont, session 11 j, ARB-EGN-S7-038 ; avant,
-         elle partait de la flottaison). Fichier caboteur_serie60.vtk, versionné dans le dossier du cas
+         elle partait de la flottaison). Fichier caboteur-serie60.vtk, versionné dans le dossier du cas
          (ce n'est pas une sortie de l'outil) ; construit par construire_coque_serie60.py (dépôt de l'enseignant) ;
        - le repère : les fichiers sont en NED (x vers le nord = l'avant, y vers l'est = tribord,
          z vers le BAS) ; la vue est donc retournée (haut de l'écran = -z) pour voir l'aile debout ;
        - à l'écran : un titre court, la barre de couleur de C_L et les étiquettes x, y, z ; la légende des
-         objets et la note sur le repère NED sont dans la fiche du TD (manipulation 2 bis), pas dans la vue ;
+         objets et la note sur le repère NED sont dans la fiche du TD (manipulation 3), pas dans la vue ;
        - caméra de côté, depuis tribord, un peu en arrière et un peu au-dessus de la mer ;
   3. il ouvre une fenêtre (fermer la fenêtre pour finir), ou écrit une image sans fenêtre.
 
@@ -70,7 +70,7 @@ FICHIERS = {
     "efforts": "aile-caboteur_WPU-1_force_0000.vtk",  # une cellule par bande : Cl, Cd, Re, dForce...
     "vent": "wind_0000.vtk",                          # grille du vent vrai, vecteur TWS
     "mer": "FreeSurface_0000.vtk",                    # surface de la mer, plan z = 0
-    "coque": "caboteur_serie60.vtk",                  # coque Série 60 C_B 0,65 à l'échelle du caboteur (versionnée)
+    "coque": "caboteur-serie60.vtk",                  # coque Série 60 C_B 0,65 à l'échelle du caboteur (versionnée)
 }
 GRIS_CLAIR = _rgb("#D9D9D9")
 OPACITE_MER = 0.5       # mer semi-transparente : on voit la carène sous la flottaison (session 11 i)
@@ -94,11 +94,11 @@ CAMERA_DEMI_HAUTEUR = 42.0   # m (projection parallèle) ; 39 avant la 11 i : 42
 
 
 def racine_depot(depot=None):
-    """Dossier du dépôt TD-Propulsion-Velique (celui qui contient cas/Cas-ENSM_aile-du-caboteur)."""
+    """Dossier du dépôt TD-Propulsion-Velique (celui qui contient cas/aile-caboteur)."""
     ici = os.path.dirname(os.path.abspath(__file__))
     candidats = [depot] if depot else [os.path.dirname(ici), os.path.expanduser("~/TD-Propulsion-Velique")]
     for c in candidats:
-        if os.path.isfile(os.path.join(c, "cas", "Cas-ENSM_aile-du-caboteur", "aile_caboteur.yml")):
+        if os.path.isfile(os.path.join(c, "cas", "aile-caboteur", "aile-caboteur.yml")):
             return c
     sys.exit("Cas de l'aile du caboteur introuvable : lancez le script depuis le dépôt TD-Propulsion-Velique.")
 
@@ -116,14 +116,14 @@ def trouver_binaire():
 def lancer_cas(depot=None):
     """Copie le cas dans un dossier temporaire, lance l'outil avec --vtk 1, renvoie le dossier des .vtk."""
     racine = racine_depot(depot)
-    tmp = tempfile.mkdtemp(prefix="aile_caboteur_vtk_")
-    dossier_cas = os.path.join(tmp, "cas", "Cas-ENSM_aile-du-caboteur")
+    tmp = tempfile.mkdtemp(prefix="aile-caboteur_vtk_")
+    dossier_cas = os.path.join(tmp, "cas", "aile-caboteur")
     os.makedirs(dossier_cas)
-    for f in ("aile_caboteur.yml", FICHIERS["coque"]):   # la coque est un fichier du cas, pas une sortie de l'outil
-        shutil.copy(os.path.join(racine, "cas", "Cas-ENSM_aile-du-caboteur", f), dossier_cas)
+    for f in ("aile-caboteur.yml", FICHIERS["coque"]):   # la coque est un fichier du cas, pas une sortie de l'outil
+        shutil.copy(os.path.join(racine, "cas", "aile-caboteur", f), dossier_cas)
     shutil.copytree(os.path.join(racine, "cas", "exemples", "airfoil_data"),
                     os.path.join(tmp, "cas", "exemples", "airfoil_data"))
-    p = subprocess.run([trouver_binaire(), "aile_caboteur.yml", "--vtk", "1"], cwd=dossier_cas,
+    p = subprocess.run([trouver_binaire(), "aile-caboteur.yml", "--vtk", "1"], cwd=dossier_cas,
                        capture_output=True, text=True, timeout=300)
     if p.returncode != 0:
         sys.exit("CN-AeroModels a échoué :\n" + p.stdout + p.stderr)

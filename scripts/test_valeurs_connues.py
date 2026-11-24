@@ -13,7 +13,7 @@ Le script relance CN-AeroModels sur deux cas, dans un dossier temporaire (rien n
 dans le dépôt), et compare le résultat à une valeur de référence :
 
   1. aile elliptique (cas/exemples/2- nonlinear lifting line/elliptic.yml) : C_L = 0,3655 ;
-  2. aile du caboteur (cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.yml)  : F_x = 45 015,9 N.
+  2. aile du caboteur (cas/aile-caboteur/aile-caboteur.yml)  : F_x = 45 015,9 N.
 
 Les deux valeurs de référence sont celles de l'outil v0.5.1, déjà données dans
 scripts/verifie_mon_install.py et dans la fiche du TD S1. Tolérance relative : 1e-3.
@@ -33,7 +33,7 @@ CL_ELLIPTIQUE = 0.3655       # aile elliptique, AR = 4 : sortie de CN-AeroModels
 FX_CABOTEUR = 45015.9        # aile du caboteur, F_x en N : sortie de CN-AeroModels v0.5.1
 
 CAS_ELLIPTIQUE = os.path.join(RACINE, "cas", "exemples", "2- nonlinear lifting line", "elliptic.yml")
-CAS_CABOTEUR = os.path.join(RACINE, "cas", "Cas-ENSM_aile-du-caboteur", "aile_caboteur.yml")
+CAS_CABOTEUR = os.path.join(RACINE, "cas", "aile-caboteur", "aile-caboteur.yml")
 TABLE_PROFIL = os.path.join(RACINE, "cas", "exemples", "airfoil_data", "NACA0015_v2.yml")
 
 
@@ -73,13 +73,13 @@ def cl_elliptique():
 def fx_caboteur():
     # Le cas lit sa table par le chemin relatif ../exemples/airfoil_data/ : on reproduit cette arborescence.
     with tempfile.TemporaryDirectory() as d:
-        dossier_cas = os.path.join(d, "cas", "Cas-ENSM_aile-du-caboteur")
+        dossier_cas = os.path.join(d, "cas", "aile-caboteur")
         dossier_table = os.path.join(d, "cas", "exemples", "airfoil_data")
         os.makedirs(dossier_cas)
         os.makedirs(dossier_table)
         shutil.copy(CAS_CABOTEUR, dossier_cas)
         shutil.copy(TABLE_PROFIL, dossier_table)
-        sortie = lancer(dossier_cas, "aile_caboteur.yml")
+        sortie = lancer(dossier_cas, "aile-caboteur.yml")
     return float(lire_ligne(sortie, "WPU-1")[3].split(",")[0])
 
 
@@ -94,7 +94,7 @@ def test_cl_aile_elliptique():
     assert ecart_relatif(cl, CL_ELLIPTIQUE) <= TOLERANCE, f"C_L = {cl} au lieu de {CL_ELLIPTIQUE}"
 
 
-def test_fx_aile_caboteur():
+def test_fx_caboteur():
     fx = fx_caboteur()
     assert ecart_relatif(fx, FX_CABOTEUR) <= TOLERANCE, f"F_x = {fx} N au lieu de {FX_CABOTEUR} N"
 

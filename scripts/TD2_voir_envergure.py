@@ -1,20 +1,20 @@
 #!/usr/bin/env pvpython
 # -*- coding: utf-8 -*-
 """
-Voir la portance le long de l'envergure dans ParaView — TD 2 Propulsion vélique (EGN-S7, ENSM), manipulation 2 ter
+Voir la portance le long de l'envergure dans ParaView — TD 2 Propulsion vélique (EGN-S7, ENSM), manipulation 4
 
-Repli de l'état ParaView cas/TD2_envergure/envergure.pvsm : ce script construit la même vue sans passer par l'état.
+Repli de l'état ParaView cas/aile-caboteur/TD2_envergure/TD2_envergure.pvsm : ce script construit la même vue sans passer par l'état.
 (L'état lui-même est enregistré par l'interface graphique de ParaView pour Windows, à partir de la même fonction
 construire_vue : un état destiné à l'interface se fabrique et se teste dans l'interface.)
 
 Avant : les trois calculs, dans le terminal Ubuntu (WSL) :
 
-    cd ~/TD-Propulsion-Velique/cas/TD2_envergure
+    cd ~/TD-Propulsion-Velique/cas/aile-caboteur/TD2_envergure
     bash lancer_les_trois.sh
 
 Puis, UNE LIGNE, depuis le dossier du dépôt (pvpython vient avec ParaView de WSL : sudo apt install paraview) :
 
-    pvpython scripts/voir_envergure.py
+    pvpython scripts/TD2_voir_envergure.py
 
 Ce que montre la vue (deux vues côte à côte, dans un layout « Envergure ») :
   - à gauche, les trois ailes côte à côte, chacune découpée en ses éléments et colorée par le C_L de chaque élément
@@ -27,7 +27,7 @@ Ce que montre la vue (deux vues côte à côte, dans un layout « Envergure ») 
 Les fichiers lus sont ceux qu'écrit lancer_les_trois.sh : 1_bandes_*, 2_nll-pied-libre_*, 3_nll-pont_*.
 
 Options :
-  --donnees DOSSIER   dossier des .vtk (défaut : cas/TD2_envergure du dépôt)
+  --donnees DOSSIER   dossier des .vtk (défaut : cas/aile-caboteur/TD2_envergure du dépôt)
   --png FICHIER       écrit une capture du layout (1920 x 1080 par défaut)
   --sans-fenetre      n'ouvre pas de fenêtre (avec --png)
 
@@ -68,11 +68,11 @@ Z_VISEE = -5.0                        # m : centre de l'écran (place pour le ti
 
 def dossier_par_defaut():
     ici = os.path.dirname(os.path.abspath(__file__))
-    for c in (os.path.join(os.path.dirname(ici), "cas", "TD2_envergure"),
-              os.path.expanduser("~/TD-Propulsion-Velique/cas/TD2_envergure")):
+    for c in (os.path.join(os.path.dirname(ici), "cas", "aile-caboteur", "TD2_envergure"),
+              os.path.expanduser("~/TD-Propulsion-Velique/cas/aile-caboteur/TD2_envergure")):
         if os.path.isdir(c):
             return c
-    sys.exit("Dossier cas/TD2_envergure introuvable : lancez le script depuis le dépôt TD-Propulsion-Velique.")
+    sys.exit("Dossier cas/aile-caboteur/TD2_envergure introuvable : lancez le script depuis le dépôt TD-Propulsion-Velique.")
 
 
 def fichiers_attendus():
@@ -236,7 +236,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
 
 def main():
     ap = argparse.ArgumentParser(description="C_L le long de l'envergure : bandes, NLL pied libre, NLL pont (ParaView).")
-    ap.add_argument("--donnees", help="dossier des .vtk (défaut : cas/TD2_envergure du dépôt)")
+    ap.add_argument("--donnees", help="dossier des .vtk (défaut : cas/aile-caboteur/TD2_envergure du dépôt)")
     ap.add_argument("--png", help="écrit une capture PNG du layout")
     ap.add_argument("--sans-fenetre", action="store_true", help="n'ouvre pas de fenêtre")
     ap.add_argument("--largeur", type=int, default=1920)

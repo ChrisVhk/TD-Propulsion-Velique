@@ -14,10 +14,10 @@ WSL est un Linux (Ubuntu) qui tourne à l'intérieur de Windows. Il s'installe p
 appliquée S5, dans son dépôt public :
 
 - dépôt : <https://github.com/ChrisVhk/Informatique-Appliquee-S5> ;
-- guide pas à pas : `docs/00_PRE-VOL_Installation.md` de ce dépôt ;
-- script : `scripts/installer_poste.ps1` de ce dépôt.
+- guide pas à pas : [`docs/00_PRE-VOL_Installation.md`](https://github.com/ChrisVhk/Informatique-Appliquee-S5/blob/main/docs/00_PRE-VOL_Installation.md) du dépôt S5 ;
+- script : [`scripts/installer_poste.ps1`](https://github.com/ChrisVhk/Informatique-Appliquee-S5/blob/main/scripts/installer_poste.ps1) du dépôt S5.
 
-**Ce que vous lancez.** Téléchargez `installer_poste.ps1` depuis ce dépôt, puis, dans **PowerShell** (si possible en
+**Ce que vous lancez.** Téléchargez `installer_poste.ps1` depuis le dépôt S5, puis, dans **PowerShell** (si possible en
 administrateur la première fois), dans le dossier du fichier :
 
 ```powershell
@@ -72,7 +72,7 @@ l'enseignant.
 
 ## ⑤ ParaView pour Windows (visualisation, dès le TD 1)
 
-ParaView est le logiciel libre de visualisation de Kitware (licence BSD). Au TD 1 (manipulation 2 bis), il ouvre les
+ParaView est le logiciel libre de visualisation de Kitware (licence BSD). Au TD 1 (manipulation 3), il ouvre les
 fichiers `.vtk` que CN-AeroModels écrit avec l'option `--vtk 1` : l'aile, ses efforts, le vent. On l'installe
 **côté Windows** (pas dans WSL), comme au bloc 4 du cours S5 :
 
@@ -94,7 +94,7 @@ Une version 6.x déjà installée convient : l'état du TD a été chargé sans 
 sudo apt install paraview
 ```
 
-(plusieurs centaines de Mo), puis, depuis le dossier du dépôt, `pvpython scripts/voir_aile_caboteur.py` : le script
+(plusieurs centaines de Mo), puis, depuis le dossier du dépôt, `pvpython scripts/TD1_voir_cas.py` : le script
 relance le cas avec `--vtk 1` dans un dossier temporaire et ouvre la même vue dans une fenêtre.
 
 ## En binôme : une machine qui marche suffit
