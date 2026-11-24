@@ -17,37 +17,40 @@ ou lecture critique d'une source.
   n'est pas l'économie au moteur (A06, niveau 2) ;
 - dire ce que la théorie des bandes ne corrige pas, et le mesurer en relançant le cas de l'aile du caboteur en ligne portante non
   linéaire (NLL) (A06, niveau 2) ;
+- mesurer l'effet du pont (plan de symétrie : le pont fait miroir), retrouver la traînée induite par la formule, et
+  voir dans ParaView où l'aile perd sa portance le long de l'envergure (A06, niveau 2) ;
 - trouver par balayage le réglage qui maximise la poussée, et reconnaître un résultat qui sort du domaine de la table
   de profil (A07, niveau 2) ;
 - expliquer pourquoi le nombre d'éléments ne change rien en théorie des bandes et compte en NLL (A08, niveau 1).
 
 # Vos armes : les formules utiles (deck S03, diapos 17 à 31)
 
-**Passage à l'aile 3D** (deck S03, diapos 18 à 20). Pour une aile d'allongement AR = H² / A (hauteur au carré sur surface) :
+**Passage à l'aile 3D** (deck S03, diapos 18 à 20). Pour une aile d'allongement $`\mathrm{AR} = H^{2} / A`$ (hauteur au carré sur surface) :
 
-- C_L ≈ AR / (2 + AR) · C_L,2D ;
-- C_D ≈ C_D,2D + C_L² / (e₀ π AR), où le second terme est la traînée induite (e₀ : coefficient d'Oswald).
+- $`C_{L} \approx \frac{\mathrm{AR}}{2 + \mathrm{AR}} \, C_{L,2D}`$ ;
+- $`C_{D} \approx C_{D,2D} + \frac{C_{L}^{2}}{e_{0} \pi \mathrm{AR}}`$, où le second terme est la traînée induite ($`e_{0}`$ : coefficient d'Oswald).
 
 **Efforts dans le repère navire** (deck S03, diapo 31), avec les valeurs absolues de C_L et d'AWA :
 
-- C_x = |C_L| sin AWA − C_D cos AWA (poussée, vers l'avant) ;
-- C_y = |C_L| cos AWA + C_D sin AWA (force latérale) ;
-- q = ½ ρ_air AWS², F_x = C_x q A, F_y = C_y q A ;
-- puissance de poussée P_x = F_x · u, où u est la vitesse du navire.
+- $`C_{x} = |C_{L}| \sin\,\mathrm{AWA} - C_{D} \cos\,\mathrm{AWA}`$ (poussée, vers l'avant) ;
+- $`C_{y} = |C_{L}| \cos\,\mathrm{AWA} + C_{D} \sin\,\mathrm{AWA}`$ (force latérale) ;
+- $`q = \frac{1}{2} \rho_{air} \mathrm{AWS}^{2}`$, $`F_{x} = C_{x} \, q \, A`$, $`F_{y} = C_{y} \, q \, A`$ ;
+- puissance de poussée $`P_{x} = F_{x} \cdot u`$, où u est la vitesse du navire.
 
 **Les modèles** (deck S03, diapos 25 et 26). En théorie des bandes, chaque bande est un profil 2D infini, sans interaction avec les
 autres. En ligne portante non linéaire (NLL), les bandes interagissent par les vitesses induites de leurs
 tourbillons : l'incidence effective de chaque bande est réduite.
 
-**Données du cas de l'aile du caboteur** (fichier `aile_caboteur.yml`, TD 1) : ρ_air = 1,225 kg/m³ ; aile de 33 m de haut, AR = 3, pied posé sur le pont (z = −2,5 m, sommet à z = −35,5 m) ;
+**Données du cas de l'aile du caboteur** (fichier `aile_caboteur.yml`, TD 1) : $`\rho_{air} = 1{,}225`$ kg/m³ ; aile de 33 m de haut, AR = 3, pied posé sur le pont (z = −2,5 m, sommet à z = −35,5 m) ;
 vent vrai 10,288 m/s, navire à 7,2016 m/s ; AWS = 12,558 m/s, AWA = 55,01° ; réglage 34,4°.
 
 # Matériel
 
 - **Ubuntu sous Windows (WSL)** et **CN-AeroModels v0.5.1** (binaire Linux), installés au TD 1 (sinon :
   `docs/00_PRE-VOL_Installation.md` du dépôt du TD, puis `python3 scripts/verifie_mon_install.py`).
-- **Le dépôt du TD**, `~/TD-Propulsion-Velique` (à mettre à jour : `git pull`) : dossiers `cas/Cas-ENSM_aile-du-caboteur/` et
-  `cas/exemples/1- 2D model/`.
+- **Le dépôt du TD**, `~/TD-Propulsion-Velique` (à mettre à jour : `git pull`) : dossiers `cas/Cas-ENSM_aile-du-caboteur/`,
+  `cas/TD2_envergure/` et `cas/exemples/1- 2D model/`.
+- **ParaView pour Windows**, installé au TD 1 (manipulation 2 ter).
 - Un éditeur de texte (pour modifier une copie du fichier `.yml`), un tableur ou Python pour le tracé d'A07, une
   calculatrice.
 
@@ -90,6 +93,11 @@ Dans `Cas-ENSM_aile-du-caboteur/`, copiez `aile_caboteur.yml` en `nll.yml`, puis
 
 2. remplacez `number of elements: 3` par `number of elements: 10`.
 
+Les deux options viennent de la formation du LHEEA. `useAWSsquare` choisit la vitesse qui entre dans l'équation de la
+portance de chaque élément : la vitesse locale, au droit de l'élément (vent apparent et vitesses induites), ou la vitesse
+amont (le vent apparent AWS). On garde `false`, la valeur de l'exemple de la formation ; sur ce cas, `true` ne change
+F_x que de 1 %. `verbose: false` n'affiche que le résultat ; `true` ajoute le détail du calcul.
+
 Lancez :
 
 ```bash
@@ -106,6 +114,88 @@ Recommencez avec `number of elements: 20`.
 **Auto-contrôle** : l'outil doit rendre des efforts **non nuls**, et les F_x obtenus avec 10 et 20 éléments doivent
 différer de **moins de 1 %** (`docs/00b_CA_NA_PAS_MARCHE.md` du dépôt du TD). Sinon, le calcul n'a pas convergé : revenez à 10 éléments et
 vérifiez les deux remplacements.
+
+## Manipulation 2 bis — Le pont en miroir (pour A06, question 3)
+
+L'aile est posée sur le pont. Sur un vrai navire, l'air ne passe pas sous son pied : le pont bloque le tourbillon
+du pied, comme le ferait un miroir. L'outil le représente par un **plan de symétrie** : il ajoute sous le pont l'image
+de l'aile, et calcule les vitesses induites par les deux.
+
+Dans `Cas-ENSM_aile-du-caboteur/`, copiez `nll.yml` (à 20 éléments, fin de la manipulation 2) en `pont.yml`. Dans
+`pont.yml`, sous la ligne `        control: commands`, insérez le bloc suivant, en alignant `plane of symmetry:` sur
+`control:` (huit espaces) :
+
+```yaml
+        plane of symmetry:
+            point:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -2.5, unit: m}
+            normal vector:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -1., unit: m}
+            frame: ship
+```
+
+Le plan passe par le **pied de l'aile**, z = −2,5 m (le pont ; z vers le bas, repère NED), pas par l'origine du cas
+(la flottaison, z = 0). Vérifiez que `pont.yml` a toujours `number of elements: 20`, puis lancez :
+
+```bash
+CN-AeroModels pont.yml
+```
+
+**Auto-contrôle** : à l'écran, **F_x = 39 530 N** et **F_y = 34 037,8 N**. Des efforts nuls signalent un calcul non
+convergé : avec le plan de symétrie, l'outil ne converge pas pour tous les nombres d'éléments (40 éléments, par
+exemple) ; restez à 20. Un plan laissé à z = 0 donne F_x ≈ 34,1 kN : c'est faux, le plan n'est pas au pied.
+
+## Manipulation 2 ter — Voir la portance le long de l'envergure (ParaView ; pour P1 et P2)
+
+On compare dans ParaView les trois calculs de l'aile : théorie des bandes (manipulation 1), NLL pied libre et NLL pont
+en miroir (manipulations 2 et 2 bis). Les trois écrivent des fichiers **de même nom**, qui s'écrasent : un script les
+lance l'un après l'autre dans un dossier à part, `cas/TD2_envergure/`, et renomme les sorties après chacun. Il lit vos
+`aile_caboteur.yml`, `nll.yml` (20 éléments) et `pont.yml` dans le dossier du cas, sans les modifier.
+
+1. **Lancer les trois calculs**, dans le terminal Ubuntu :
+
+   ```bash
+   cd ~/TD-Propulsion-Velique/cas/TD2_envergure
+   bash lancer_les_trois.sh
+   ```
+
+   **Auto-contrôle** : le script affiche trois lignes, `1_bandes` (F_x = 45015.9 N), `2_nll-pied-libre`
+   (F_x = 32136.3 N) et `3_nll-pont` (F_x = 39530 N), puis « Les trois calculs sont faits ». S'il s'arrête avant, il
+   dit quel fichier manque ou n'est pas à 20 éléments.
+2. **Afficher l'adresse Windows du dossier**, toujours dans le terminal : `wslpath -w .` ; copiez l'adresse affichée
+   (sélection à la souris, **Ctrl+Maj+C**). Elle se termine par `cas\TD2_envergure`.
+3. **Charger l'état dans ParaView pour Windows** : *File > Load State…* ; dans le champ *File name*, collez l'adresse,
+   **Entrée**, sélectionnez `envergure.pvsm`, *OK*. Dans *Load State Options* : **Search files under specified
+   directory** ; *Data Directory* : laissez la valeur proposée (elle se termine par `TD2_envergure`) ; *OK*.
+
+**Ce que vous devez voir** : un onglet *Envergure* avec deux vues (figure 1). Un chargement réussi n'ouvre **aucune**
+fenêtre *Output Messages*.
+
+- À gauche, **les trois ailes** vues de face, côte à côte, posées sur **le pont** (trait vert, z = −2,5 m) : la
+  théorie des bandes (3 bandes), la NLL pied libre (20 éléments) et la NLL pont en miroir (20 éléments), avec leurs
+  noms courts au-dessus (« 1. Bandes », « 2. NLL libre », « 3. NLL pont »). Chaque
+  élément a la couleur de son C_L (barre « C_L (Cl) », signe de l'outil : bleu foncé ≈ −1,6, blanc ≈ −1, vert ≈ −0,5).
+  Sous l'aile 3, en fil gris, **l'aile image** que l'outil ajoute sous le pont.
+- À droite, **une courbe par calcul** : |C_L| de chaque élément (axe horizontal) en fonction de sa hauteur au-dessus
+  du pont (axe vertical). Un point par élément.
+
+![Figure 1 — La vue attendue dans ParaView : les trois ailes (théorie des bandes, NLL pied libre, NLL pont en miroir) colorées par le C_L de chaque élément, et |C_L| en fonction de la hauteur au-dessus du pont](img/td2_envergure_paraview.png)
+
+Si l'onglet ne montre que les textes, sans ailes, ou si *Output Messages* affiche `Could not open file`, ParaView n'a
+pas trouvé les données : relancez l'étape 1, puis l'étape 3 en vérifiant le *Data Directory*.
+
+Repli, sans l'interface (ParaView de WSL : `sudo apt install paraview`), depuis le dossier du dépôt :
+`pvpython scripts/voir_envergure.py`.
+
+**Deux questions d'observation** (deux ou trois lignes chacune, sans calcul) :
+
+- **P1.** Où l'aile en NLL pied libre perd-elle sa portance ? Pourquoi la théorie des bandes ne voit-elle pas cette
+  perte (deck S03, diapos 17 à 22) ?
+- **P2.** Que change le pont en miroir au pied de l'aile ? Et au sommet ? Reliez-le aux F_x des trois calculs.
 
 ## Manipulation 3 — Balayer le réglage (pour A07)
 
@@ -137,7 +227,7 @@ CN-AeroModels 10_elements.yml
 
 ## A05 — Facteur d'allongement · niveau 1
 
-Calculer AR / (AR + 2) pour AR = 3, 4 et 7. Que perd une voile d'allongement 3 ?
+Calculer $`\mathrm{AR} / (\mathrm{AR} + 2)`$ pour AR = 3, 4 et 7. Que perd une voile d'allongement 3 ?
 
 ## A06 — Efforts de l'aile du caboteur, et ce que la théorie des bandes ne corrige pas · niveau 2
 
@@ -152,6 +242,16 @@ C_L = −1,611 et C_D = 0,0629.
 3. Le C_L de l'outil est celui de la table 2D (A04, TD 1). L'allongement de 3 a-t-il été pris en compte ? Que donnerait le
    facteur d'A05 ? Faire ensuite la manipulation 2 et comparer F_x, F_y et l'incidence des éléments à la théorie des
    bandes.
+
+   Traînée induite : avec les sorties à 20 éléments (C_L et C_D de la ligne `WPU-1`), retrouver le C_D de la NLL par
+   $`C_{D} \approx C_{D,2D} + C_{L}^{2} / (e_{0} \pi \mathrm{AR})`$, avec AR = 3 et $`e_{0} = 1`$. Prendre C_D,2D, le C_D du profil seul, dans
+   `aile-caboteur_WPU-1_0000.csv` (colonne `Cd`), à l'élément dont l'incidence (`AoA(degrees)/SR`) est la plus
+   proche de l'incidence effective moyenne (`results.csv`, colonne `AoA`). Quelle part du C_D est de la traînée
+   induite ?
+
+   Faire la manipulation 2 bis (pont en miroir) et comparer ses F_x et F_y à ceux du pied libre. Une aile réelle est
+   posée sur le pont avec un jeu de quelques centimètres sous son pied : pourquoi ses efforts sont-ils entre ceux des
+   deux calculs NLL ?
 
 ## A07 — Balayage du réglage · niveau 2
 
@@ -172,6 +272,45 @@ Exemple 1 du dépôt LHEEA (`exemples/1- 2D model/`, fichiers `1_element.yml` et
 3. *(sans outil)* L'exemple 1 donne C_L = −0,9125, C_D = 0,01582, C_x = 0,9125, C_y = 0,01582. Quel angle de vent
    apparent ces quatre nombres impliquent-ils ?
 
+# Variantes pour les groupes rapides
+
+Facultatives : seulement si votre binôme a fini A05 à A08 avant la fin de la séance.
+
+## V1 — Convergence de la NLL selon le nombre d'éléments
+
+Reprenez `nll.yml` (manipulation 2, pied libre) et faites varier `number of elements` : 3, 5, 10, 20 et 40. Tracez
+F_x en fonction du nombre d'éléments. À partir de combien d'éléments F_x ne bouge-t-il plus de plus de 0,1 % ? Où
+vous arrêteriez-vous, et pourquoi ?
+
+Remarque : pour certains nombres d'éléments (80 sur ce cas, mais aussi 30), l'outil ne converge pas et rend des
+efforts nuls. C'est une limite du solveur, pas un résultat physique : ne retenez pas ces points.
+
+## V2 — A09 : ligne portante, théorie des bandes et mesures (Graf 2014) · niveau 2
+
+L'exemple 3 du dépôt de l'outil, `cas/exemples/3- 2014 Graf OENG/`, est une aile rectangulaire NACA0012 de
+400 × 1 800 mm (AR = 4,5, Re = 128 000, 21 éléments), dont les coefficients ont été mesurés (Graf et al., 2014). Le
+fichier pose un plan de symétrie au pied de l'aile (`root: embedded`), comme votre `pont.yml`. Les mesures
+sont dans `data.csv` (séparateur `;`), colonnes « Experiments [Graf et al., 2014] » : incidence et C_L, puis
+incidence et C_D.
+
+**Manipulation.**
+
+```bash
+cd ~/TD-Propulsion-Velique/cas/exemples/"3- 2014 Graf OENG"
+cp 2014_Graf_OENG.yml graf.yml
+CN-AeroModels graf.yml
+```
+
+Dans ce fichier, l'incidence vaut 90° moins le réglage : la ligne `setting: {unit: deg, values: [78., 78.]}`, à la
+fin du fichier, donne une incidence de 12°. Pour 8°, remplacez les deux valeurs 78. par 82. Pour la théorie des
+bandes, remplacez `model: nonlinear lifting line` par `model: strip theory`. Notez C_L et C_D sur la ligne de
+l'aile (au-dessus de `Total`), en valeur absolue.
+
+**Auto-contrôle** : des efforts non nuls, et un réglage affiché de 78 (12°) ou 82 (8°).
+
+**Question.** Lancer la NLL, puis repasser en théorie des bandes ; comparer C_L et C_D à la mesure (`data.csv`) à 8° et à
+12°. Quel modèle suit la mesure, et à quelle incidence l'accord se dégrade-t-il ?
+
 # Question d'interprétation physique
 
 En passant de la théorie des bandes à la NLL (manipulation 2), F_x et F_y ne baissent pas dans la même proportion.
@@ -185,20 +324,27 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 
 1. les réponses d'A05, A06, A07 et A08, **calculs posés** et unités ;
 2. le tracé F_x(μ) et F_y(μ) d'A07 (tableur ou Python), avec le réglage de poussée maximale ;
-3. le tableau des sorties de la manipulation 2 (10 et 20 éléments : F_x, F_y, C_L, C_D) et votre comparaison avec la
-   théorie des bandes ; ou, si l'outil n'a pas pu tourner, la panne rencontrée et le message d'erreur ;
-4. votre réponse à la question d'interprétation, en cinq lignes au plus.
+3. le tableau des sorties des manipulations 2 et 2 bis (10 et 20 éléments, pont en miroir : F_x, F_y, C_L, C_D), le
+   calcul de la traînée induite et votre comparaison avec la théorie des bandes ; ou, si l'outil n'a pas pu tourner,
+   la panne rencontrée et le message d'erreur ;
+4. vos réponses à P1 et P2 (manipulation 2 ter), avec une capture de la vue si vous le pouvez ;
+5. votre réponse à la question d'interprétation, en cinq lignes au plus.
 
 # Sources
 
-- LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 21-27.
+- LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 21-27 ; ligne portante non
+  linéaire, plan de symétrie et options, p. 31-45.
 
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `airfoil_data/NACA0015_v2.yml`, exemple 1 (`1_element.yml`, `10_elements.yml`).
+- ParaView (Kitware, licence BSD) ; état `cas/TD2_envergure/envergure.pvsm`, script `cas/TD2_envergure/lancer_les_trois.sh`
+  et repli `scripts/voir_envergure.py` (ENSM).
 - Cas de l'aile du caboteur, `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.yml` (ENSM, construit sur l'exemple 1) ;
   mêmes forces que le tutoriel 1 de la formation du LHEEA ; moments différents, l'aile étant posée sur le pont.
 - Support d'exercices CN-AeroModels de l'ENSM : document interne, non distribué ; les valeurs d'A08, question 3 en
   viennent (ce sont celles de l'exemple 1).
 
 - Cours EGN-S7 du 23/11, deck S03 « Aérodynamique et passage au TD » (Vega), diapos 17 à 31.
-- Banque d'exercices EGN-S7, exercices A05 à A08 ; dépôt public du TD, `TD-Propulsion-Velique`.
+- Banque d'exercices EGN-S7, exercices A05 à A08 et A09 (variante) ; dépôt public du TD, `TD-Propulsion-Velique`.
+- Graf et al. (2014), mesures sur l'aile NACA0012 de l'exemple 3 de CN-AeroModels, tels que les reprend
+  le fichier `data.csv` de l'exemple (dépôt de l'outil, EPL 2.0).

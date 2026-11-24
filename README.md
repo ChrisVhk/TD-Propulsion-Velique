@@ -20,8 +20,8 @@ La théorie est dans le **cours**, sur Vega. Ce dépôt contient le TD seulement
 ```
 TD-Propulsion-Velique/
 ├── docs/     — 00 pré-vol · 00b dépannage · 01 programme · une fiche par séance (TD-S1, TD-S2, puis les suivantes)
-├── scripts/  — installer_cnaero.sh (outil + Python) · verifie_mon_install.py (vérification) · test_valeurs_connues.py (C_L elliptique, F_x cas ENSM) · tracer_table.py · voir_aile_caboteur.py (vue ParaView, repli)
-└── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM : aile posée sur le pont du caboteur ; mêmes forces que le tutoriel 1 du LHEEA, moments différents ; et aile_caboteur.pvsm, l'état ParaView de sa vue, à côté des .vtk que l'outil y écrit ; caboteur_serie60.vtk, la coque du navire), exemples/ (dépôt LHEEA) ; EPL 2.0
+├── scripts/  — installer_cnaero.sh (outil + Python) · verifie_mon_install.py (vérification) · test_valeurs_connues.py (C_L elliptique, F_x cas ENSM) · tracer_table.py · voir_aile_caboteur.py (vue ParaView, repli) · voir_envergure.py (vue ParaView du TD 2, repli)
+└── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM : aile posée sur le pont du caboteur ; mêmes forces que le tutoriel 1 du LHEEA, moments différents ; et aile_caboteur.pvsm, l'état ParaView de sa vue, à côté des .vtk que l'outil y écrit ; caboteur_serie60.vtk, la coque du navire), TD2_envergure/ (TD 2 : lancer_les_trois.sh et envergure.pvsm, l'état ParaView de la vue le long de l'envergure), exemples/ (dépôt LHEEA) ; EPL 2.0
 ```
 
 ## Rien de sensible
@@ -30,5 +30,5 @@ Dépôt **public**. Aucune donnée nominative, aucun corrigé, aucun extrait de 
 s'appuient sur des supports de formation non libres sont distribués sur Vega. Provenance des fichiers :
 [`PROVENANCE.md`](PROVENANCE.md). Licences : code sous Apache 2.0 ([`LICENSE`](LICENSE)), textes sous CC BY 4.0
 ([`LICENSE-docs`](LICENSE-docs)), fichiers de `cas/` sous EPL 2.0 ([`cas/LICENSE_CN-AeroModels.txt`](cas/LICENSE_CN-AeroModels.txt)), sauf l'état
-ParaView `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm` et la coque `caboteur_serie60.vtk` (ENSM, Apache 2.0, comme le code ;
+ParaView `cas/Cas-ENSM_aile-du-caboteur/aile_caboteur.pvsm`, le dossier `cas/TD2_envergure/` et la coque `caboteur_serie60.vtk` (ENSM, Apache 2.0, comme le code ;
 la géométrie de la coque vient d'un rapport du domaine public, voir `PROVENANCE.md`).
