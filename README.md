@@ -12,14 +12,14 @@ La théorie est dans le **cours**, sur Vega. Ce dépôt contient le TD seulement
 |---|---|
 | élève, avant le TD 1 | [`docs/00_PRE-VOL_Installation.md`](docs/00_PRE-VOL_Installation.md), puis lancez `python3 scripts/verifie_mon_install.py` |
 | élève, ça bloque | [`docs/00b_CA_NA_PAS_MARCHE.md`](docs/00b_CA_NA_PAS_MARCHE.md), et lancez `python3 scripts/test_valeurs_connues.py` : collez sa sortie dans votre message à l'enseignant |
-| élève, en séance | la fiche de la séance dans `docs/` (TD 1 : [`docs/TD-S1_Aerodynamique.md`](docs/TD-S1_Aerodynamique.md) ; les suivantes sont publiées au fil des séances) |
+| élève, en séance | la fiche de la séance dans `docs/` (TD 1 : [`docs/TD-S1_Aerodynamique.md`](docs/TD-S1_Aerodynamique.md) ; TD 2 : [`docs/TD-S2_Bandes-et-ligne-portante.md`](docs/TD-S2_Bandes-et-ligne-portante.md) ; les suivantes sont publiées au fil des séances) |
 | enseignant / curieux | [`docs/01_PROGRAMME.md`](docs/01_PROGRAMME.md) |
 
 ## Structure
 
 ```
 TD-Propulsion-Velique/
-├── docs/     — 00 pré-vol · 00b dépannage · 01 programme · une fiche par séance (TD-S1, puis les suivantes)
+├── docs/     — 00 pré-vol · 00b dépannage · 01 programme · une fiche par séance (TD-S1, TD-S2, puis les suivantes)
 ├── scripts/  — installer_cnaero.sh (outil + Python) · verifie_mon_install.py (vérification) · test_valeurs_connues.py (C_L elliptique, F_x cas ENSM) · tracer_table.py · voir_aile_caboteur.py (vue ParaView, repli)
 └── cas/      — fichiers d'entrée de CN-AeroModels : Cas-ENSM_aile-du-caboteur/ (cas ENSM : aile posée sur le pont du caboteur ; mêmes forces que le tutoriel 1 du LHEEA, moments différents ; et aile_caboteur.pvsm, l'état ParaView de sa vue, à côté des .vtk que l'outil y écrit ; caboteur_serie60.vtk, la coque du navire), exemples/ (dépôt LHEEA) ; EPL 2.0
 ```
