@@ -65,8 +65,9 @@ le dossier du cas. Chaque lancement **écrase** `results.csv` : renommez-le avan
 Le TD se fait en **deux séances de 2 h** :
 
 - **séance 1** : manipulations 1 à 4, avec A05, A06 et les questions P1 et P2 ;
-- **séance 2** : l'encadré « De l'aile du caboteur à la Wing 560 » et l'exercice A17, puis les manipulations 5 et 6,
-  avec A07 et A08, la question d'interprétation et, s'il reste du temps, les variantes.
+- **séance 2** : l'encadré « De l'aile du caboteur à la Wing 560 » et l'exercice A17, questions 1 et 2 (les
+  questions 3 et 4 se traitent dans le compte rendu), puis les manipulations 5 et 6, avec A07 et A08, la question
+  d'interprétation et, s'il reste du temps, les variantes.
 
 Gardez d'une séance à l'autre vos fichiers `nll.yml` et `pont.yml` et les valeurs notées : la séance 2 s'en sert.
 
@@ -232,13 +233,17 @@ Table: Tableau 1 — L'aile du caboteur et la Wing 560 (sources de la Wing 560 :
 
 ### A17 — De l'aile du caboteur à la Wing 560 · niveaux 1 et 2
 
-1. *(niveau 1)* Comparez les allongements des deux ailes. Les conclusions de la séance 1 (perte de portance aux bouts,
+**En séance (≈ 30 min) : questions 1 et 2. Au compte rendu : questions 3 et 4.**
+
+1. *(en séance ; niveau 1)* Comparez les allongements des deux ailes. Les conclusions de la séance 1 (perte de portance aux bouts,
    effet du pont en miroir) valent-elles pour la Wing 560 ?
-2. *(niveau 2)* Passage à l'échelle **à coefficients égaux** (même vent apparent que le cas, mêmes C_x et C_y) : à partir
-   de vos F_x des manipulations 2 (20 éléments) et 3, estimez la poussée de la Wing 560 en NLL pied libre et en NLL pont
-   en miroir. Qu'est-ce qui rend ce calcul approximatif ?
-3. *(niveau 2)* Que change le volet ? Que le modèle du TD (un profil, une table, un élément) ne représente-t-il pas ?
-4. *(niveau 2)* Pourquoi le −17,7 % du caboteur et le « jusqu'à 10 % » de la Wing 560 sur le Tirranna ne se
+2. *(en séance ; niveau 2)* Passage à l'échelle **à coefficients égaux** (même vent apparent que le cas, mêmes C_x et
+   C_y) : à partir de vos F_x des manipulations 2 (20 éléments) et 3, estimez la poussée de la Wing 560 en NLL pied
+   libre et en NLL pont en miroir. Qu'est-ce qui rend ce calcul approximatif ? Le pied de la Wing 560 est à environ
+   6 m au-dessus du pont (46 m avec la fondation pour 40 m d'aile) : la réalité est entre le pied libre et le pont en
+   miroir, plus près du pied libre (voir le jeu au pied, A06, question 3).
+3. *(au compte rendu ; niveau 2)* Que change le volet ? Que le modèle du TD (un profil, une table, un élément) ne représente-t-il pas ?
+4. *(au compte rendu ; niveau 2)* Pourquoi le −17,7 % du caboteur et le « jusqu'à 10 % » de la Wing 560 sur le Tirranna ne se
    comparent-ils pas ?
 
 ## Manipulation 5 — Balayer le réglage (pour A07)
@@ -269,7 +274,8 @@ CN-AeroModels 10_elements.yml
 
 # Énoncés
 
-Séance 1 : A05 et A06. Séance 2 : A17 (posé plus haut, après l'encadré), A07 et A08.
+Séance 1 : A05 et A06. Séance 2 : A17, questions 1 et 2 (posé plus haut, après l'encadré ; questions 3 et 4 au compte
+rendu), A07 et A08.
 
 ## A05 — Facteur d'allongement · niveau 1
 
@@ -320,7 +326,7 @@ Exemple 1 du dépôt LHEEA (`exemples/1- 2D model/`, fichiers `1_element.yml` et
 
 # Variantes pour les groupes rapides
 
-Facultatives : seulement si votre binôme a fini A05 à A08 et A17 avant la fin de la séance 2.
+Facultatives : seulement si votre binôme a fini A05 à A08 et A17 (questions 1 et 2) avant la fin de la séance 2.
 
 ## V1 — Convergence de la NLL selon le nombre d'éléments
 
@@ -368,13 +374,14 @@ concluez-vous sur l'usage de la théorie des bandes pour estimer le gain de puis
 
 Un compte rendu (une à deux pages), selon les consignes de dépôt données par l'enseignant, avec :
 
-1. les réponses d'A05, A06, A07, A08 et A17, **calculs posés** et unités ;
+1. les réponses d'A05, A06, A07, A08 et A17 (questions 1 et 2), **calculs posés** et unités ;
 2. le tracé F_x(μ) et F_y(μ) d'A07 (tableur ou Python), avec le réglage de poussée maximale ;
 3. le tableau des sorties des manipulations 2 et 3 (10 et 20 éléments, pont en miroir : F_x, F_y, C_L, C_D), le
    calcul de la traînée induite et votre comparaison avec la théorie des bandes ; ou, si l'outil n'a pas pu tourner,
    la panne rencontrée et le message d'erreur ;
 4. vos réponses à P1 et P2 (manipulation 4), avec une capture de la vue si vous le pouvez ;
-5. votre réponse à la question d'interprétation, en cinq lignes au plus.
+5. votre réponse à la question d'interprétation, en cinq lignes au plus ;
+6. vos réponses à A17, questions 3 (le volet) et 4 (−17,7 % contre « jusqu'à 10 % »), traitées hors séance.
 
 # Sources
 
