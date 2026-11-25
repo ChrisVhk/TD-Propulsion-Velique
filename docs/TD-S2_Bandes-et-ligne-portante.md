@@ -1,10 +1,10 @@
 # TD 2 — De la théorie des bandes à la ligne portante · fiche élève
 
-**EGN-S7 Propulsion assistée par le vent · séance de TD S2 · durée 2 h.** Prérequis : le cours du 23/11, deck S03 sur Vega
-(diapos 17 à 22 : passage à l'aile 3D ; 24 à 26 : modèles aérodynamiques ; 31 : efforts dans le repère navire) ; le
-TD 1 (outil installé, vent du cas de l'aile du caboteur).
+**EGN-S7 Propulsion assistée par le vent · séance de TD S2 · deux séances de 2 h (4 h).** Prérequis : le cours du 23/11,
+deck S03 sur Vega (diapos 17 à 22 : passage à l'aile 3D ; 24 à 26 : modèles aérodynamiques ; 27 : Oceanbird ; 31 : efforts
+dans le repère navire ; 33 et 34 : le caboteur d'école) ; le TD 1 (outil installé, vent du cas de l'aile du caboteur).
 
-Les exercices sont tirés de la banque d'exercices d'EGN-S7 (A05 à A08). Chaque exercice porte son **niveau** :
+Les exercices sont tirés de la banque d'exercices d'EGN-S7 (A05 à A08, et A17). Chaque exercice porte son **niveau** :
 **niveau 1**, application directe d'une définition ou d'une formule ; **niveau 2**, enchaînement de plusieurs étapes
 ou lecture critique d'une source.
 
@@ -21,7 +21,9 @@ ou lecture critique d'une source.
   voir dans ParaView où l'aile perd sa portance le long de l'envergure (A06, niveau 2) ;
 - trouver par balayage le réglage qui maximise la poussée, et reconnaître un résultat qui sort du domaine de la table
   de profil (A07, niveau 2) ;
-- expliquer pourquoi le nombre d'éléments ne change rien en théorie des bandes et compte en NLL (A08, niveau 1).
+- expliquer pourquoi le nombre d'éléments ne change rien en théorie des bandes et compte en NLL (A08, niveau 1) ;
+- situer l'aile du caboteur par rapport à une aile réelle, la Wing 560 d'Oceanbird, et dire ce que vos résultats en
+  disent et ce qu'ils n'en disent pas (A17, niveaux 1 et 2).
 
 # Vos armes : les formules utiles (deck S03, diapos 17 à 31)
 
@@ -59,6 +61,16 @@ vent vrai 10,288 m/s, navire à 7,2016 m/s ; AWS = 12,558 m/s, AWA = 55,01° ; r
 le dossier du cas. Chaque lancement **écrase** `results.csv` : renommez-le avant de relancer s'il faut le garder.
 
 # Manipulations pas à pas
+
+Le TD se fait en **deux séances de 2 h** :
+
+- **séance 1** : manipulations 1 à 4, avec A05, A06 et les questions P1 et P2 ;
+- **séance 2** : l'encadré « De l'aile du caboteur à la Wing 560 » et l'exercice A17, puis les manipulations 5 et 6,
+  avec A07 et A08, la question d'interprétation et, s'il reste du temps, les variantes.
+
+Gardez d'une séance à l'autre vos fichiers `nll.yml` et `pont.yml` et les valeurs notées : la séance 2 s'en sert.
+
+## Séance 1 — manipulations 1 à 4
 
 ## Manipulation 1 — Relancer le cas de l'aile du caboteur (pour A06)
 
@@ -197,6 +209,38 @@ Repli, sans l'interface (ParaView de WSL : `sudo apt install paraview`), depuis 
   perte (deck S03, diapos 17 à 22) ?
 - **P2.** Que change le pont en miroir au pied de l'aile ? Et au sommet ? Reliez-le aux F_x des trois calculs.
 
+## Séance 2 — de l'aile du caboteur à la Wing 560, puis le réglage
+
+> **De l'aile du caboteur à la Wing 560.** Le **caboteur d'école** est un navire fictif de 110 m, celui du cours de
+> performances du navire (EGN-S9) : sa résistance à l'avancement est connue, ce qui permet de traduire la poussée de
+> l'aile en puissance gagnée à l'hélice (deck S03, diapos 33 et 34). **Son aile** est la géométrie du tutoriel 1 de la
+> formation du LHEEA (profil NACA0015, symétrique, un seul élément), posée sur le pont du caboteur : c'est un cas
+> d'école, pas un produit. La **Wing 560** est l'aile que vend Oceanbird (coentreprise d'Alfa Laval et de Wallenius
+> Lines) ; la première a été installée en juin 2026 sur le roulier Tirranna. Les images sont dans le deck S03,
+> diapo 27.
+
+| | Aile du caboteur (TD) | Wing 560 (Oceanbird) |
+|---|---|---|
+| Hauteur × corde | 33 m × 11 m | 40 m × 14 m (46 m avec sa fondation basculante) |
+| Surface S | 363 m² | 560 m² |
+| Allongement H²/S | 3,0 | 2,86 |
+| Profil | NACA0015, symétrique, un élément | deux éléments : aile principale et volet, qui crée la cambrure |
+| Navire | caboteur d'école, 110 m | Tirranna (Wallenius Wilhelmsen), roulier de 230 m |
+| Gain affiché | −17,7 % de puissance à l'hélice, à 14 nœuds par vent de travers de 20 nœuds (calcul du cours, diapo 34) | « jusqu'à 10 % » de carburant sur des routes favorables, une aile sur un navire existant (chiffre du constructeur) |
+
+Table: Tableau 1 — L'aile du caboteur et la Wing 560 (sources de la Wing 560 : theoceanbird.com, pages *Wing 560* et *Press*, communiqué du 02/07/2026)
+
+### A17 — De l'aile du caboteur à la Wing 560 · niveaux 1 et 2
+
+1. *(niveau 1)* Comparez les allongements des deux ailes. Les conclusions de la séance 1 (perte de portance aux bouts,
+   effet du pont en miroir) valent-elles pour la Wing 560 ?
+2. *(niveau 2)* Passage à l'échelle **à coefficients égaux** (même vent apparent que le cas, mêmes C_x et C_y) : à partir
+   de vos F_x des manipulations 2 (20 éléments) et 3, estimez la poussée de la Wing 560 en NLL pied libre et en NLL pont
+   en miroir. Qu'est-ce qui rend ce calcul approximatif ?
+3. *(niveau 2)* Que change le volet ? Que le modèle du TD (un profil, une table, un élément) ne représente-t-il pas ?
+4. *(niveau 2)* Pourquoi le −17,7 % du caboteur et le « jusqu'à 10 % » de la Wing 560 sur le Tirranna ne se
+   comparent-ils pas ?
+
 ## Manipulation 5 — Balayer le réglage (pour A07)
 
 Dans `aile-caboteur/`, copiez `aile-caboteur.yml` en `balayage.yml`. La ligne `setting`, à la fin du fichier, fixe le réglage :
@@ -224,6 +268,8 @@ CN-AeroModels 10_elements.yml
 **C_L = −0,9125**, **C_D = 0,01582**, **C_x = 0,9125**, **C_y = 0,01582**.
 
 # Énoncés
+
+Séance 1 : A05 et A06. Séance 2 : A17 (posé plus haut, après l'encadré), A07 et A08.
 
 ## A05 — Facteur d'allongement · niveau 1
 
@@ -274,7 +320,7 @@ Exemple 1 du dépôt LHEEA (`exemples/1- 2D model/`, fichiers `1_element.yml` et
 
 # Variantes pour les groupes rapides
 
-Facultatives : seulement si votre binôme a fini A05 à A08 avant la fin de la séance.
+Facultatives : seulement si votre binôme a fini A05 à A08 et A17 avant la fin de la séance 2.
 
 ## V1 — Convergence de la NLL selon le nombre d'éléments
 
@@ -322,7 +368,7 @@ concluez-vous sur l'usage de la théorie des bandes pour estimer le gain de puis
 
 Un compte rendu (une à deux pages), selon les consignes de dépôt données par l'enseignant, avec :
 
-1. les réponses d'A05, A06, A07 et A08, **calculs posés** et unités ;
+1. les réponses d'A05, A06, A07, A08 et A17, **calculs posés** et unités ;
 2. le tracé F_x(μ) et F_y(μ) d'A07 (tableur ou Python), avec le réglage de poussée maximale ;
 3. le tableau des sorties des manipulations 2 et 3 (10 et 20 éléments, pont en miroir : F_x, F_y, C_L, C_D), le
    calcul de la traînée induite et votre comparaison avec la théorie des bandes ; ou, si l'outil n'a pas pu tourner,
@@ -345,6 +391,9 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
   viennent (ce sont celles de l'exemple 1).
 
 - Cours EGN-S7 du 23/11, deck S03 « Aérodynamique et passage au TD » (Vega), diapos 17 à 31.
-- Banque d'exercices EGN-S7, exercices A05 à A08 et A09 (variante) ; dépôt public du TD, `TD-Propulsion-Velique`.
+- Banque d'exercices EGN-S7, exercices A05 à A08, A17 et A09 (variante) ; dépôt public du TD, `TD-Propulsion-Velique`.
+- Oceanbird, <https://www.theoceanbird.com/wing-560> (dimensions : « 46 meters tall from the foundation to the top. The
+  wing itself is 40 meters and 14 meters wide ») et communiqué du 02/07/2026, <https://www.theoceanbird.com/press>
+  (installation sur le Tirranna, « up 10% of fuel and emissions on optimal routes ») ; pages consultées le 25/11/2026.
 - Graf et al. (2014), mesures sur l'aile NACA0012 de l'exemple 3 de CN-AeroModels, tels que les reprend
   le fichier `data.csv` de l'exemple (dépôt de l'outil, EPL 2.0).
