@@ -1,0 +1,125 @@
+# Cas ENSM : aile du caboteur (TD Propulsion vélique, EGN-S7), TD 4, variante V-polaire (exercice M07).
+# Copie de TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur/aile-caboteur.yml, changée en trois points :
+#   ligne portante non linéaire (NLL), pied libre, 20 éléments (comme nll.yml du TD 2) ;
+#   réglage cherché par l'outil (control: maxThrust, pas de recherche 0,1°) ;
+#   direction du vent : lancer.sh la remplace pour chaque angle du vent vrai (direction = 180 - TWA).
+# Cas ENSM, construit sur l'exemple 1 de CN-AeroModels (communs/exemples-LHEEA/1- 2D model/1_element.yml, EPL 2.0) ;
+# le LHEEA propose un cas voisin dans sa formation.
+# Vent uniforme de 10,288 m/s (20 nœuds), direction 90° (NED, voir l'exercice A02).
+# Navire (le caboteur d'EGN-S9) à 7,2016 m/s (14 nœuds), cap 000°.
+# Aile NACA0015, 33 m de haut, AR = 3, 20 éléments (NLL), réglage cherché par l'outil (le 34,4° ci-dessous est ignoré).
+# Pied de l'aile posé sur le pont (2,5 m au-dessus de la flottaison), sommet à 35,5 m (ARB-EGN-S7-038).
+# Table de profil : communs/exemples-LHEEA/airfoil_data/NACA0015_v2.yml (dépôt de CN-AeroModels, EPL 2.0).
+# Lancer depuis ce dossier : bash lancer.sh (l'outil tourne dans un sous-dossier de sorties/ : le chemin de la table
+# ci-dessous est relatif à ce sous-dossier)
+rotations convention: [psi, theta', phi''] 
+
+environmental constants:
+    g: {value: 9.8067, unit: m/s^2}
+    rho: {value: 1025., unit: kg/m^3}
+    nu: {value: 1.48e-5, unit: m^2/s}   # viscosité cinématique de l'air ; comment l'outil s'en sert pour Re : exercice A04, question 2
+    air rho: {value: 1.225, unit: kg/m^3}
+
+environment models:
+  - model: uniform wind
+    velocity: {unit: m/s, value: 10.288}
+    direction: {unit: deg, value: 90.}
+    output:
+        frame of reference: NED
+        mesh:
+            xmin: {value: -50, unit: m}
+            xmax: {value: 50, unit: m}
+            nx: 5
+            ymin: {value: -50, unit: m}
+            ymax: {value: 50, unit: m}
+            ny: 3
+            zmin: {value: 0, unit: m}
+            zmax: {value: -100, unit: m}
+            nz: 5
+    
+bodies: # All bodies have NED as parent frame
+  - name: ship
+    position of body frame relative to mesh:
+        frame: mesh
+        x: {value: 0., unit: m}
+        y: {value: 0, unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 3.1415926535, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial position of body frame relative to NED:
+        frame: NED
+        x: {value: 0., unit: m}
+        y: {value: 0., unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 0, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial velocity of body frame relative to NED:
+        frame: ship
+        u: {value: 7.2016, unit: m/s}
+        v: {value: 0, unit: m/s}
+        w: {value: 0, unit: m/s}
+        p: {value: 0, unit: rad/s}
+        q: {value: 0, unit: rad/s}
+        r: {value: 0, unit: rad/s}
+    dynamics:
+        hydrodynamic forces calculation point in body frame:
+            x: {value: 0., unit: m}
+            y: {value: 0., unit: m}
+            z: {value: 0., unit: m}
+        centre of inertia:
+            frame: ship
+            x: {value: 0, unit: m}
+            y: {value: 0, unit: m}
+            z: {value: 0., unit: m}
+        rigid body inertia matrix at the center of gravity and projected in the body frame:
+            row 1: [1E6,0,0,0,0,0]
+            row 2: [0,1E6,0,0,0,0]
+            row 3: [0,0,1E6,0,0,0]
+            row 4: [0,0,0,1E6,0,0]
+            row 5: [0,0,0,0,1E6,0]
+            row 6: [0,0,0,0,0,1E6]
+        added mass matrix at the center of gravity and projected in the body frame:
+            row 1: [0,0,0,0,0,0]
+            row 2: [0,0,0,0,0,0]
+            row 3: [0,0,0,0,0,0]
+            row 4: [0,0,0,0,0,0]
+            row 5: [0,0,0,0,0,0]
+            row 6: [0,0,0,0,0,0]
+    external forces:
+      - name: aile-caboteur
+        model: nonlinear lifting line
+        options:
+            useAWSsquare: false
+            verbose: false
+            searchInterval: 0.1
+        control: maxThrust
+        wind propulsion system:
+          - name: WPU-1
+            geometry: uniform
+            data:
+                # Pied de l'aile au pont du caboteur d'EGN-S9 : z = -2,5 m (creux 9,0 m - tirant d'eau 6,5 m),
+                # sommet à z = -35,5 m (33 m d'envergure). L'origine du cas reste à la flottaison (NED, z vers le bas).
+                # Avant la session 11 j, l'aile partait de la flottaison (z = 0) et ses 2,5 m du bas étaient
+                # dans la coque (ARB-EGN-S7-038). Forces inchangées (vent uniforme, théorie des bandes) ; moments changés.
+                root:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -2.5, unit: m}
+                tip:
+                    x: {value: 0., unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -35.5, unit: m}
+                aspect ratio: 3.
+                discretization: 
+                    number of elements: 20
+                foil data: 
+                  - file: ../../../../communs/exemples-LHEEA/airfoil_data/NACA0015_v2.yml
+
+commands:
+  - name: WPU-1
+    t: [0, 100]
+    setting: {unit: deg, values: [34.4, 34.4]}
+ 
+
