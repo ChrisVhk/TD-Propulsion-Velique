@@ -2088,7 +2088,7 @@
         <Domain name="range" id="16375.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="16375.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="1.383503265"/>
+        <Element index="0" value="1.38468821"/>
         <Domain name="range" id="16375.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="16375.MinimumAngle" number_of_elements="1">
@@ -3540,7 +3540,7 @@
         <Domain name="range" id="16798.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="16798.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="1.386177676"/>
+        <Element index="0" value="1.38720291"/>
         <Domain name="range" id="16798.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="16798.MinimumAngle" number_of_elements="1">
@@ -4992,7 +4992,7 @@
         <Domain name="range" id="17179.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="17179.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="1.3837394410000001"/>
+        <Element index="0" value="1.38464754"/>
         <Domain name="range" id="17179.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="17179.MinimumAngle" number_of_elements="1">
@@ -6449,7 +6449,7 @@
         <Domain name="range" id="17606.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="17606.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="1.383503265"/>
+        <Element index="0" value="1.38468821"/>
         <Domain name="range" id="17606.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="17606.MinimumAngle" number_of_elements="1">
@@ -7901,7 +7901,7 @@
         <Domain name="range" id="17987.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="17987.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="1.386177676"/>
+        <Element index="0" value="1.38720291"/>
         <Domain name="range" id="17987.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="17987.MinimumAngle" number_of_elements="1">
@@ -9353,7 +9353,7 @@
         <Domain name="range" id="18368.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="18368.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="1.3837394410000001"/>
+        <Element index="0" value="1.38464754"/>
         <Domain name="range" id="18368.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="18368.MinimumAngle" number_of_elements="1">
@@ -10846,7 +10846,7 @@
         <Domain name="range" id="18845.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="18845.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="2.864000000000001"/>
+        <Element index="0" value="2.8640000000000008"/>
         <Domain name="range" id="18845.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="18845.MinimumAngle" number_of_elements="1">
@@ -13772,7 +13772,7 @@
         <Domain name="range" id="19423.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="19423.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="1.3844020633592844"/>
+        <Element index="0" value="1.3843020633592844"/>
         <Domain name="range" id="19423.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="19423.MinimumAngle" number_of_elements="1">
@@ -15008,7 +15008,7 @@
         <Domain name="range" id="19681.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="19681.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="0.7727199792861938"/>
+        <Element index="0" value="0.7727200984954834"/>
         <Domain name="range" id="19681.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="19681.MinimumAngle" number_of_elements="1">
@@ -16244,7 +16244,7 @@
         <Domain name="range" id="19918.MaximumAngle.range"/>
       </Property>
       <Property name="MaximumRadius" id="19918.MaximumRadius" number_of_elements="1">
-        <Element index="0" value="0.15782976150512695"/>
+        <Element index="0" value="0.1578296422958374"/>
         <Domain name="range" id="19918.MaximumRadius.range"/>
       </Property>
       <Property name="MinimumAngle" id="19918.MinimumAngle" number_of_elements="1">
@@ -19466,7 +19466,7 @@
         <Domain name="range" id="19872.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="19872.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.0038635998964309695"/>
+        <Element index="0" value="0.003863600492477417"/>
         <Domain name="range" id="19872.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="19872.GenerateNoiseTexture" number_of_elements="1">
@@ -19789,7 +19789,7 @@
         <Domain name="bool" id="19872.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="19872.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.07727199792861938"/>
+        <Element index="0" value="0.07727200984954835"/>
         <Domain name="bounds" id="19872.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="19872.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="19872.ScaleFactor.vector_range"/>
@@ -20457,7 +20457,7 @@
         <Domain name="range" id="20109.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="20109.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.0007891488075256348"/>
+        <Element index="0" value="0.0007891482114791871"/>
         <Domain name="range" id="20109.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="20109.GenerateNoiseTexture" number_of_elements="1">
@@ -20767,7 +20767,7 @@
         <Domain name="bool" id="20109.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="20109.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.015782976150512697"/>
+        <Element index="0" value="0.01578296422958374"/>
         <Domain name="bounds" id="20109.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="20109.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="20109.ScaleFactor.vector_range"/>
@@ -23551,9 +23551,9 @@
         <Domain name="range" id="18690.BasePosition.range"/>
       </Property>
       <Property name="BillboardPosition" id="18690.BillboardPosition" number_of_elements="3">
-        <Element index="0" value="0.94"/>
-        <Element index="1" value="0.4"/>
-        <Element index="2" value="-1.4"/>
+        <Element index="0" value="0.99"/>
+        <Element index="1" value="0.25"/>
+        <Element index="2" value="0.05"/>
         <Domain name="range" id="18690.BillboardPosition.range"/>
       </Property>
       <Property name="Bold" id="18690.Bold" number_of_elements="1">
@@ -23753,9 +23753,9 @@
         <Domain name="range" id="18725.BasePosition.range"/>
       </Property>
       <Property name="BillboardPosition" id="18725.BillboardPosition" number_of_elements="3">
-        <Element index="0" value="0.19"/>
-        <Element index="1" value="0.4"/>
-        <Element index="2" value="-1.4"/>
+        <Element index="0" value="0.24"/>
+        <Element index="1" value="0.25"/>
+        <Element index="2" value="0.05"/>
         <Domain name="range" id="18725.BillboardPosition.range"/>
       </Property>
       <Property name="Bold" id="18725.Bold" number_of_elements="1">
@@ -23955,9 +23955,9 @@
         <Domain name="range" id="18760.BasePosition.range"/>
       </Property>
       <Property name="BillboardPosition" id="18760.BillboardPosition" number_of_elements="3">
-        <Element index="0" value="-0.56"/>
-        <Element index="1" value="0.4"/>
-        <Element index="2" value="-1.4"/>
+        <Element index="0" value="-0.51"/>
+        <Element index="1" value="0.25"/>
+        <Element index="2" value="0.05"/>
         <Domain name="range" id="18760.BillboardPosition.range"/>
       </Property>
       <Property name="Bold" id="18760.Bold" number_of_elements="1">
@@ -24157,9 +24157,9 @@
         <Domain name="range" id="20141.BasePosition.range"/>
       </Property>
       <Property name="BillboardPosition" id="20141.BillboardPosition" number_of_elements="3">
-        <Element index="0" value="1"/>
-        <Element index="1" value="0.65"/>
-        <Element index="2" value="-1.4"/>
+        <Element index="0" value="1.3"/>
+        <Element index="1" value="0.5"/>
+        <Element index="2" value="-0.8999999999999999"/>
         <Domain name="range" id="20141.BillboardPosition.range"/>
       </Property>
       <Property name="Bold" id="20141.Bold" number_of_elements="1">
@@ -24610,7 +24610,7 @@
         <Domain name="bool" id="16582.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="16582.Ambient" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="16582.Ambient.range"/>
       </Property>
       <Property name="AmbientColor" id="16582.AmbientColor" number_of_elements="3">
@@ -24814,7 +24814,7 @@
         <Element index="0" value="3"/>
       </Property>
       <Property name="Diffuse" id="16582.Diffuse" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="range" id="16582.Diffuse.range"/>
       </Property>
       <Property name="DiffuseColor" id="16582.DiffuseColor" number_of_elements="3">
@@ -24828,9 +24828,9 @@
         <Domain name="bool" id="16582.DisableLighting.bool"/>
       </Property>
       <Property name="EdgeColor" id="16582.EdgeColor" number_of_elements="3">
-        <Element index="0" value="0.34901960784313724"/>
-        <Element index="1" value="0.34901960784313724"/>
-        <Element index="2" value="0.34901960784313724"/>
+        <Element index="0" value="0.8"/>
+        <Element index="1" value="0.8"/>
+        <Element index="2" value="0.8"/>
         <Domain name="range" id="16582.EdgeColor.range"/>
       </Property>
       <Property name="EdgeOpacity" id="16582.EdgeOpacity" number_of_elements="1">
@@ -24874,7 +24874,7 @@
         <Domain name="range" id="16582.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="16582.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.006917516325"/>
+        <Element index="0" value="0.00692344105"/>
         <Domain name="range" id="16582.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="16582.GenerateNoiseTexture" number_of_elements="1">
@@ -24964,7 +24964,7 @@
         <Domain name="scalar_range" id="16582.LODValues.scalar_range"/>
       </Property>
       <Property name="LineWidth" id="16582.LineWidth" number_of_elements="1">
-        <Element index="0" value="1.5"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="16582.LineWidth.range"/>
       </Property>
       <Property name="LookupTable" id="16582.LookupTable" number_of_elements="1">
@@ -25268,7 +25268,7 @@
         <Domain name="groups" id="16582.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="16582.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.5789958551026573"/>
+        <Element index="0" value="0.5794814309948564"/>
         <Domain name="bounds" id="16582.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="16582.Scale" number_of_elements="3">
@@ -25288,7 +25288,7 @@
         <Domain name="bool" id="16582.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="16582.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.1383503265"/>
+        <Element index="0" value="0.138468821"/>
         <Domain name="bounds" id="16582.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="16582.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="16582.ScaleFactor.vector_range"/>
@@ -25808,7 +25808,7 @@
         <Domain name="bool" id="17005.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="17005.Ambient" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="17005.Ambient.range"/>
       </Property>
       <Property name="AmbientColor" id="17005.AmbientColor" number_of_elements="3">
@@ -26012,7 +26012,7 @@
         <Element index="0" value="3"/>
       </Property>
       <Property name="Diffuse" id="17005.Diffuse" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="range" id="17005.Diffuse.range"/>
       </Property>
       <Property name="DiffuseColor" id="17005.DiffuseColor" number_of_elements="3">
@@ -26026,9 +26026,9 @@
         <Domain name="bool" id="17005.DisableLighting.bool"/>
       </Property>
       <Property name="EdgeColor" id="17005.EdgeColor" number_of_elements="3">
-        <Element index="0" value="0.34901960784313724"/>
-        <Element index="1" value="0.34901960784313724"/>
-        <Element index="2" value="0.34901960784313724"/>
+        <Element index="0" value="0.8"/>
+        <Element index="1" value="0.8"/>
+        <Element index="2" value="0.8"/>
         <Domain name="range" id="17005.EdgeColor.range"/>
       </Property>
       <Property name="EdgeOpacity" id="17005.EdgeOpacity" number_of_elements="1">
@@ -26072,7 +26072,7 @@
         <Domain name="range" id="17005.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="17005.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.00693088838"/>
+        <Element index="0" value="0.00693601455"/>
         <Domain name="range" id="17005.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="17005.GenerateNoiseTexture" number_of_elements="1">
@@ -26162,7 +26162,7 @@
         <Domain name="scalar_range" id="17005.LODValues.scalar_range"/>
       </Property>
       <Property name="LineWidth" id="17005.LineWidth" number_of_elements="1">
-        <Element index="0" value="1.5"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="17005.LineWidth.range"/>
       </Property>
       <Property name="LookupTable" id="17005.LookupTable" number_of_elements="1">
@@ -26466,7 +26466,7 @@
         <Domain name="groups" id="17005.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="17005.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.5800089224090348"/>
+        <Element index="0" value="0.5804271763623512"/>
         <Domain name="bounds" id="17005.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="17005.Scale" number_of_elements="3">
@@ -26486,7 +26486,7 @@
         <Domain name="bool" id="17005.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="17005.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.1386177676"/>
+        <Element index="0" value="0.13872029100000002"/>
         <Domain name="bounds" id="17005.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="17005.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="17005.ScaleFactor.vector_range"/>
@@ -27006,7 +27006,7 @@
         <Domain name="bool" id="17386.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="17386.Ambient" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="17386.Ambient.range"/>
       </Property>
       <Property name="AmbientColor" id="17386.AmbientColor" number_of_elements="3">
@@ -27210,7 +27210,7 @@
         <Element index="0" value="3"/>
       </Property>
       <Property name="Diffuse" id="17386.Diffuse" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="range" id="17386.Diffuse.range"/>
       </Property>
       <Property name="DiffuseColor" id="17386.DiffuseColor" number_of_elements="3">
@@ -27224,9 +27224,9 @@
         <Domain name="bool" id="17386.DisableLighting.bool"/>
       </Property>
       <Property name="EdgeColor" id="17386.EdgeColor" number_of_elements="3">
-        <Element index="0" value="0.34901960784313724"/>
-        <Element index="1" value="0.34901960784313724"/>
-        <Element index="2" value="0.34901960784313724"/>
+        <Element index="0" value="0.8"/>
+        <Element index="1" value="0.8"/>
+        <Element index="2" value="0.8"/>
         <Domain name="range" id="17386.EdgeColor.range"/>
       </Property>
       <Property name="EdgeOpacity" id="17386.EdgeOpacity" number_of_elements="1">
@@ -27270,7 +27270,7 @@
         <Domain name="range" id="17386.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="17386.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.006918697205000001"/>
+        <Element index="0" value="0.0069232377"/>
         <Domain name="range" id="17386.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="17386.GenerateNoiseTexture" number_of_elements="1">
@@ -27360,7 +27360,7 @@
         <Domain name="scalar_range" id="17386.LODValues.scalar_range"/>
       </Property>
       <Property name="LineWidth" id="17386.LineWidth" number_of_elements="1">
-        <Element index="0" value="1.5"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="17386.LineWidth.range"/>
       </Property>
       <Property name="LookupTable" id="17386.LookupTable" number_of_elements="1">
@@ -27664,7 +27664,7 @@
         <Domain name="groups" id="17386.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="17386.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.579094449371904"/>
+        <Element index="0" value="0.5794641704665608"/>
         <Domain name="bounds" id="17386.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="17386.Scale" number_of_elements="3">
@@ -27684,7 +27684,7 @@
         <Domain name="bool" id="17386.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="17386.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.1383739441"/>
+        <Element index="0" value="0.138464754"/>
         <Domain name="bounds" id="17386.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="17386.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="17386.ScaleFactor.vector_range"/>
@@ -28204,7 +28204,7 @@
         <Domain name="bool" id="17813.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="17813.Ambient" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="17813.Ambient.range"/>
       </Property>
       <Property name="AmbientColor" id="17813.AmbientColor" number_of_elements="3">
@@ -28408,7 +28408,7 @@
         <Element index="0" value="3"/>
       </Property>
       <Property name="Diffuse" id="17813.Diffuse" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="range" id="17813.Diffuse.range"/>
       </Property>
       <Property name="DiffuseColor" id="17813.DiffuseColor" number_of_elements="3">
@@ -28422,9 +28422,9 @@
         <Domain name="bool" id="17813.DisableLighting.bool"/>
       </Property>
       <Property name="EdgeColor" id="17813.EdgeColor" number_of_elements="3">
-        <Element index="0" value="0.34901960784313724"/>
-        <Element index="1" value="0.34901960784313724"/>
-        <Element index="2" value="0.34901960784313724"/>
+        <Element index="0" value="0.8"/>
+        <Element index="1" value="0.8"/>
+        <Element index="2" value="0.8"/>
         <Domain name="range" id="17813.EdgeColor.range"/>
       </Property>
       <Property name="EdgeOpacity" id="17813.EdgeOpacity" number_of_elements="1">
@@ -28468,7 +28468,7 @@
         <Domain name="range" id="17813.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="17813.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.006917516325"/>
+        <Element index="0" value="0.00692344105"/>
         <Domain name="range" id="17813.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="17813.GenerateNoiseTexture" number_of_elements="1">
@@ -28558,7 +28558,7 @@
         <Domain name="scalar_range" id="17813.LODValues.scalar_range"/>
       </Property>
       <Property name="LineWidth" id="17813.LineWidth" number_of_elements="1">
-        <Element index="0" value="1.5"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="17813.LineWidth.range"/>
       </Property>
       <Property name="LookupTable" id="17813.LookupTable" number_of_elements="1">
@@ -28862,7 +28862,7 @@
         <Domain name="groups" id="17813.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="17813.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.5789958551026573"/>
+        <Element index="0" value="0.5794814309948564"/>
         <Domain name="bounds" id="17813.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="17813.Scale" number_of_elements="3">
@@ -28882,7 +28882,7 @@
         <Domain name="bool" id="17813.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="17813.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.1383503265"/>
+        <Element index="0" value="0.138468821"/>
         <Domain name="bounds" id="17813.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="17813.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="17813.ScaleFactor.vector_range"/>
@@ -29402,7 +29402,7 @@
         <Domain name="bool" id="18194.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="18194.Ambient" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="18194.Ambient.range"/>
       </Property>
       <Property name="AmbientColor" id="18194.AmbientColor" number_of_elements="3">
@@ -29606,7 +29606,7 @@
         <Element index="0" value="3"/>
       </Property>
       <Property name="Diffuse" id="18194.Diffuse" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="range" id="18194.Diffuse.range"/>
       </Property>
       <Property name="DiffuseColor" id="18194.DiffuseColor" number_of_elements="3">
@@ -29620,9 +29620,9 @@
         <Domain name="bool" id="18194.DisableLighting.bool"/>
       </Property>
       <Property name="EdgeColor" id="18194.EdgeColor" number_of_elements="3">
-        <Element index="0" value="0.34901960784313724"/>
-        <Element index="1" value="0.34901960784313724"/>
-        <Element index="2" value="0.34901960784313724"/>
+        <Element index="0" value="0.8"/>
+        <Element index="1" value="0.8"/>
+        <Element index="2" value="0.8"/>
         <Domain name="range" id="18194.EdgeColor.range"/>
       </Property>
       <Property name="EdgeOpacity" id="18194.EdgeOpacity" number_of_elements="1">
@@ -29666,7 +29666,7 @@
         <Domain name="range" id="18194.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="18194.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.00693088838"/>
+        <Element index="0" value="0.00693601455"/>
         <Domain name="range" id="18194.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="18194.GenerateNoiseTexture" number_of_elements="1">
@@ -29756,7 +29756,7 @@
         <Domain name="scalar_range" id="18194.LODValues.scalar_range"/>
       </Property>
       <Property name="LineWidth" id="18194.LineWidth" number_of_elements="1">
-        <Element index="0" value="1.5"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="18194.LineWidth.range"/>
       </Property>
       <Property name="LookupTable" id="18194.LookupTable" number_of_elements="1">
@@ -30060,7 +30060,7 @@
         <Domain name="groups" id="18194.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="18194.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.5800089224090348"/>
+        <Element index="0" value="0.5804271763623512"/>
         <Domain name="bounds" id="18194.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="18194.Scale" number_of_elements="3">
@@ -30080,7 +30080,7 @@
         <Domain name="bool" id="18194.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="18194.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.1386177676"/>
+        <Element index="0" value="0.13872029100000002"/>
         <Domain name="bounds" id="18194.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="18194.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="18194.ScaleFactor.vector_range"/>
@@ -30600,7 +30600,7 @@
         <Domain name="bool" id="18575.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="18575.Ambient" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="18575.Ambient.range"/>
       </Property>
       <Property name="AmbientColor" id="18575.AmbientColor" number_of_elements="3">
@@ -30804,7 +30804,7 @@
         <Element index="0" value="3"/>
       </Property>
       <Property name="Diffuse" id="18575.Diffuse" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="range" id="18575.Diffuse.range"/>
       </Property>
       <Property name="DiffuseColor" id="18575.DiffuseColor" number_of_elements="3">
@@ -30818,9 +30818,9 @@
         <Domain name="bool" id="18575.DisableLighting.bool"/>
       </Property>
       <Property name="EdgeColor" id="18575.EdgeColor" number_of_elements="3">
-        <Element index="0" value="0.34901960784313724"/>
-        <Element index="1" value="0.34901960784313724"/>
-        <Element index="2" value="0.34901960784313724"/>
+        <Element index="0" value="0.8"/>
+        <Element index="1" value="0.8"/>
+        <Element index="2" value="0.8"/>
         <Domain name="range" id="18575.EdgeColor.range"/>
       </Property>
       <Property name="EdgeOpacity" id="18575.EdgeOpacity" number_of_elements="1">
@@ -30864,7 +30864,7 @@
         <Domain name="range" id="18575.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="18575.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.006918697205000001"/>
+        <Element index="0" value="0.0069232377"/>
         <Domain name="range" id="18575.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="18575.GenerateNoiseTexture" number_of_elements="1">
@@ -30954,7 +30954,7 @@
         <Domain name="scalar_range" id="18575.LODValues.scalar_range"/>
       </Property>
       <Property name="LineWidth" id="18575.LineWidth" number_of_elements="1">
-        <Element index="0" value="1.5"/>
+        <Element index="0" value="1"/>
         <Domain name="range" id="18575.LineWidth.range"/>
       </Property>
       <Property name="LookupTable" id="18575.LookupTable" number_of_elements="1">
@@ -31258,7 +31258,7 @@
         <Domain name="groups" id="18575.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="18575.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.579094449371904"/>
+        <Element index="0" value="0.5794641704665608"/>
         <Domain name="bounds" id="18575.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="18575.Scale" number_of_elements="3">
@@ -31278,7 +31278,7 @@
         <Domain name="bool" id="18575.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="18575.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.1383739441"/>
+        <Element index="0" value="0.138464754"/>
         <Domain name="bounds" id="18575.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="18575.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="18575.ScaleFactor.vector_range"/>
@@ -32032,7 +32032,7 @@
         <Domain name="range" id="19052.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="19052.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.014320000000000006"/>
+        <Element index="0" value="0.014320000000000005"/>
         <Domain name="range" id="19052.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="19052.GenerateNoiseTexture" number_of_elements="1">
@@ -32358,7 +32358,7 @@
         <Domain name="groups" id="19052.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="19052.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="1.138002589311597"/>
+        <Element index="0" value="1.1352797175907416"/>
         <Domain name="bounds" id="19052.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="19052.Scale" number_of_elements="3">
@@ -32376,7 +32376,7 @@
         <Domain name="bool" id="19052.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="19052.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.28640000000000015"/>
+        <Element index="0" value="0.2864000000000001"/>
         <Domain name="bounds" id="19052.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="19052.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="19052.ScaleFactor.vector_range"/>
@@ -33395,7 +33395,7 @@
         <Domain name="groups" id="19341.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="19341.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.9016361066437012"/>
+        <Element index="0" value="0.8989140189947038"/>
         <Domain name="bounds" id="19341.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="19341.Scale" number_of_elements="3">
@@ -34106,7 +34106,7 @@
         <Domain name="range" id="19630.FeatureAngle.range"/>
       </Property>
       <Property name="GaussianRadius" id="19630.GaussianRadius" number_of_elements="1">
-        <Element index="0" value="0.006922010316796422"/>
+        <Element index="0" value="0.006921510316796422"/>
         <Domain name="range" id="19630.GaussianRadius.range"/>
       </Property>
       <Property name="GenerateNoiseTexture" id="19630.GenerateNoiseTexture" number_of_elements="1">
@@ -34432,7 +34432,7 @@
         <Domain name="groups" id="19630.ScalarOpacityFunction.groups"/>
       </Property>
       <Property name="ScalarOpacityUnitDistance" id="19630.ScalarOpacityUnitDistance" number_of_elements="1">
-        <Element index="0" value="0.6886706478829615"/>
+        <Element index="0" value="0.6865749020284668"/>
         <Domain name="bounds" id="19630.ScalarOpacityUnitDistance.bounds"/>
       </Property>
       <Property name="Scale" id="19630.Scale" number_of_elements="3">
@@ -34450,7 +34450,7 @@
         <Domain name="bool" id="19630.ScaleByArray.bool"/>
       </Property>
       <Property name="ScaleFactor" id="19630.ScaleFactor" number_of_elements="1">
-        <Element index="0" value="0.13844020633592843"/>
+        <Element index="0" value="0.13843020633592845"/>
         <Domain name="bounds" id="19630.ScaleFactor.bounds"/>
         <Domain name="scalar_range" id="19630.ScaleFactor.scalar_range"/>
         <Domain name="vector_range" id="19630.ScaleFactor.vector_range"/>
@@ -34911,11 +34911,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabel" id="16671.SeriesLabel" number_of_elements="2">
@@ -34961,11 +34961,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabelPrefix" id="16671.SeriesLabelPrefix" number_of_elements="1">
@@ -35014,11 +35014,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLineThickness" id="16671.SeriesLineThickness" number_of_elements="2">
@@ -35064,11 +35064,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerSize" id="16671.SeriesMarkerSize" number_of_elements="2">
@@ -35114,11 +35114,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerStyle" id="16671.SeriesMarkerStyle" number_of_elements="2">
@@ -35164,11 +35164,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesOpacity" id="16671.SeriesOpacity" number_of_elements="88">
@@ -35250,15 +35250,15 @@
         <Element index="75" value="1.0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="1.0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="1.0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="1.0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="1.0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="1.0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="1.0"/>
         <Domain name="array_list" id="16671.SeriesOpacity.array_list">
           <String text="AWA(degrees)"/>
@@ -35300,11 +35300,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesPlotCorner" id="16671.SeriesPlotCorner" number_of_elements="88">
@@ -35386,15 +35386,15 @@
         <Element index="75" value="0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="0"/>
         <Domain name="array_list" id="16671.SeriesPlotCorner.array_list">
           <String text="AWA(degrees)"/>
@@ -35436,11 +35436,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesVisibility" id="16671.SeriesVisibility" number_of_elements="88">
@@ -35520,15 +35520,15 @@
         <Element index="73" value="0"/>
         <Element index="74" value="dForce(N/m^2)_Z"/>
         <Element index="75" value="0"/>
-        <Element index="76" value="normal_vector_Magnitude"/>
+        <Element index="76" value="incidence (deg)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_X"/>
+        <Element index="78" value="normal_vector_Magnitude"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_Y"/>
+        <Element index="80" value="normal_vector_X"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Z"/>
+        <Element index="82" value="normal_vector_Y"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="|incidence| (deg)"/>
+        <Element index="84" value="normal_vector_Z"/>
         <Element index="85" value="0"/>
         <Element index="86" value="hauteur (m)"/>
         <Element index="87" value="1"/>
@@ -35572,11 +35572,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="UseIndexForXAxis" id="16671.UseIndexForXAxis" number_of_elements="1">
@@ -35588,7 +35588,7 @@
         <Domain name="bool" id="16671.Visibility.bool"/>
       </Property>
       <Property name="XArrayName" id="16671.XArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
         <Domain name="array_list" id="16671.XArrayName.array_list">
           <String text="AoA(degrees)/SR"/>
           <String text="ApparentFlowVelocity(m/s)_X"/>
@@ -35620,6 +35620,7 @@
           <String text="FreeStream(m/s)_Z"/>
           <String text="FreeStream(m/s)_Magnitude"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="MotionInducedVelocity(m/s)_X"/>
           <String text="MotionInducedVelocity(m/s)_Y"/>
           <String text="MotionInducedVelocity(m/s)_Z"/>
@@ -35629,7 +35630,6 @@
           <String text="normal_vector_Z"/>
           <String text="normal_vector_Magnitude"/>
           <String text="Re"/>
-          <String text="|incidence| (deg)"/>
           <String text="Points_X"/>
           <String text="Points_Y"/>
           <String text="Points_Z"/>
@@ -35723,11 +35723,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabel" id="17053.SeriesLabel" number_of_elements="2">
@@ -35773,11 +35773,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabelPrefix" id="17053.SeriesLabelPrefix" number_of_elements="1">
@@ -35826,11 +35826,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLineThickness" id="17053.SeriesLineThickness" number_of_elements="2">
@@ -35876,11 +35876,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerSize" id="17053.SeriesMarkerSize" number_of_elements="2">
@@ -35926,11 +35926,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerStyle" id="17053.SeriesMarkerStyle" number_of_elements="2">
@@ -35976,11 +35976,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesOpacity" id="17053.SeriesOpacity" number_of_elements="88">
@@ -36062,15 +36062,15 @@
         <Element index="75" value="1.0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="1.0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="1.0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="1.0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="1.0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="1.0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="1.0"/>
         <Domain name="array_list" id="17053.SeriesOpacity.array_list">
           <String text="AWA(degrees)"/>
@@ -36112,11 +36112,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesPlotCorner" id="17053.SeriesPlotCorner" number_of_elements="88">
@@ -36198,15 +36198,15 @@
         <Element index="75" value="0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="0"/>
         <Domain name="array_list" id="17053.SeriesPlotCorner.array_list">
           <String text="AWA(degrees)"/>
@@ -36248,11 +36248,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesVisibility" id="17053.SeriesVisibility" number_of_elements="88">
@@ -36332,15 +36332,15 @@
         <Element index="73" value="0"/>
         <Element index="74" value="dForce(N/m^2)_Z"/>
         <Element index="75" value="0"/>
-        <Element index="76" value="normal_vector_Magnitude"/>
+        <Element index="76" value="incidence (deg)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_X"/>
+        <Element index="78" value="normal_vector_Magnitude"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_Y"/>
+        <Element index="80" value="normal_vector_X"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Z"/>
+        <Element index="82" value="normal_vector_Y"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="|incidence| (deg)"/>
+        <Element index="84" value="normal_vector_Z"/>
         <Element index="85" value="0"/>
         <Element index="86" value="hauteur (m)"/>
         <Element index="87" value="1"/>
@@ -36384,11 +36384,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="UseIndexForXAxis" id="17053.UseIndexForXAxis" number_of_elements="1">
@@ -36400,7 +36400,7 @@
         <Domain name="bool" id="17053.Visibility.bool"/>
       </Property>
       <Property name="XArrayName" id="17053.XArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
         <Domain name="array_list" id="17053.XArrayName.array_list">
           <String text="AoA(degrees)/SR"/>
           <String text="ApparentFlowVelocity(m/s)_X"/>
@@ -36432,6 +36432,7 @@
           <String text="FreeStream(m/s)_Z"/>
           <String text="FreeStream(m/s)_Magnitude"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="MotionInducedVelocity(m/s)_X"/>
           <String text="MotionInducedVelocity(m/s)_Y"/>
           <String text="MotionInducedVelocity(m/s)_Z"/>
@@ -36441,7 +36442,6 @@
           <String text="normal_vector_Z"/>
           <String text="normal_vector_Magnitude"/>
           <String text="Re"/>
-          <String text="|incidence| (deg)"/>
           <String text="Points_X"/>
           <String text="Points_Y"/>
           <String text="Points_Z"/>
@@ -36535,11 +36535,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabel" id="17434.SeriesLabel" number_of_elements="2">
@@ -36585,11 +36585,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabelPrefix" id="17434.SeriesLabelPrefix" number_of_elements="1">
@@ -36638,11 +36638,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLineThickness" id="17434.SeriesLineThickness" number_of_elements="2">
@@ -36688,11 +36688,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerSize" id="17434.SeriesMarkerSize" number_of_elements="2">
@@ -36738,11 +36738,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerStyle" id="17434.SeriesMarkerStyle" number_of_elements="2">
@@ -36788,11 +36788,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesOpacity" id="17434.SeriesOpacity" number_of_elements="88">
@@ -36874,15 +36874,15 @@
         <Element index="75" value="1.0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="1.0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="1.0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="1.0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="1.0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="1.0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="1.0"/>
         <Domain name="array_list" id="17434.SeriesOpacity.array_list">
           <String text="AWA(degrees)"/>
@@ -36924,11 +36924,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesPlotCorner" id="17434.SeriesPlotCorner" number_of_elements="88">
@@ -37010,15 +37010,15 @@
         <Element index="75" value="0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="0"/>
         <Domain name="array_list" id="17434.SeriesPlotCorner.array_list">
           <String text="AWA(degrees)"/>
@@ -37060,11 +37060,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesVisibility" id="17434.SeriesVisibility" number_of_elements="88">
@@ -37144,15 +37144,15 @@
         <Element index="73" value="0"/>
         <Element index="74" value="dForce(N/m^2)_Z"/>
         <Element index="75" value="0"/>
-        <Element index="76" value="normal_vector_Magnitude"/>
+        <Element index="76" value="incidence (deg)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_X"/>
+        <Element index="78" value="normal_vector_Magnitude"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_Y"/>
+        <Element index="80" value="normal_vector_X"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Z"/>
+        <Element index="82" value="normal_vector_Y"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="|incidence| (deg)"/>
+        <Element index="84" value="normal_vector_Z"/>
         <Element index="85" value="0"/>
         <Element index="86" value="hauteur (m)"/>
         <Element index="87" value="1"/>
@@ -37196,11 +37196,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="UseIndexForXAxis" id="17434.UseIndexForXAxis" number_of_elements="1">
@@ -37212,7 +37212,7 @@
         <Domain name="bool" id="17434.Visibility.bool"/>
       </Property>
       <Property name="XArrayName" id="17434.XArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
         <Domain name="array_list" id="17434.XArrayName.array_list">
           <String text="AoA(degrees)/SR"/>
           <String text="ApparentFlowVelocity(m/s)_X"/>
@@ -37244,6 +37244,7 @@
           <String text="FreeStream(m/s)_Z"/>
           <String text="FreeStream(m/s)_Magnitude"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="MotionInducedVelocity(m/s)_X"/>
           <String text="MotionInducedVelocity(m/s)_Y"/>
           <String text="MotionInducedVelocity(m/s)_Z"/>
@@ -37253,7 +37254,6 @@
           <String text="normal_vector_Z"/>
           <String text="normal_vector_Magnitude"/>
           <String text="Re"/>
-          <String text="|incidence| (deg)"/>
           <String text="Points_X"/>
           <String text="Points_Y"/>
           <String text="Points_Z"/>
@@ -37347,11 +37347,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabel" id="17861.SeriesLabel" number_of_elements="2">
@@ -37397,11 +37397,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabelPrefix" id="17861.SeriesLabelPrefix" number_of_elements="1">
@@ -37450,11 +37450,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLineThickness" id="17861.SeriesLineThickness" number_of_elements="2">
@@ -37500,11 +37500,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerSize" id="17861.SeriesMarkerSize" number_of_elements="2">
@@ -37550,11 +37550,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerStyle" id="17861.SeriesMarkerStyle" number_of_elements="2">
@@ -37600,11 +37600,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesOpacity" id="17861.SeriesOpacity" number_of_elements="88">
@@ -37686,15 +37686,15 @@
         <Element index="75" value="1.0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="1.0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="1.0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="1.0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="1.0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="1.0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="1.0"/>
         <Domain name="array_list" id="17861.SeriesOpacity.array_list">
           <String text="AWA(degrees)"/>
@@ -37736,11 +37736,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesPlotCorner" id="17861.SeriesPlotCorner" number_of_elements="88">
@@ -37822,15 +37822,15 @@
         <Element index="75" value="0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="0"/>
         <Domain name="array_list" id="17861.SeriesPlotCorner.array_list">
           <String text="AWA(degrees)"/>
@@ -37872,11 +37872,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesVisibility" id="17861.SeriesVisibility" number_of_elements="88">
@@ -37956,15 +37956,15 @@
         <Element index="73" value="0"/>
         <Element index="74" value="dForce(N/m^2)_Z"/>
         <Element index="75" value="0"/>
-        <Element index="76" value="normal_vector_Magnitude"/>
+        <Element index="76" value="incidence (deg)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_X"/>
+        <Element index="78" value="normal_vector_Magnitude"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_Y"/>
+        <Element index="80" value="normal_vector_X"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Z"/>
+        <Element index="82" value="normal_vector_Y"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="|incidence| (deg)"/>
+        <Element index="84" value="normal_vector_Z"/>
         <Element index="85" value="0"/>
         <Element index="86" value="hauteur (m)"/>
         <Element index="87" value="1"/>
@@ -38008,11 +38008,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="UseIndexForXAxis" id="17861.UseIndexForXAxis" number_of_elements="1">
@@ -38024,7 +38024,7 @@
         <Domain name="bool" id="17861.Visibility.bool"/>
       </Property>
       <Property name="XArrayName" id="17861.XArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
         <Domain name="array_list" id="17861.XArrayName.array_list">
           <String text="AoA(degrees)/SR"/>
           <String text="ApparentFlowVelocity(m/s)_X"/>
@@ -38056,6 +38056,7 @@
           <String text="FreeStream(m/s)_Z"/>
           <String text="FreeStream(m/s)_Magnitude"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="MotionInducedVelocity(m/s)_X"/>
           <String text="MotionInducedVelocity(m/s)_Y"/>
           <String text="MotionInducedVelocity(m/s)_Z"/>
@@ -38065,7 +38066,6 @@
           <String text="normal_vector_Z"/>
           <String text="normal_vector_Magnitude"/>
           <String text="Re"/>
-          <String text="|incidence| (deg)"/>
           <String text="Points_X"/>
           <String text="Points_Y"/>
           <String text="Points_Z"/>
@@ -38159,11 +38159,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabel" id="18242.SeriesLabel" number_of_elements="2">
@@ -38209,11 +38209,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabelPrefix" id="18242.SeriesLabelPrefix" number_of_elements="1">
@@ -38262,11 +38262,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLineThickness" id="18242.SeriesLineThickness" number_of_elements="2">
@@ -38312,11 +38312,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerSize" id="18242.SeriesMarkerSize" number_of_elements="2">
@@ -38362,11 +38362,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerStyle" id="18242.SeriesMarkerStyle" number_of_elements="2">
@@ -38412,11 +38412,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesOpacity" id="18242.SeriesOpacity" number_of_elements="88">
@@ -38498,15 +38498,15 @@
         <Element index="75" value="1.0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="1.0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="1.0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="1.0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="1.0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="1.0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="1.0"/>
         <Domain name="array_list" id="18242.SeriesOpacity.array_list">
           <String text="AWA(degrees)"/>
@@ -38548,11 +38548,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesPlotCorner" id="18242.SeriesPlotCorner" number_of_elements="88">
@@ -38634,15 +38634,15 @@
         <Element index="75" value="0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="0"/>
         <Domain name="array_list" id="18242.SeriesPlotCorner.array_list">
           <String text="AWA(degrees)"/>
@@ -38684,11 +38684,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesVisibility" id="18242.SeriesVisibility" number_of_elements="88">
@@ -38768,15 +38768,15 @@
         <Element index="73" value="0"/>
         <Element index="74" value="dForce(N/m^2)_Z"/>
         <Element index="75" value="0"/>
-        <Element index="76" value="normal_vector_Magnitude"/>
+        <Element index="76" value="incidence (deg)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_X"/>
+        <Element index="78" value="normal_vector_Magnitude"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_Y"/>
+        <Element index="80" value="normal_vector_X"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Z"/>
+        <Element index="82" value="normal_vector_Y"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="|incidence| (deg)"/>
+        <Element index="84" value="normal_vector_Z"/>
         <Element index="85" value="0"/>
         <Element index="86" value="hauteur (m)"/>
         <Element index="87" value="1"/>
@@ -38820,11 +38820,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="UseIndexForXAxis" id="18242.UseIndexForXAxis" number_of_elements="1">
@@ -38836,7 +38836,7 @@
         <Domain name="bool" id="18242.Visibility.bool"/>
       </Property>
       <Property name="XArrayName" id="18242.XArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
         <Domain name="array_list" id="18242.XArrayName.array_list">
           <String text="AoA(degrees)/SR"/>
           <String text="ApparentFlowVelocity(m/s)_X"/>
@@ -38868,6 +38868,7 @@
           <String text="FreeStream(m/s)_Z"/>
           <String text="FreeStream(m/s)_Magnitude"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="MotionInducedVelocity(m/s)_X"/>
           <String text="MotionInducedVelocity(m/s)_Y"/>
           <String text="MotionInducedVelocity(m/s)_Z"/>
@@ -38877,7 +38878,6 @@
           <String text="normal_vector_Z"/>
           <String text="normal_vector_Magnitude"/>
           <String text="Re"/>
-          <String text="|incidence| (deg)"/>
           <String text="Points_X"/>
           <String text="Points_Y"/>
           <String text="Points_Z"/>
@@ -38971,11 +38971,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabel" id="18623.SeriesLabel" number_of_elements="2">
@@ -39021,11 +39021,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLabelPrefix" id="18623.SeriesLabelPrefix" number_of_elements="1">
@@ -39074,11 +39074,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesLineThickness" id="18623.SeriesLineThickness" number_of_elements="2">
@@ -39124,11 +39124,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerSize" id="18623.SeriesMarkerSize" number_of_elements="2">
@@ -39174,11 +39174,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesMarkerStyle" id="18623.SeriesMarkerStyle" number_of_elements="2">
@@ -39224,11 +39224,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesOpacity" id="18623.SeriesOpacity" number_of_elements="88">
@@ -39310,15 +39310,15 @@
         <Element index="75" value="1.0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="1.0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="1.0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="1.0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="1.0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="1.0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="1.0"/>
         <Domain name="array_list" id="18623.SeriesOpacity.array_list">
           <String text="AWA(degrees)"/>
@@ -39360,11 +39360,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesPlotCorner" id="18623.SeriesPlotCorner" number_of_elements="88">
@@ -39446,15 +39446,15 @@
         <Element index="75" value="0"/>
         <Element index="76" value="hauteur (m)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_Magnitude"/>
+        <Element index="78" value="incidence (deg)"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_X"/>
+        <Element index="80" value="normal_vector_Magnitude"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Y"/>
+        <Element index="82" value="normal_vector_X"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="normal_vector_Z"/>
+        <Element index="84" value="normal_vector_Y"/>
         <Element index="85" value="0"/>
-        <Element index="86" value="|incidence| (deg)"/>
+        <Element index="86" value="normal_vector_Z"/>
         <Element index="87" value="0"/>
         <Domain name="array_list" id="18623.SeriesPlotCorner.array_list">
           <String text="AWA(degrees)"/>
@@ -39496,11 +39496,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="SeriesVisibility" id="18623.SeriesVisibility" number_of_elements="88">
@@ -39580,15 +39580,15 @@
         <Element index="73" value="0"/>
         <Element index="74" value="dForce(N/m^2)_Z"/>
         <Element index="75" value="0"/>
-        <Element index="76" value="normal_vector_Magnitude"/>
+        <Element index="76" value="incidence (deg)"/>
         <Element index="77" value="0"/>
-        <Element index="78" value="normal_vector_X"/>
+        <Element index="78" value="normal_vector_Magnitude"/>
         <Element index="79" value="0"/>
-        <Element index="80" value="normal_vector_Y"/>
+        <Element index="80" value="normal_vector_X"/>
         <Element index="81" value="0"/>
-        <Element index="82" value="normal_vector_Z"/>
+        <Element index="82" value="normal_vector_Y"/>
         <Element index="83" value="0"/>
-        <Element index="84" value="|incidence| (deg)"/>
+        <Element index="84" value="normal_vector_Z"/>
         <Element index="85" value="0"/>
         <Element index="86" value="hauteur (m)"/>
         <Element index="87" value="1"/>
@@ -39632,11 +39632,11 @@
           <String text="dForce(N/m^2)_Y"/>
           <String text="dForce(N/m^2)_Z"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="normal_vector_Magnitude"/>
           <String text="normal_vector_X"/>
           <String text="normal_vector_Y"/>
           <String text="normal_vector_Z"/>
-          <String text="|incidence| (deg)"/>
         </Domain>
       </Property>
       <Property name="UseIndexForXAxis" id="18623.UseIndexForXAxis" number_of_elements="1">
@@ -39648,7 +39648,7 @@
         <Domain name="bool" id="18623.Visibility.bool"/>
       </Property>
       <Property name="XArrayName" id="18623.XArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
         <Domain name="array_list" id="18623.XArrayName.array_list">
           <String text="AoA(degrees)/SR"/>
           <String text="ApparentFlowVelocity(m/s)_X"/>
@@ -39680,6 +39680,7 @@
           <String text="FreeStream(m/s)_Z"/>
           <String text="FreeStream(m/s)_Magnitude"/>
           <String text="hauteur (m)"/>
+          <String text="incidence (deg)"/>
           <String text="MotionInducedVelocity(m/s)_X"/>
           <String text="MotionInducedVelocity(m/s)_Y"/>
           <String text="MotionInducedVelocity(m/s)_Z"/>
@@ -39689,7 +39690,6 @@
           <String text="normal_vector_Z"/>
           <String text="normal_vector_Magnitude"/>
           <String text="Re"/>
-          <String text="|incidence| (deg)"/>
           <String text="Points_X"/>
           <String text="Points_Y"/>
           <String text="Points_Z"/>
@@ -39754,10 +39754,10 @@
         <Element index="0" value="{:&#x3c;#6.1e}"/>
       </Property>
       <Property name="DataRangeMax" id="16624.DataRangeMax" number_of_elements="1">
-        <Element index="0" value="-0.434439"/>
+        <Element index="0" value="1.10485"/>
       </Property>
       <Property name="DataRangeMin" id="16624.DataRangeMin" number_of_elements="1">
-        <Element index="0" value="-0.758587"/>
+        <Element index="0" value="-0.303828"/>
       </Property>
       <Property name="DrawAnnotations" id="16624.DrawAnnotations" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -39853,8 +39853,8 @@
         <Element index="0" value="1"/>
       </Property>
       <Property name="Position" id="16624.Position" number_of_elements="2">
-        <Element index="0" value="0.89"/>
-        <Element index="1" value="0.02"/>
+        <Element index="0" value="0.84"/>
+        <Element index="1" value="0.55"/>
         <Domain name="range" id="16624.Position.range"/>
       </Property>
       <Property name="PositionInfo" id="16624.PositionInfo" number_of_elements="2">
@@ -39959,7 +39959,7 @@
         <Domain name="bool" id="16624.Visibility.bool"/>
       </Property>
       <Property name="WindowLocation" id="16624.WindowLocation" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="enum" id="16624.WindowLocation.enum">
           <Entry value="0" text="Any Location"/>
           <Entry value="1" text="Lower Left Corner"/>
@@ -40157,7 +40157,7 @@
         <Domain name="bool" id="16625.CoordinateResults.bool"/>
       </Property>
       <Property name="Function" id="16625.Function" number_of_elements="1">
-        <Element index="0" value="abs(&#x22;AoA(degrees)/SR&#x22;)"/>
+        <Element index="0" value="&#x22;AoA(degrees)/SR&#x22;"/>
       </Property>
       <Property name="FunctionParserType" id="16625.FunctionParserType" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -40177,7 +40177,7 @@
         <Domain name="range" id="16625.ReplacementValue.range"/>
       </Property>
       <Property name="ResultArrayName" id="16625.ResultArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
       </Property>
       <Property name="ResultArrayType" id="16625.ResultArrayType" number_of_elements="1">
         <Element index="0" value="11"/>
@@ -40315,7 +40315,7 @@
         <Domain name="bool" id="17018.CoordinateResults.bool"/>
       </Property>
       <Property name="Function" id="17018.Function" number_of_elements="1">
-        <Element index="0" value="abs(&#x22;AoA(degrees)/SR&#x22;)"/>
+        <Element index="0" value="&#x22;AoA(degrees)/SR&#x22;"/>
       </Property>
       <Property name="FunctionParserType" id="17018.FunctionParserType" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -40335,7 +40335,7 @@
         <Domain name="range" id="17018.ReplacementValue.range"/>
       </Property>
       <Property name="ResultArrayName" id="17018.ResultArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
       </Property>
       <Property name="ResultArrayType" id="17018.ResultArrayType" number_of_elements="1">
         <Element index="0" value="11"/>
@@ -40473,7 +40473,7 @@
         <Domain name="bool" id="17399.CoordinateResults.bool"/>
       </Property>
       <Property name="Function" id="17399.Function" number_of_elements="1">
-        <Element index="0" value="abs(&#x22;AoA(degrees)/SR&#x22;)"/>
+        <Element index="0" value="&#x22;AoA(degrees)/SR&#x22;"/>
       </Property>
       <Property name="FunctionParserType" id="17399.FunctionParserType" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -40493,7 +40493,7 @@
         <Domain name="range" id="17399.ReplacementValue.range"/>
       </Property>
       <Property name="ResultArrayName" id="17399.ResultArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
       </Property>
       <Property name="ResultArrayType" id="17399.ResultArrayType" number_of_elements="1">
         <Element index="0" value="11"/>
@@ -40631,7 +40631,7 @@
         <Domain name="bool" id="17826.CoordinateResults.bool"/>
       </Property>
       <Property name="Function" id="17826.Function" number_of_elements="1">
-        <Element index="0" value="abs(&#x22;AoA(degrees)/SR&#x22;)"/>
+        <Element index="0" value="&#x22;AoA(degrees)/SR&#x22;"/>
       </Property>
       <Property name="FunctionParserType" id="17826.FunctionParserType" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -40651,7 +40651,7 @@
         <Domain name="range" id="17826.ReplacementValue.range"/>
       </Property>
       <Property name="ResultArrayName" id="17826.ResultArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
       </Property>
       <Property name="ResultArrayType" id="17826.ResultArrayType" number_of_elements="1">
         <Element index="0" value="11"/>
@@ -40789,7 +40789,7 @@
         <Domain name="bool" id="18207.CoordinateResults.bool"/>
       </Property>
       <Property name="Function" id="18207.Function" number_of_elements="1">
-        <Element index="0" value="abs(&#x22;AoA(degrees)/SR&#x22;)"/>
+        <Element index="0" value="&#x22;AoA(degrees)/SR&#x22;"/>
       </Property>
       <Property name="FunctionParserType" id="18207.FunctionParserType" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -40809,7 +40809,7 @@
         <Domain name="range" id="18207.ReplacementValue.range"/>
       </Property>
       <Property name="ResultArrayName" id="18207.ResultArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
       </Property>
       <Property name="ResultArrayType" id="18207.ResultArrayType" number_of_elements="1">
         <Element index="0" value="11"/>
@@ -40947,7 +40947,7 @@
         <Domain name="bool" id="18588.CoordinateResults.bool"/>
       </Property>
       <Property name="Function" id="18588.Function" number_of_elements="1">
-        <Element index="0" value="abs(&#x22;AoA(degrees)/SR&#x22;)"/>
+        <Element index="0" value="&#x22;AoA(degrees)/SR&#x22;"/>
       </Property>
       <Property name="FunctionParserType" id="18588.FunctionParserType" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -40967,7 +40967,7 @@
         <Domain name="range" id="18588.ReplacementValue.range"/>
       </Property>
       <Property name="ResultArrayName" id="18588.ResultArrayName" number_of_elements="1">
-        <Element index="0" value="|incidence| (deg)"/>
+        <Element index="0" value="incidence (deg)"/>
       </Property>
       <Property name="ResultArrayType" id="18588.ResultArrayType" number_of_elements="1">
         <Element index="0" value="11"/>
@@ -41055,66 +41055,6 @@
         <Domain name="bool" id="17133.TransformAllInputVectors.bool"/>
       </Property>
     </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="16285" servers="1">
-      <Property name="FileNameInfo" id="16285.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-1_aile.vtk"/>
-      </Property>
-      <Property name="FileNames" id="16285.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-1_aile.vtk"/>
-        <Domain name="files" id="16285.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="16285.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="16171" servers="1">
-      <Property name="FileNameInfo" id="16171.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-1_force.vtk"/>
-      </Property>
-      <Property name="FileNames" id="16171.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-1_force.vtk"/>
-        <Domain name="files" id="16171.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="16171.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="16708" servers="1">
-      <Property name="FileNameInfo" id="16708.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-2_aile.vtk"/>
-      </Property>
-      <Property name="FileNames" id="16708.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-2_aile.vtk"/>
-        <Domain name="files" id="16708.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="16708.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="16683" servers="1">
-      <Property name="FileNameInfo" id="16683.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-2_force.vtk"/>
-      </Property>
-      <Property name="FileNames" id="16683.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-2_force.vtk"/>
-        <Domain name="files" id="16683.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="16683.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="17090" servers="1">
-      <Property name="FileNameInfo" id="17090.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-3_aile.vtk"/>
-      </Property>
-      <Property name="FileNames" id="17090.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-3_aile.vtk"/>
-        <Domain name="files" id="17090.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="17090.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="17065" servers="1">
-      <Property name="FileNameInfo" id="17065.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-3_force.vtk"/>
-      </Property>
-      <Property name="FileNames" id="17065.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\1_bandes_voile-3_force.vtk"/>
-        <Domain name="files" id="17065.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="17065.TimestepValues"/>
-    </Proxy>
     <Proxy group="filters" type="TransformFilter" id="17560" servers="1">
       <Property name="Input" id="17560.Input" number_of_elements="1">
         <Proxy value="17548" output_port="0"/>
@@ -41174,96 +41114,6 @@
         <Element index="0" value="1"/>
         <Domain name="bool" id="18322.TransformAllInputVectors.bool"/>
       </Property>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="17517" servers="1">
-      <Property name="FileNameInfo" id="17517.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-1_aile.vtk"/>
-      </Property>
-      <Property name="FileNames" id="17517.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-1_aile.vtk"/>
-        <Domain name="files" id="17517.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="17517.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="17492" servers="1">
-      <Property name="FileNameInfo" id="17492.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-1_force.vtk"/>
-      </Property>
-      <Property name="FileNames" id="17492.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-1_force.vtk"/>
-        <Domain name="files" id="17492.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="17492.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="18775" servers="1">
-      <Property name="FileNameInfo" id="18775.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-1_horseshoeVortex.vtk"/>
-      </Property>
-      <Property name="FileNames" id="18775.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-1_horseshoeVortex.vtk"/>
-        <Domain name="files" id="18775.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="18775.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="17898" servers="1">
-      <Property name="FileNameInfo" id="17898.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-2_aile.vtk"/>
-      </Property>
-      <Property name="FileNames" id="17898.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-2_aile.vtk"/>
-        <Domain name="files" id="17898.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="17898.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="17873" servers="1">
-      <Property name="FileNameInfo" id="17873.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-2_force.vtk"/>
-      </Property>
-      <Property name="FileNames" id="17873.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-2_force.vtk"/>
-        <Domain name="files" id="17873.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="17873.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="19065" servers="1">
-      <Property name="FileNameInfo" id="19065.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-2_horseshoeVortex.vtk"/>
-      </Property>
-      <Property name="FileNames" id="19065.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-2_horseshoeVortex.vtk"/>
-        <Domain name="files" id="19065.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="19065.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="18279" servers="1">
-      <Property name="FileNameInfo" id="18279.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-3_aile.vtk"/>
-      </Property>
-      <Property name="FileNames" id="18279.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-3_aile.vtk"/>
-        <Domain name="files" id="18279.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="18279.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="18254" servers="1">
-      <Property name="FileNameInfo" id="18254.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-3_force.vtk"/>
-      </Property>
-      <Property name="FileNames" id="18254.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-3_force.vtk"/>
-        <Domain name="files" id="18254.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="18254.TimestepValues"/>
-    </Proxy>
-    <Proxy group="sources" type="LegacyVTKFileReader" id="19354" servers="1">
-      <Property name="FileNameInfo" id="19354.FileNameInfo" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-3_horseshoeVortex.vtk"/>
-      </Property>
-      <Property name="FileNames" id="19354.FileNames" number_of_elements="1">
-        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\cas\trois-ailes\2_nll_voile-3_horseshoeVortex.vtk"/>
-        <Domain name="files" id="19354.FileNames.files"/>
-      </Property>
-      <Property name="TimestepValues" id="19354.TimestepValues"/>
     </Proxy>
     <Proxy group="filters" type="Clip" id="18787" servers="1">
       <Property name="ClipFunction" id="18787.ClipFunction" number_of_elements="1">
@@ -41462,15 +41312,15 @@
     </Proxy>
     <Proxy group="sources" type="LineSource" id="19643" servers="1">
       <Property name="Point1" id="19643.Point1" number_of_elements="3">
-        <Element index="0" value="1.97272"/>
-        <Element index="1" value="1.00704"/>
-        <Element index="2" value="-1.4"/>
+        <Element index="0" value="2.02272"/>
+        <Element index="1" value="0.35704"/>
+        <Element index="2" value="-1.2"/>
         <Domain name="range" id="19643.Point1.range"/>
       </Property>
       <Property name="Point2" id="19643.Point2" number_of_elements="3">
-        <Element index="0" value="1.2"/>
-        <Element index="1" value="0.8"/>
-        <Element index="2" value="-1.4"/>
+        <Element index="0" value="1.25"/>
+        <Element index="1" value="0.15"/>
+        <Element index="2" value="-1.2"/>
         <Domain name="range" id="19643.Point2.range"/>
       </Property>
       <Property name="RefinementRatios" id="19643.RefinementRatios" number_of_elements="2">
@@ -41493,9 +41343,9 @@
         <Domain name="bool" id="19883.Capping.bool"/>
       </Property>
       <Property name="Center" id="19883.Center" number_of_elements="3">
-        <Element index="0" value="1.142046"/>
-        <Element index="1" value="0.7844720000000001"/>
-        <Element index="2" value="-1.4"/>
+        <Element index="0" value="1.192046"/>
+        <Element index="1" value="0.134472"/>
+        <Element index="2" value="-1.2"/>
         <Domain name="range" id="19883.Center.range"/>
       </Property>
       <Property name="Direction" id="19883.Direction" number_of_elements="3">
@@ -41969,8 +41819,158 @@
     </Proxy>
     <Proxy group="sources" type="TextSource" id="20635" servers="1">
       <Property name="Text" id="20635.Text" number_of_elements="1">
-        <Element index="0" value="Exemple 9 vu de dessus : voiles et vent apparent"/>
+        <Element index="0" value="Trois ailes au près, vues du côté du vent"/>
       </Property>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="16285" servers="1">
+      <Property name="FileNameInfo" id="16285.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-1_aile.vtk"/>
+      </Property>
+      <Property name="FileNames" id="16285.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-1_aile.vtk"/>
+        <Domain name="files" id="16285.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="16285.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="16171" servers="1">
+      <Property name="FileNameInfo" id="16171.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-1_force.vtk"/>
+      </Property>
+      <Property name="FileNames" id="16171.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-1_force.vtk"/>
+        <Domain name="files" id="16171.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="16171.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="16708" servers="1">
+      <Property name="FileNameInfo" id="16708.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-2_aile.vtk"/>
+      </Property>
+      <Property name="FileNames" id="16708.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-2_aile.vtk"/>
+        <Domain name="files" id="16708.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="16708.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="16683" servers="1">
+      <Property name="FileNameInfo" id="16683.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-2_force.vtk"/>
+      </Property>
+      <Property name="FileNames" id="16683.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-2_force.vtk"/>
+        <Domain name="files" id="16683.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="16683.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="17090" servers="1">
+      <Property name="FileNameInfo" id="17090.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-3_aile.vtk"/>
+      </Property>
+      <Property name="FileNames" id="17090.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-3_aile.vtk"/>
+        <Domain name="files" id="17090.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="17090.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="17065" servers="1">
+      <Property name="FileNameInfo" id="17065.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-3_force.vtk"/>
+      </Property>
+      <Property name="FileNames" id="17065.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\bandes_voile-3_force.vtk"/>
+        <Domain name="files" id="17065.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="17065.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="17517" servers="1">
+      <Property name="FileNameInfo" id="17517.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-1_aile.vtk"/>
+      </Property>
+      <Property name="FileNames" id="17517.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-1_aile.vtk"/>
+        <Domain name="files" id="17517.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="17517.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="17492" servers="1">
+      <Property name="FileNameInfo" id="17492.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-1_force.vtk"/>
+      </Property>
+      <Property name="FileNames" id="17492.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-1_force.vtk"/>
+        <Domain name="files" id="17492.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="17492.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="18775" servers="1">
+      <Property name="FileNameInfo" id="18775.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-1_horseshoeVortex.vtk"/>
+      </Property>
+      <Property name="FileNames" id="18775.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-1_horseshoeVortex.vtk"/>
+        <Domain name="files" id="18775.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="18775.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="17898" servers="1">
+      <Property name="FileNameInfo" id="17898.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-2_aile.vtk"/>
+      </Property>
+      <Property name="FileNames" id="17898.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-2_aile.vtk"/>
+        <Domain name="files" id="17898.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="17898.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="17873" servers="1">
+      <Property name="FileNameInfo" id="17873.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-2_force.vtk"/>
+      </Property>
+      <Property name="FileNames" id="17873.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-2_force.vtk"/>
+        <Domain name="files" id="17873.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="17873.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="19065" servers="1">
+      <Property name="FileNameInfo" id="19065.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-2_horseshoeVortex.vtk"/>
+      </Property>
+      <Property name="FileNames" id="19065.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-2_horseshoeVortex.vtk"/>
+        <Domain name="files" id="19065.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="19065.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="18279" servers="1">
+      <Property name="FileNameInfo" id="18279.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-3_aile.vtk"/>
+      </Property>
+      <Property name="FileNames" id="18279.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-3_aile.vtk"/>
+        <Domain name="files" id="18279.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="18279.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="18254" servers="1">
+      <Property name="FileNameInfo" id="18254.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-3_force.vtk"/>
+      </Property>
+      <Property name="FileNames" id="18254.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-3_force.vtk"/>
+        <Domain name="files" id="18254.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="18254.TimestepValues"/>
+    </Proxy>
+    <Proxy group="sources" type="LegacyVTKFileReader" id="19354" servers="1">
+      <Property name="FileNameInfo" id="19354.FileNameInfo" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-3_horseshoeVortex.vtk"/>
+      </Property>
+      <Property name="FileNames" id="19354.FileNames" number_of_elements="1">
+        <Element index="0" value="\\wsl.localhost\Ubuntu\home\eleve\TD-Propulsion-Velique\TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg\sorties\nll_voile-3_horseshoeVortex.vtk"/>
+        <Domain name="files" id="19354.FileNames.files"/>
+      </Property>
+      <Property name="TimestepValues" id="19354.TimestepValues"/>
     </Proxy>
     <Proxy group="misc" type="TimeKeeper" id="9839" servers="16">
       <Property name="SuppressedTimeSources" id="9839.SuppressedTimeSources"/>
@@ -42174,13 +42174,13 @@
         <Domain name="bool" id="16164.BottomAxisLogScale.bool"/>
       </Property>
       <Property name="BottomAxisRangeMaximum" id="16164.BottomAxisRangeMaximum" number_of_elements="1">
-        <Element index="0" value="90"/>
+        <Element index="0" value="25"/>
       </Property>
       <Property name="BottomAxisRangeMinimum" id="16164.BottomAxisRangeMinimum" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="-5"/>
       </Property>
       <Property name="BottomAxisTitle" id="16164.BottomAxisTitle" number_of_elements="1">
-        <Element index="0" value="|incidence| de l&#x27;élément (deg)"/>
+        <Element index="0" value="incidence (deg, signe de l&#x27;outil)"/>
       </Property>
       <Property name="BottomAxisTitleBold" id="16164.BottomAxisTitleBold" number_of_elements="1">
         <Element index="0" value="0"/>
@@ -42224,7 +42224,7 @@
         <Domain name="range" id="16164.CacheKey.range"/>
       </Property>
       <Property name="ChartTitle" id="16164.ChartTitle" number_of_elements="1">
-        <Element index="0" value="|incidence| de chaque élément"/>
+        <Element index="0" value="Incidence de chaque élément"/>
       </Property>
       <Property name="ChartTitleAlignment" id="16164.ChartTitleAlignment" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -42395,7 +42395,7 @@
         <Domain name="bool" id="16164.LegendItalic.bool"/>
       </Property>
       <Property name="LegendLocation" id="16164.LegendLocation" number_of_elements="1">
-        <Element index="0" value="3"/>
+        <Element index="0" value="1"/>
         <Domain name="enum" id="16164.LegendLocation.enum">
           <Entry value="0" text="TopLeft"/>
           <Entry value="1" text="TopRight"/>
@@ -42905,9 +42905,9 @@
         <Element index="2" value="0"/>
       </Property>
       <Property name="CenterOfRotation" id="16148.CenterOfRotation" number_of_elements="3">
-        <Element index="0" value="0.17422711849212558"/>
-        <Element index="1" value="-0.4674669880981446"/>
-        <Element index="2" value="-0.7194603671008095"/>
+        <Element index="0" value="0.28259336948394687"/>
+        <Element index="1" value="-0.6151507496833801"/>
+        <Element index="2" value="-0.674999987706542"/>
       </Property>
       <Property name="CollectGeometryThreshold" id="16148.CollectGeometryThreshold" number_of_elements="1">
         <Element index="0" value="100"/>
@@ -43402,30 +43402,30 @@
         <Element index="0" value="0"/>
       </Property>
       <Property name="CameraFocalPoint" id="16148.CameraFocalPoint" number_of_elements="3">
-        <Element index="0" value="0.3"/>
-        <Element index="1" value="-0.6"/>
+        <Element index="0" value="0.45"/>
+        <Element index="1" value="-0.8"/>
         <Element index="2" value="-0.7"/>
       </Property>
       <Property name="CameraFocalPointInfo" id="16148.CameraFocalPointInfo" number_of_elements="3">
-        <Element index="0" value="0.3"/>
-        <Element index="1" value="-0.6"/>
+        <Element index="0" value="0.45"/>
+        <Element index="1" value="-0.8"/>
         <Element index="2" value="-0.7"/>
       </Property>
       <Property name="CameraParallelScale" id="16148.CameraParallelScale" number_of_elements="1">
-        <Element index="0" value="1.8"/>
+        <Element index="0" value="1.55"/>
       </Property>
       <Property name="CameraParallelScaleInfo" id="16148.CameraParallelScaleInfo" number_of_elements="1">
-        <Element index="0" value="1.8"/>
+        <Element index="0" value="1.55"/>
       </Property>
       <Property name="CameraPosition" id="16148.CameraPosition" number_of_elements="3">
-        <Element index="0" value="-0.8999999999999999"/>
-        <Element index="1" value="-0.6"/>
-        <Element index="2" value="-6.7"/>
+        <Element index="0" value="0.45"/>
+        <Element index="1" value="3.7886114908083686"/>
+        <Element index="2" value="-7.253216354311935"/>
       </Property>
       <Property name="CameraPositionInfo" id="16148.CameraPositionInfo" number_of_elements="3">
-        <Element index="0" value="-0.8999999999999999"/>
-        <Element index="1" value="-0.6"/>
-        <Element index="2" value="-6.7"/>
+        <Element index="0" value="0.45"/>
+        <Element index="1" value="3.7886114908083686"/>
+        <Element index="2" value="-7.253216354311935"/>
       </Property>
       <Property name="CameraViewAngle" id="16148.CameraViewAngle" number_of_elements="1">
         <Element index="0" value="30"/>
@@ -43434,14 +43434,14 @@
         <Element index="0" value="30"/>
       </Property>
       <Property name="CameraViewUp" id="16148.CameraViewUp" number_of_elements="3">
-        <Element index="0" value="1"/>
-        <Element index="1" value="0"/>
-        <Element index="2" value="0"/>
+        <Element index="0" value="0"/>
+        <Element index="1" value="-0.8191520442889919"/>
+        <Element index="2" value="-0.5735764363510462"/>
       </Property>
       <Property name="CameraViewUpInfo" id="16148.CameraViewUpInfo" number_of_elements="3">
-        <Element index="0" value="1"/>
-        <Element index="1" value="0"/>
-        <Element index="2" value="0"/>
+        <Element index="0" value="0"/>
+        <Element index="1" value="-0.8191520442889919"/>
+        <Element index="2" value="-0.5735764363510462"/>
       </Property>
       <Property name="EyeAngle" id="16148.EyeAngle" number_of_elements="1">
         <Element index="0" value="2"/>
@@ -44011,48 +44011,33 @@
       <Item id="16297" name="(calcul) Bandes, voile 1 : C_L porté sur l&#x27;aile" logname="(calcul) Bandes, voile 1 : C_L porté sur l&#x27;aile"/>
       <Item id="16316" name="(calcul) Bandes, voile 1 : aile colorée" logname="(calcul) Bandes, voile 1 : aile colorée"/>
       <Item id="16195" name="(calcul) Bandes, voile 1 : centres des éléments" logname="(calcul) Bandes, voile 1 : centres des éléments"/>
-      <Item id="16625" name="(calcul) Bandes, voile 1 : |incidence|" logname="(calcul) Bandes, voile 1 : |incidence|"/>
+      <Item id="16625" name="(calcul) Bandes, voile 1 : incidence" logname="(calcul) Bandes, voile 1 : incidence"/>
       <Item id="16720" name="(calcul) Bandes, voile 2 : C_L porté sur l&#x27;aile" logname="(calcul) Bandes, voile 2 : C_L porté sur l&#x27;aile"/>
       <Item id="16739" name="(calcul) Bandes, voile 2 : aile colorée" logname="(calcul) Bandes, voile 2 : aile colorée"/>
       <Item id="16695" name="(calcul) Bandes, voile 2 : centres des éléments" logname="(calcul) Bandes, voile 2 : centres des éléments"/>
-      <Item id="17018" name="(calcul) Bandes, voile 2 : |incidence|" logname="(calcul) Bandes, voile 2 : |incidence|"/>
+      <Item id="17018" name="(calcul) Bandes, voile 2 : incidence" logname="(calcul) Bandes, voile 2 : incidence"/>
       <Item id="17102" name="(calcul) Bandes, voile 3 : C_L porté sur l&#x27;aile" logname="(calcul) Bandes, voile 3 : C_L porté sur l&#x27;aile"/>
       <Item id="17121" name="(calcul) Bandes, voile 3 : aile colorée" logname="(calcul) Bandes, voile 3 : aile colorée"/>
       <Item id="17077" name="(calcul) Bandes, voile 3 : centres des éléments" logname="(calcul) Bandes, voile 3 : centres des éléments"/>
-      <Item id="17399" name="(calcul) Bandes, voile 3 : |incidence|" logname="(calcul) Bandes, voile 3 : |incidence|"/>
+      <Item id="17399" name="(calcul) Bandes, voile 3 : incidence" logname="(calcul) Bandes, voile 3 : incidence"/>
       <Item id="17529" name="(calcul) NLL, voile 1 : C_L porté sur l&#x27;aile" logname="(calcul) NLL, voile 1 : C_L porté sur l&#x27;aile"/>
       <Item id="17548" name="(calcul) NLL, voile 1 : aile colorée" logname="(calcul) NLL, voile 1 : aile colorée"/>
       <Item id="17504" name="(calcul) NLL, voile 1 : centres des éléments" logname="(calcul) NLL, voile 1 : centres des éléments"/>
-      <Item id="17826" name="(calcul) NLL, voile 1 : |incidence|" logname="(calcul) NLL, voile 1 : |incidence|"/>
+      <Item id="17826" name="(calcul) NLL, voile 1 : incidence" logname="(calcul) NLL, voile 1 : incidence"/>
       <Item id="17910" name="(calcul) NLL, voile 2 : C_L porté sur l&#x27;aile" logname="(calcul) NLL, voile 2 : C_L porté sur l&#x27;aile"/>
       <Item id="17929" name="(calcul) NLL, voile 2 : aile colorée" logname="(calcul) NLL, voile 2 : aile colorée"/>
       <Item id="17885" name="(calcul) NLL, voile 2 : centres des éléments" logname="(calcul) NLL, voile 2 : centres des éléments"/>
-      <Item id="18207" name="(calcul) NLL, voile 2 : |incidence|" logname="(calcul) NLL, voile 2 : |incidence|"/>
+      <Item id="18207" name="(calcul) NLL, voile 2 : incidence" logname="(calcul) NLL, voile 2 : incidence"/>
       <Item id="18291" name="(calcul) NLL, voile 3 : C_L porté sur l&#x27;aile" logname="(calcul) NLL, voile 3 : C_L porté sur l&#x27;aile"/>
       <Item id="18310" name="(calcul) NLL, voile 3 : aile colorée" logname="(calcul) NLL, voile 3 : aile colorée"/>
       <Item id="18266" name="(calcul) NLL, voile 3 : centres des éléments" logname="(calcul) NLL, voile 3 : centres des éléments"/>
-      <Item id="18588" name="(calcul) NLL, voile 3 : |incidence|" logname="(calcul) NLL, voile 3 : |incidence|"/>
+      <Item id="18588" name="(calcul) NLL, voile 3 : incidence" logname="(calcul) NLL, voile 3 : incidence"/>
       <Item id="16328" name="1 · Bandes : voile 1" logname="1 · Bandes : voile 1"/>
       <Item id="16751" name="1 · Bandes : voile 2" logname="1 · Bandes : voile 2"/>
       <Item id="17133" name="1 · Bandes : voile 3" logname="1 · Bandes : voile 3"/>
-      <Item id="16285" name="1_bandes_voile-1_aile.vtk" logname="1_bandes_voile-1_aile.vtk"/>
-      <Item id="16171" name="1_bandes_voile-1_force.vtk" logname="1_bandes_voile-1_force.vtk"/>
-      <Item id="16708" name="1_bandes_voile-2_aile.vtk" logname="1_bandes_voile-2_aile.vtk"/>
-      <Item id="16683" name="1_bandes_voile-2_force.vtk" logname="1_bandes_voile-2_force.vtk"/>
-      <Item id="17090" name="1_bandes_voile-3_aile.vtk" logname="1_bandes_voile-3_aile.vtk"/>
-      <Item id="17065" name="1_bandes_voile-3_force.vtk" logname="1_bandes_voile-3_force.vtk"/>
       <Item id="17560" name="2 · NLL : voile 1" logname="2 · NLL : voile 1"/>
       <Item id="17941" name="2 · NLL : voile 2" logname="2 · NLL : voile 2"/>
       <Item id="18322" name="2 · NLL : voile 3" logname="2 · NLL : voile 3"/>
-      <Item id="17517" name="2_nll_voile-1_aile.vtk" logname="2_nll_voile-1_aile.vtk"/>
-      <Item id="17492" name="2_nll_voile-1_force.vtk" logname="2_nll_voile-1_force.vtk"/>
-      <Item id="18775" name="2_nll_voile-1_horseshoeVortex.vtk" logname="2_nll_voile-1_horseshoeVortex.vtk"/>
-      <Item id="17898" name="2_nll_voile-2_aile.vtk" logname="2_nll_voile-2_aile.vtk"/>
-      <Item id="17873" name="2_nll_voile-2_force.vtk" logname="2_nll_voile-2_force.vtk"/>
-      <Item id="19065" name="2_nll_voile-2_horseshoeVortex.vtk" logname="2_nll_voile-2_horseshoeVortex.vtk"/>
-      <Item id="18279" name="2_nll_voile-3_aile.vtk" logname="2_nll_voile-3_aile.vtk"/>
-      <Item id="18254" name="2_nll_voile-3_force.vtk" logname="2_nll_voile-3_force.vtk"/>
-      <Item id="19354" name="2_nll_voile-3_horseshoeVortex.vtk" logname="2_nll_voile-3_horseshoeVortex.vtk"/>
       <Item id="18787" name="3 · Tourbillons NLL : voile 1" logname="3 · Tourbillons NLL : voile 1"/>
       <Item id="19077" name="3 · Tourbillons NLL : voile 2" logname="3 · Tourbillons NLL : voile 2"/>
       <Item id="19366" name="3 · Tourbillons NLL : voile 3" logname="3 · Tourbillons NLL : voile 3"/>
@@ -44073,6 +44058,21 @@
       <Item id="18219" name="7 · Courbe : NLL, voile 2" logname="7 · Courbe : NLL, voile 2"/>
       <Item id="18600" name="7 · Courbe : NLL, voile 3" logname="7 · Courbe : NLL, voile 3"/>
       <Item id="20635" name="8 · Titre (texte à l&#x27;écran)" logname="8 · Titre (texte à l&#x27;écran)"/>
+      <Item id="16285" name="bandes_voile-1_aile.vtk" logname="bandes_voile-1_aile.vtk"/>
+      <Item id="16171" name="bandes_voile-1_force.vtk" logname="bandes_voile-1_force.vtk"/>
+      <Item id="16708" name="bandes_voile-2_aile.vtk" logname="bandes_voile-2_aile.vtk"/>
+      <Item id="16683" name="bandes_voile-2_force.vtk" logname="bandes_voile-2_force.vtk"/>
+      <Item id="17090" name="bandes_voile-3_aile.vtk" logname="bandes_voile-3_aile.vtk"/>
+      <Item id="17065" name="bandes_voile-3_force.vtk" logname="bandes_voile-3_force.vtk"/>
+      <Item id="17517" name="nll_voile-1_aile.vtk" logname="nll_voile-1_aile.vtk"/>
+      <Item id="17492" name="nll_voile-1_force.vtk" logname="nll_voile-1_force.vtk"/>
+      <Item id="18775" name="nll_voile-1_horseshoeVortex.vtk" logname="nll_voile-1_horseshoeVortex.vtk"/>
+      <Item id="17898" name="nll_voile-2_aile.vtk" logname="nll_voile-2_aile.vtk"/>
+      <Item id="17873" name="nll_voile-2_force.vtk" logname="nll_voile-2_force.vtk"/>
+      <Item id="19065" name="nll_voile-2_horseshoeVortex.vtk" logname="nll_voile-2_horseshoeVortex.vtk"/>
+      <Item id="18279" name="nll_voile-3_aile.vtk" logname="nll_voile-3_aile.vtk"/>
+      <Item id="18254" name="nll_voile-3_force.vtk" logname="nll_voile-3_force.vtk"/>
+      <Item id="19354" name="nll_voile-3_horseshoeVortex.vtk" logname="nll_voile-3_horseshoeVortex.vtk"/>
     </ProxyCollection>
     <ProxyCollection name="timekeeper">
       <Item id="9839" name="TimeKeeper1"/>

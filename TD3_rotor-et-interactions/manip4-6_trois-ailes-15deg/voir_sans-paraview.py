@@ -1,33 +1,35 @@
 #!/usr/bin/env pvpython
 # -*- coding: utf-8 -*-
 """
-Voir les trois ailes de Malmek dans ParaView — TD 3 Propulsion vélique (EGN-S7, ENSM), manipulation 6
+Voir les trois ailes de Malmek au près dans ParaView — TD 3 Propulsion vélique (EGN-S7, ENSM), manipulation 6
 
-Repli de l'état ParaView cas/trois-ailes/TD3_trois-ailes.pvsm : ce script construit la même vue sans passer par l'état.
+Repli de l'état ParaView vue.pvsm (même dossier) : ce script construit la même vue sans passer par l'état.
 (L'état lui-même est enregistré par l'interface graphique de ParaView pour Windows, à partir de la même fonction
 construire_vue : un état destiné à l'interface se fabrique et se teste dans l'interface.)
 
 Avant : les deux calculs, dans le terminal Ubuntu (WSL) :
 
-    cd ~/TD-Propulsion-Velique/cas/trois-ailes
-    bash TD3_lancer_les_deux.sh
+    cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg
+    bash lancer.sh
 
-Puis, UNE LIGNE, depuis le dossier du dépôt (pvpython vient avec ParaView de WSL : sudo apt install paraview) :
+Puis, UNE LIGNE, depuis le même dossier (pvpython vient avec ParaView de WSL : sudo apt install paraview) :
 
-    pvpython scripts/TD3_voir_trois-ailes.py
+    pvpython voir_sans-paraview.py
 
 Ce que montre la vue (deux vues côte à côte, dans un layout « Trois ailes ») :
-  - à gauche, les trois ailes de l'exemple 9 vues de dessus (l'avant du navire en haut), deux fois : 1 · en théorie
-    des bandes (rangée de gauche), 2 · en NLL (rangée de droite) ; chaque élément a la couleur de son C_L (Cl, signe de l'outil) ;
+  - à gauche, les trois ailes de l'exemple 9 (cas à 15° du LHEEA, réglages −5, −10, −15°) vues en plongée du côté
+    d'où vient le vent (l'avant du navire à droite), deux fois : 1 · en théorie des bandes (rangée du haut), 2 · en NLL
+    (rangée du bas) ; chaque élément a la couleur de son C_L (Cl, signe de l'outil) ;
     3 · les tourbillons en fer à cheval de la NLL, coupés à 2 m en aval ; 4 · le vent apparent (15° de l'axe du
     navire) ; 5 · l'axe du navire (x, vers l'avant) ; 6 · les noms des deux rangées et des voiles ;
-  - à droite, 7 · l'incidence de chaque élément (valeur absolue) en fonction de sa hauteur, une courbe par voile et
-    par modèle : on y lit si les éléments travaillent dans le domaine de la table de profil ;
+  - à droite, 7 · l'incidence de chaque élément (signe de l'outil, celui de la colonne AoA de results.csv) en fonction
+    de sa hauteur, une courbe par voile et par modèle : on y lit ce que la NLL retire à chaque voile, et si les
+    éléments travaillent dans le domaine de la table de profil ;
   - 8 · le titre.
-Les fichiers lus sont ceux qu'écrit TD3_lancer_les_deux.sh : 1_bandes_voile-N_*, 2_nll_voile-N_*.
+Les fichiers lus sont ceux qu'écrit lancer.sh dans sorties/ : bandes_voile-N_*, nll_voile-N_*.
 
 Options :
-  --donnees DOSSIER   dossier des .vtk (défaut : cas/trois-ailes du dépôt)
+  --donnees DOSSIER   dossier des .vtk (défaut : sorties/ à côté de ce script)
   --png FICHIER       écrit une capture du layout (1920 x 1080 par défaut)
   --sans-fenetre      n'ouvre pas de fenêtre (avec --png)
 
@@ -36,6 +38,7 @@ CN-AeroModels v0.5.1, LHEEA (Centrale Nantes / CNRS), EPL 2.0 ; exemple 9 (Malme
 """
 
 import argparse
+import math
 import os
 import sys
 
@@ -52,23 +55,23 @@ def _rgb(h):
 MARINE, TEALD, TEAL, GREY = (_rgb(c) for c in ("#1A346D", "#147A6D", "#1A9988", "#595959"))
 BLANC = [1.0, 1.0, 1.0]
 ORANGE = _rgb("#C55A11")
-PLAGE_CL = [-1.0, 1.0]   # C_L de l'exemple 9 : entre -0,8 et 0 (signe de l'outil)
+PLAGE_CL = [-1.0, 1.0]   # C_L du cas à 15° : entre -0,3 et 1,1 (signe de l'outil)
 
-# Les deux calculs : préfixe des fichiers (TD3_lancer_les_deux.sh), nom affiché, décalage de la rangée (m, y).
-CALCULS = (("1_bandes", "Bandes", -1.6), ("2_nll", "NLL", 0.0))
+# Les deux calculs : préfixe des fichiers (lancer.sh), nom affiché, décalage de la rangée (m, y).
+CALCULS = (("bandes", "Bandes", -1.6), ("nll", "NLL", 0.0))
 VOILES = (1, 2, 3)                                   # voile 1 à l'avant (x = +0,86 m), voile 3 à l'arrière
 COULEURS_VOILES = {1: TEAL, 2: MARINE, 3: ORANGE}    # courbes de droite, une couleur par voile
 VENT = (-0.9659, -0.2588, 0.0)                       # sens du vent apparent dans le repère des sorties (15° de -x)
 X_COUPE = -2.0                                       # m : tourbillons NLL coupés à 2 m en arrière de l'origine
+ELEVATION = 55.0                                     # deg : hauteur de la caméra au-dessus de l'horizontale
 
 
 def dossier_par_defaut():
     ici = os.path.dirname(os.path.abspath(__file__))
-    for c in (os.path.join(os.path.dirname(ici), "cas", "trois-ailes"),
-              os.path.expanduser("~/TD-Propulsion-Velique/cas/trois-ailes")):
-        if os.path.isdir(c):
-            return c
-    sys.exit("Dossier cas/trois-ailes introuvable : lancez le script depuis le dépôt TD-Propulsion-Velique.")
+    c = os.path.join(ici, "sorties")
+    if os.path.isdir(c):
+        return c
+    sys.exit("Dossier %s introuvable : lancez d'abord bash lancer.sh dans ce dossier." % c)
 
 
 def fichiers_attendus():
@@ -76,7 +79,7 @@ def fichiers_attendus():
     for pre, _, _ in CALCULS:
         for n in VOILES:
             f += ["%s_voile-%d_aile.vtk" % (pre, n), "%s_voile-%d_force.vtk" % (pre, n)]
-    return f + ["2_nll_voile-%d_horseshoeVortex.vtk" % n for n in VOILES]
+    return f + ["nll_voile-%d_horseshoeVortex.vtk" % n for n in VOILES]
 
 
 def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, taille_noms=22):
@@ -84,7 +87,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
     `vue`, `courbe` : vues déjà rangées dans un layout (interface graphique) ; sinon, vues et layout sont créés."""
     manque = [f for f in fichiers_attendus() if not os.path.isfile(os.path.join(dossier, f))]
     if manque:
-        sys.exit("Fichiers absents dans %s : %s\n(lancez d'abord : bash TD3_lancer_les_deux.sh)" % (dossier, ", ".join(manque)))
+        sys.exit("Fichiers absents dans %s : %s\n(lancez d'abord : bash lancer.sh)" % (dossier, ", ".join(manque)))
     lire = lambda nom: LegacyVTKReader(registrationName=nom, FileNames=[os.path.join(dossier, nom)])
 
     if vue is None:
@@ -123,29 +126,31 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
             place.Transform = "Transform"
             place.Transform.Translate = [0.0, dy, 0.0]
             rep = Show(place, vue)
-            rep.SetRepresentationType("Surface With Edges")
-            rep.EdgeColor = GREY
-            rep.LineWidth = 1.5
+            rep.SetRepresentationType("Surface With Edges")    # arêtes claires : une voile à C_L nul reste visible
+            rep.EdgeColor = [0.8, 0.8, 0.8]
+            rep.LineWidth = 1.0
+            rep.Ambient = 1.0        # couleur sans ombrage : la teinte lue est celle de la barre de C_L
+            rep.Diffuse = 0.0
             ColorBy(rep, ("POINTS", "Cl"))
             if premier:
                 rep.SetScalarBarVisibility(vue, True)
                 premier = False
-            # Courbe : |incidence| (axe horizontal) en fonction de la hauteur (axe vertical, z vers le bas)
-            inc = Calculator(registrationName=f"(calcul) {cle} : |incidence|", Input=centres)
-            inc.ResultArrayName = "|incidence| (deg)"
-            inc.Function = 'abs("AoA(degrees)/SR")'
+            # Courbe : incidence, signe de l'outil (axe horizontal), en fonction de la hauteur (axe vertical, z vers le bas)
+            inc = Calculator(registrationName=f"(calcul) {cle} : incidence", Input=centres)
+            inc.ResultArrayName = "incidence (deg)"
+            inc.Function = '"AoA(degrees)/SR"'
             h = Calculator(registrationName=f"7 · Courbe : {cle}", Input=inc)
             h.ResultArrayName = "hauteur (m)"
             h.Function = "-coordsZ"
             rc = Show(h, courbe)
             rc.UseIndexForXAxis = 0
-            rc.XArrayName = "|incidence| (deg)"
+            rc.XArrayName = "incidence (deg)"
             rc.SeriesVisibility = ["hauteur (m)"]
             rc.SeriesLabel = ["hauteur (m)", f"{k + 1}. {nom}, voile {n}"]
             rc.SeriesColor = ["hauteur (m)", *[str(c) for c in COULEURS_VOILES[n]]]
-            rc.SeriesLineThickness = ["hauteur (m)", "3" if pre == "2_nll" else "1"]
-            rc.SeriesLineStyle = ["hauteur (m)", "1" if pre == "2_nll" else "2"]      # NLL plein, bandes tirets
-            rc.SeriesMarkerStyle = ["hauteur (m)", "4" if pre == "2_nll" else "2"]
+            rc.SeriesLineThickness = ["hauteur (m)", "3" if pre == "nll" else "1"]
+            rc.SeriesLineStyle = ["hauteur (m)", "1" if pre == "nll" else "2"]      # NLL plein, bandes tirets
+            rc.SeriesMarkerStyle = ["hauteur (m)", "4" if pre == "nll" else "2"]
             rc.SeriesMarkerSize = ["hauteur (m)", "7"]
         # Nom de la rangée, au-dessus de la voile 1
         et = Text(registrationName=f"6 · Nom de la rangée {k + 1}")
@@ -155,7 +160,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
         re_.BillboardPosition = [1.45, dy - 0.25, -1.4]
         re_.FontSize = taille_noms
         re_.Bold = 1
-        re_.Color = MARINE if pre == "2_nll" else GREY
+        re_.Color = MARINE if pre == "nll" else GREY
 
     # Numéros des voiles, au-dessus de la rangée NLL
     for n, x in zip(VOILES, (0.84, 0.09, -0.66)):
@@ -163,13 +168,13 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
         t.Text = f"voile {n}"
         rt_ = Show(t, vue)
         rt_.TextPropMode = "Billboard 3D Text"
-        rt_.BillboardPosition = [x + 0.1, 0.4, -1.4]
+        rt_.BillboardPosition = [x + 0.15, 0.25, 0.05]     # au pied de la voile, sous la rangée NLL
         rt_.FontSize = taille_noms - 4
         rt_.Color = COULEURS_VOILES[n]
 
     # Tourbillons en fer à cheval (NLL), coupés à X_COUPE
     for n in VOILES:
-        coupe = Clip(registrationName=f"3 · Tourbillons NLL : voile {n}", Input=lire("2_nll_voile-%d_horseshoeVortex.vtk" % n))
+        coupe = Clip(registrationName=f"3 · Tourbillons NLL : voile {n}", Input=lire("nll_voile-%d_horseshoeVortex.vtk" % n))
         coupe.ClipType = "Plane"
         coupe.ClipType.Origin = [X_COUPE, 0.0, 0.0]
         coupe.ClipType.Normal = [1.0, 0.0, 0.0]
@@ -193,11 +198,12 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
     barre.LabelFontSize = 14
     barre.AutomaticLabelFormat = 1
     barre.AddRangeLabels = 0
-    barre.WindowLocation = "Lower Left Corner"
+    barre.WindowLocation = "Any Location"     # à droite, entre les deux rangées, hors des textes
+    barre.Position = [0.84, 0.55]
     barre.ScalarBarLength = 0.3
 
     # Vent apparent : une flèche (trait) qui arrive de l'avant, à 15° de l'axe, à mi-hauteur
-    p2 = [1.2, 0.8, -1.4]
+    p2 = [1.25, 0.15, -1.2]
     vent = Line(registrationName="4 · Vent apparent (15°)")
     vent.Point1 = [p2[i] - 0.8 * VENT[i] for i in range(2)] + [p2[2]]
     vent.Point2 = p2
@@ -220,7 +226,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
     tv.Text = "vent apparent (15°)"
     rtv = Show(tv, vue)
     rtv.TextPropMode = "Billboard 3D Text"
-    rtv.BillboardPosition = [p2[0] - 0.2, p2[1] - 0.15, p2[2]]   # sous la pointe (l'avant est en haut)
+    rtv.BillboardPosition = [p2[0] + 0.05, p2[1] + 0.35, p2[2] + 0.3]   # sous la flèche, à droite de la voile 1
     rtv.FontSize = taille_noms - 4
     rtv.Color = ORANGE
 
@@ -236,14 +242,14 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
         ra.LineWidth = 3.0
 
     titre = Text(registrationName="8 · Titre (texte à l'écran)")
-    titre.Text = "Exemple 9 vu de dessus : voiles et vent apparent"
+    titre.Text = "Trois ailes au près, vues du côté du vent"
     rt = Show(titre, vue)
     rt.WindowLocation = "Upper Left Corner"
     rt.FontSize = 18
     rt.Color = MARINE
     rt.Bold = 1
 
-    courbe.ChartTitle = "|incidence| de chaque élément"
+    courbe.ChartTitle = "Incidence de chaque élément"
     courbe.ShowLegend = 1
     courbe.LegendFontSize = 12
     courbe.ChartTitleFontSize = 18
@@ -254,12 +260,12 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
     courbe.ChartTitleColor = MARINE
     courbe.LeftAxisTitleColor = MARINE
     courbe.BottomAxisTitleColor = MARINE
-    courbe.LegendLocation = "BottomLeft"
-    courbe.BottomAxisTitle = "|incidence| de l'élément (deg)"
+    courbe.LegendLocation = "TopRight"
+    courbe.BottomAxisTitle = "incidence (deg, signe de l'outil)"
     courbe.LeftAxisTitle = "hauteur au-dessus du plan (m)"
     courbe.BottomAxisUseCustomRange = 1
-    courbe.BottomAxisRangeMinimum = 0.0
-    courbe.BottomAxisRangeMaximum = 90.0
+    courbe.BottomAxisRangeMinimum = -5.0
+    courbe.BottomAxisRangeMaximum = 25.0     # place à droite pour la légende
     courbe.LeftAxisUseCustomRange = 1
     courbe.LeftAxisRangeMinimum = 0.0
     courbe.LeftAxisRangeMaximum = 1.4
@@ -271,21 +277,25 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
     GetOpacityTransferFunction("Cl").RescaleTransferFunction(*PLAGE_CL)
 
     Render(vue)
-    # Vue de dessus, un peu inclinée, l'avant du navire en haut de l'écran : on y lit l'angle entre la corde de
-    # chaque voile et le vent apparent, et les tourbillons NLL qui partent dans le sens du vent
-    vue.CameraFocalPoint = [0.3, -0.6, -0.7]
-    vue.CameraPosition = [0.3 - 1.2, -0.6, -0.7 - 6.0]
-    vue.CameraViewUp = [1.0, 0.0, 0.0]
+    # Vue plongeante du côté d'où vient le vent (ELEVATION au-dessus de l'horizontale), l'avant du navire à droite :
+    # au près, les voiles sont presque dans l'axe et une vue de dessus n'en montrerait que la tranche ; ici, on voit
+    # leur surface colorée par C_L, l'angle de leur corde avec l'axe et le vent, et les tourbillons NLL qui partent
+    # dans le sens du vent. Rangée 1 (bandes) en haut, rangée 2 (NLL) en bas.
+    e = math.radians(ELEVATION)
+    foyer = [0.45, -0.8, -0.7]
+    vue.CameraFocalPoint = foyer
+    vue.CameraPosition = [foyer[0], foyer[1] + 8.0 * math.cos(e), foyer[2] - 8.0 * math.sin(e)]   # z vers le bas
+    vue.CameraViewUp = [0.0, -math.sin(e), -math.cos(e)]
     vue.CameraParallelProjection = 1
-    vue.CameraParallelScale = 1.8
+    vue.CameraParallelScale = 1.55
     Render(vue)
     Render(courbe)
     return vue, courbe
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Trois ailes de Malmek : C_L par élément, bandes et NLL (ParaView).")
-    ap.add_argument("--donnees", help="dossier des .vtk (défaut : cas/trois-ailes du dépôt)")
+    ap = argparse.ArgumentParser(description="Trois ailes de Malmek au près : C_L par élément, bandes et NLL (ParaView).")
+    ap.add_argument("--donnees", help="dossier des .vtk (défaut : sorties/ à côté de ce script)")
     ap.add_argument("--png", help="écrit une capture PNG du layout")
     ap.add_argument("--sans-fenetre", action="store_true", help="n'ouvre pas de fenêtre")
     ap.add_argument("--largeur", type=int, default=1920)

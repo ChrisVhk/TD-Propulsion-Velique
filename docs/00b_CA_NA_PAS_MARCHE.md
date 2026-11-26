@@ -37,6 +37,7 @@ désactivée dans le BIOS, pas de droits administrateur, Windows trop ancien, `[
 | Symptôme | Cause | Remède |
 |---|---|---|
 | après la mise à jour du 24/11, un dossier `cas/Cas-ENSM_aile-du-caboteur/` reste chez vous (et parfois `cas/TD2_envergure/`) | `git pull` déplace les fichiers du dépôt, pas ceux que vous avez produits (sorties de l'outil, `nll.yml`, `pont.yml`) | ce dossier ne contient que vos anciennes sorties ; travaillez dans `cas/aile-caboteur/` (et `cas/aile-caboteur/TD2_envergure/`). Si vous voulez garder votre `nll.yml` ou votre `pont.yml` : `mv cas/Cas-ENSM_aile-du-caboteur/nll.yml cas/Cas-ENSM_aile-du-caboteur/pont.yml cas/aile-caboteur/` |
+| TD 3 : après `git pull`, l'ancien dossier `cas/trois-ailes/` reste chez vous (avec `bandes.yml` et des fichiers `1_bandes_*`, `2_nll_*`) | le TD 3 a été rangé par manipulation dans `TD3_rotor-et-interactions/` ; `git pull` ne déplace pas les fichiers que vous avez produits | ce dossier ne contient que vos anciennes sorties : supprimez-le (`rm -r cas/trois-ailes`, depuis le dossier du dépôt) et travaillez dans `TD3_rotor-et-interactions/` |
 | `git pull` refuse : « Your local changes to the following files would be overwritten » | vous avez modifié un fichier du dépôt (souvent le `.yml` du cas) | `git stash`, puis `git pull` ; vos modifications sont mises de côté (`git stash show -p` pour les revoir) |
 
 ## « Je suis sur Mac »

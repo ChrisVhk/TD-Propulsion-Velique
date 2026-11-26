@@ -28,8 +28,8 @@ rendu* (traitée hors séance, rendue avec le compte rendu) ou *variante* (group
 - reconnaître un cas où le rotor ne voit presque pas de vent, et ce qu'un optimiseur de puissance nette en fait (A14,
   niveau 1) ;
 - dire d'où viennent les interactions entre unités véliques et comment on les modélise (A15, niveau 2) ;
-- lire, voile par voile, ce que donnent la NLL et la théorie des bandes sur trois ailes alignées, et vérifier que
-  chaque voile travaille dans le domaine de sa table de profil (manipulations 4 à 6).
+- **isoler l'interaction** sur trois ailes alignées au près : chaque voile calculée seule, puis les trois ensemble, en
+  NLL, à côté de la théorie des bandes ; dire ce que perd la voile aval (manipulations 4 à 6).
 
 # Vos armes : les formules utiles
 
@@ -57,29 +57,43 @@ calcule pas).
 # Matériel
 
 - **Ubuntu sous Windows (WSL)** et **CN-AeroModels v0.5.1** (binaire Linux), installés au TD 1.
-- **Le dépôt du TD**, `~/TD-Propulsion-Velique` (à mettre à jour : `git pull`) : dossiers `cas/exemples/7- 2008 Badalamenti/`,
-  `cas/exemples/19- maxThrustPower/` et `cas/trois-ailes/`.
+- **Le dépôt du TD**, `~/TD-Propulsion-Velique`, à mettre à jour (`git pull`) : tout le TD 3 est dans le dossier
+  `TD3_rotor-et-interactions/`, un sous-dossier par manipulation (tableau ci-dessous).
 - **ParaView pour Windows**, installé au TD 1.
 - Un éditeur de texte, une calculatrice.
 
-**Règle pour toutes les manipulations** (comme au TD 2) : ne modifiez jamais le fichier d'origine ; copiez-le, modifiez
-la copie et lancez l'outil sur la copie, dans le dossier du cas. Chaque lancement **écrase** `results.csv`.
+| Manipulation | Dossier (dans `~/TD-Propulsion-Velique/TD3_rotor-et-interactions/`) | Commande |
+|---|---|---|
+| 1 — rotor sans vent (exemple 19) | `manip1_rotor-sans-vent/` | `bash lancer.sh 35x5_flettner.yml` |
+| 2 et 3 — rotor avec et sans plaques (exemple 7) | `manip2-3_rotor-plaques/` | `bash lancer.sh 2008_Badalamenti.yml`, puis `bash lancer.sh sans-plaques.yml` |
+| 4 à 6 — trois ailes au près (exemple 9, cas à 15°) | `manip4-6_trois-ailes-15deg/` | `bash lancer.sh` (après la copie `bandes.yml`) |
+| Variante — le fichier de l'exemple 9 tel que fourni | `variante_trois-ailes-fichier-LHEEA/` | `bash lancer.sh trois-ailes.yml` |
+
+Table: Tableau 1 — Où travailler : un dossier par manipulation
+
+Chaque dossier contient ce que sa manipulation demande : le fichier d'entrée (`.yml`), le script `lancer.sh` et, pour
+les manipulations 4 à 6, l'état ParaView `vue.pvsm`. **Les sorties de calcul vont dans le sous-dossier `sorties/`**
+du dossier : `lancer.sh` lance l'outil, affiche tout ce qu'il écrit à l'écran et range ses fichiers dans `sorties/`
+(`<fichier>_results.csv` ; la sortie écran dans `<fichier>_ecran.txt`, pour y chercher un message).
+
+**Règle pour toutes les manipulations** (comme au TD 2) : ne modifiez jamais un fichier fourni ; copiez-le, modifiez
+la copie et lancez l'outil sur la copie, dans le dossier de la manipulation.
 
 > **Rappels des TD 1 et 2.** Pour ouvrir depuis Windows un fichier du dépôt (éditeur, tableur, ParaView), ne **retapez
 > jamais** le chemin : dans le terminal Ubuntu, placez-vous dans le dossier voulu, tapez `wslpath -w .`, puis copiez
 > l'adresse affichée (sélection à la souris, **Ctrl+Maj+C**) et collez-la. Linux distingue `trois-ailes` de
 > `Trois-ailes` : un chemin retapé donne vite un fichier « introuvable ». Dans ParaView, à *Load State*, le *Data
-> Directory* est le **dossier du cas** (ici, il se termine par `trois-ailes`).
+> Directory* est le **dossier de la manipulation** (ici, il se termine par `manip4-6_trois-ailes-15deg`).
 
 # Déroulé de la séance
 
-- **Partie 1, le rotor Flettner** : A11, avec les manipulations 2 et 3 (exemple 7, avec et sans plaques
+- **Partie 1, le rotor Flettner** : A11, question 2, avec les manipulations 2 et 3 (exemple 7, avec et sans plaques
   d'extrémité) ; A12 (énoncé sur Vega) ; A14, puis la manipulation 1 (exemple 19).
-- **Partie 2, quand les unités se gênent** : A15, question 1 ; manipulations 4 à 6 (exemple 9, trois ailes, en NLL,
-  en théorie des bandes, puis dans ParaView), avec les questions T1 et T2 ; l'encadré « Ce que dit la mesure » ; une
-  démonstration de l'enseignant (10 min).
-- **Au compte rendu** : A15, question 3, la question d'interprétation, et la synthèse aile ou rotor, qui reprend vos
-  valeurs d'A12.
+- **Partie 2, quand les unités se gênent** : A15, question 1 ; manipulations 4 à 6 (trois ailes au près : chaque voile
+  seule, puis les trois ensemble, en NLL et en théorie des bandes, puis dans ParaView), avec les questions T1 et T2 ;
+  l'encadré « Ce que dit la mesure » ; une démonstration de l'enseignant (5 min).
+- **Au compte rendu** : A11, question 1 (travail personnel), A15, question 3, la question d'interprétation, et la
+  synthèse aile ou rotor, qui reprend vos valeurs d'A12.
 
 # Partie 1 — Le rotor Flettner
 
@@ -88,28 +102,30 @@ la copie et lancez l'outil sur la copie, dans le dossier du cas. Chaque lancemen
 Faites d'abord A14 à la main, puis :
 
 ```bash
-cd ~/TD-Propulsion-Velique/cas/exemples/"19- maxThrustPower"
-CN-AeroModels 35x5_flettner.yml
+cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip1_rotor-sans-vent
+bash lancer.sh 35x5_flettner.yml
 ```
 
-Le calcul dure quelques secondes. Le fichier pilote le rotor en `maxThrustPower` : l'outil choisit lui-même la vitesse
-de rotation qui maximise la puissance nette, en partant de 100 tr/min (dernière ligne du fichier). Des centaines de
-lignes `Warning … out of range` défilent : lisez-en une, puis allez au tableau `Results`.
+`35x5_flettner.yml` est une copie à l'identique de l'exemple 19 du LHEEA. Le calcul dure quelques secondes. Le fichier
+pilote le rotor en `maxThrustPower` : l'outil choisit lui-même la vitesse de rotation qui maximise la puissance nette,
+en partant de 100 tr/min (dernière ligne du fichier). Des centaines de lignes `Warning … out of range` défilent : lisez-en
+une, puis allez au tableau `Results`, à la fin.
 
 **Auto-contrôle** : une ligne `rotor_1` et une ligne `Total` s'affichent ; les colonnes `AWS` et `AWA` doivent
 redonner **vos valeurs d'A14** (valeur absolue). La colonne `setting` donne la vitesse de rotation retenue (tr/min),
-la colonne `AoA/SR` le taux de rotation ; `results.csv` donne en plus `Px(kW)`.
+la colonne `AoA/SR` le taux de rotation ; `sorties/35x5_flettner_results.csv` donne en plus `Px(kW)`.
 
 ## Manipulation 2 — Exemple 7 : le rotor de Badalamenti et Prince, avec ses plaques (pour A11)
 
 ```bash
-cd ~/TD-Propulsion-Velique/cas/exemples/"7- 2008 Badalamenti"
-CN-AeroModels 2008_Badalamenti.yml
+cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip2-3_rotor-plaques
+bash lancer.sh 2008_Badalamenti.yml
 ```
 
-Rotor de soufflerie de 88 mm de diamètre et 450 mm de haut, vent de 3 m/s, tournant à 2 273 tr/min, calculé en NLL.
-Ouvrez `2008_Badalamenti.yml` dans l'éditeur et repérez comment le fichier représente les **plaques d'extrémité** : les
-deux lignes `root: end plate` et `tip: end plate` (rubrique `end conditions`), et l'option `endPlateCoefficient: 0.5`
+`2008_Badalamenti.yml` et `data.csv` sont des copies à l'identique de l'exemple 7 du LHEEA. Rotor de soufflerie de
+88 mm de diamètre et 450 mm de haut, vent de 3 m/s, tournant à 2 273 tr/min, calculé en NLL. Ouvrez
+`2008_Badalamenti.yml` dans l'éditeur et repérez comment le fichier représente les **plaques d'extrémité** : les deux
+lignes `root: end plate` et `tip: end plate` (rubrique `end conditions`), et l'option `endPlateCoefficient: 0.5`
 (rubrique `options`).
 
 **Auto-contrôle** : à l'écran, la colonne `setting` vaut **2273** (tr/min, dernière ligne du fichier) et la colonne
@@ -122,11 +138,13 @@ Dans le même dossier, copiez `2008_Badalamenti.yml` en `sans-plaques.yml`, puis
 `root: end plate` par `root: free` et `tip: end plate` par `tip: free` (rien d'autre). Lancez :
 
 ```bash
-CN-AeroModels sans-plaques.yml
+bash lancer.sh sans-plaques.yml
+grep "Newton method has failed" sorties/sans-plaques_ecran.txt
 ```
 
-Relevez C_L et C_D, cherchez à l'écran le message `Newton method has failed`, et relevez la dernière ligne
-`iteration : … % variation`. Recommencez avec `number of elements: 15` au lieu de 25 dans `sans-plaques.yml`.
+Relevez C_L et C_D, le message `Newton method has failed` (la seconde commande l'affiche s'il est dans la sortie), et la
+dernière ligne `iteration : … % variation`. Recommencez avec `number of elements: 15` au lieu de 25 dans
+`sans-plaques.yml`.
 
 **Auto-contrôle** : `setting` = 2273 et `AoA/SR` = 3.5, comme à la manipulation 2. Comparez ensuite, à SR = 3,5, vos
 C_L aux mesures de Badalamenti et Prince jointes à l'exemple, dans `data.csv` (séparateur `;`) : colonnes 1 et 2 pour le
@@ -135,9 +153,9 @@ rotor **sans plaques** (`[no end plates]`, SR puis C_L), colonnes 8 et 9 pour le
 
 ## A11 — C_L = 2π SR · niveau 1
 
-1. *(en séance)* Montrer que C_L = 2π SR en écoulement potentiel autour d'un cylindre tournant (circulation
-   $`\Gamma = 2 \pi R \cdot \Omega R`$, portance linéique $`L' = \rho V \Gamma`$). Que vaut 2π SR à SR = 2 ? Comparer aux C_L mesurés à SR = 2
-   (`data.csv` de l'exemple 7, avec et sans plaques).
+1. *(au compte rendu, travail personnel)* Montrer que C_L = 2π SR en écoulement potentiel autour d'un cylindre
+   tournant (circulation $`\Gamma = 2 \pi R \cdot \Omega R`$, portance linéique $`L' = \rho V \Gamma`$). Que vaut 2π SR à SR = 2 ? Comparer aux C_L
+   mesurés à SR = 2 (`data.csv` de l'exemple 7, avec et sans plaques).
 2. *(en séance)* Avec les manipulations 2 et 3 : que vaut 2π SR au taux de rotation de l'exemple 7 ? Que donne l'outil
    avec les plaques, et que donne la mesure ? Sans les plaques, le calcul de l'outil a-t-il convergé, et peut-on
    retenir son C_L ? Que font les plaques d'extrémité sur un rotor ?
@@ -161,113 +179,142 @@ retenu est-il dans la table du rotor (lisez un des avertissements) ?
 ## A15 — Interactions entre voiles · niveau 2
 
 1. *(en séance)* D'où viennent les pertes des unités sous le vent ? Dans quel ordre les modélise-t-on ?
-2. *(variante)* Avec l'exemple 9 (manipulations 4 et 5) : tracer C_x voile par voile en NLL, en théorie des bandes,
-   puis en ISILL (copie `isill.yml`, ligne du modèle remplacée par `      - model: ISILL`).
+2. *(variante)* Avec les trois ailes au près (manipulations 4 à 6) : tracer C_x voile par voile en NLL, en théorie des
+   bandes, puis en ISILL. Pour l'ISILL, copiez `trois-ailes-15deg.yml` en `isill.yml` et remplacez la ligne du modèle
+   par `      - model: ISILL` ; faites de même pour chaque `voile-N-seule.yml` ; lancez chaque copie depuis
+   `sorties/` (`cd sorties`, puis `CN-AeroModels ../isill.yml`). L'ISILL donne-t-elle la même perte que la NLL ?
 3. *(au compte rendu)* Pour quatre voiles alignées, estimer la réduction de poussée par rapport à quatre voiles
    isolées. Quelle source le permet ?
 
-## Manipulation 4 — Exemple 9 : trois ailes de Malmek, en NLL
+## Manipulation 4 — Trois ailes de Malmek au près, les trois ensemble en NLL
 
-Le dossier `cas/trois-ailes/` contient `trois-ailes.yml`, copie à l'identique de l'exemple 9 du LHEEA
-(`2023_Malmek_3sails.yml`) : trois ailes de type Oceanbird à l'échelle de la soufflerie (1,385 m de haut), alignées
-le long de l'axe x, l'aile 1 à l'avant, dans un vent de 25 m/s qui arrive à 15° de l'avant, navire à l'arrêt. Le
-fichier pose un plan de symétrie au pied des ailes (le plafond de la soufflerie, comme le pont du TD 2).
+Le dossier `manip4-6_trois-ailes-15deg/` contient `trois-ailes-15deg.yml` : trois ailes de type Oceanbird à l'échelle
+de la soufflerie (1,385 m de haut), alignées le long de l'axe x, l'aile 1 à l'avant, dans un vent de 25 m/s qui arrive
+à 15° de l'avant, navire à l'arrêt. C'est une **copie de l'exemple 9 du LHEEA** (`2023_Malmek_3sails.yml`) dont seuls
+les trois réglages changent : ce sont ceux du cas « vent apparent à 15° » du tutoriel du LHEEA, validé contre la
+soufflerie de Malmek (2023). Le fichier pose un plan de symétrie au pied des ailes (le plafond de la soufflerie, comme
+le pont du TD 2). Le dossier contient aussi `voile-1-seule.yml`, `voile-2-seule.yml` et `voile-3-seule.yml` : le même
+fichier avec **une seule voile**, à la même place et au même réglage. Lancez d'abord les trois voiles ensemble :
 
 ```bash
-cd ~/TD-Propulsion-Velique/cas/trois-ailes
-CN-AeroModels trois-ailes.yml
+cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg
+mkdir -p sorties && cd sorties && CN-AeroModels ../trois-ailes-15deg.yml; cd ..
 ```
 
-Relevez, pour chaque voile (`sail_1`, `sail_2`, `sail_3`), `AoA/SR`, C_L, C_x et C_y à l'écran ; `results.csv` donne en
-plus, colonne `AoA`, l'incidence effective de chaque voile (une ligne par voile).
+Relevez, pour chaque voile (`sail_1`, `sail_2`, `sail_3`), `AoA/SR`, C_L, C_x et C_y à l'écran ;
+`sorties/results.csv` donne en plus, colonne `AoA`, l'incidence effective de chaque voile (une ligne par voile).
 
-**Auto-contrôle** : trois lignes `sail_1` à `sail_3`, avec **AWS = 25** et **AWA = 15**, et les réglages **−80, −75
-et −70** (colonne `setting`) ; ce sont les données du fichier.
+**Auto-contrôle** : trois lignes `sail_1` à `sail_3`, avec **AWS = 25** et **AWA = 15**, et les réglages **−5, −10
+et −15** (colonne `setting`) ; ce sont les données du fichier.
 
 ## Manipulation 5 — Le même cas en théorie des bandes
 
-Dans `cas/trois-ailes/`, copiez `trois-ailes.yml` en `bandes.yml` ; dans `bandes.yml`, remplacez la ligne
-`      - model: nonlinear lifting line` par `      - model: strip theory` (même indentation, rien d'autre), puis :
+Dans `manip4-6_trois-ailes-15deg/`, copiez `trois-ailes-15deg.yml` en `bandes.yml` ; dans `bandes.yml`, remplacez la
+ligne `      - model: nonlinear lifting line` par `      - model: strip theory` (même indentation, rien d'autre),
+puis :
 
 ```bash
-CN-AeroModels bandes.yml
+cd sorties && CN-AeroModels ../bandes.yml; cd ..
 ```
 
 Relevez les mêmes colonnes. **Auto-contrôle** : mêmes AWS, AWA et réglages qu'à la manipulation 4 ; à l'écran, dans
-les deux modèles, la colonne `AoA/SR` de chaque voile vaut son réglage corrigé de l'AWA (réglage + 15 : incidence
-géométrique) ; l'incidence effective est dans `results.csv`, colonne `AoA` (en bandes, elle est égale à l'incidence
-géométrique).
+les deux modèles, la colonne `AoA/SR` de chaque voile vaut son réglage corrigé de l'AWA (réglage + 15 : 10, 5 et 0,
+l'incidence géométrique) ; l'incidence effective est dans `sorties/results.csv`, colonne `AoA` (en bandes, elle est
+égale à l'incidence géométrique ; en NLL, elle tient compte des tourbillons de toutes les voiles).
 
-## Manipulation 6 — Voir les trois ailes (ParaView ; pour T1 et T2)
+## Manipulation 6 — Chaque voile seule, et voir les trois ailes (ParaView ; pour T1 et T2)
 
-1. **Lancer les deux calculs avec les sorties ParaView**, dans le terminal Ubuntu :
+1. **Lancer tous les calculs avec les sorties ParaView**, dans le terminal Ubuntu :
 
    ```bash
-   cd ~/TD-Propulsion-Velique/cas/trois-ailes
-   bash TD3_lancer_les_deux.sh
+   cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg
+   bash lancer.sh
    ```
 
-   Le script lance `bandes.yml` puis `trois-ailes.yml`, renomme les sorties (`1_bandes_*`, `2_nll_*`) et affiche,
-   voile par voile, l'incidence, C_L, C_x et C_y. **Auto-contrôle** : deux blocs de trois lignes, puis « Les deux
-   calculs sont faits ». S'il s'arrête avant, il dit quel fichier manque ou en quoi `bandes.yml` diffère de
-   `trois-ailes.yml`.
+   Le script lance `bandes.yml`, puis `trois-ailes-15deg.yml` (NLL), puis chaque `voile-N-seule.yml` (NLL), range les
+   sorties dans `sorties/` (`bandes_*`, `nll_*`, `nll-seule_*`) et affiche, voile par voile, l'incidence, C_L, C_x et
+   C_y, puis la somme des C_x des trois voiles ensemble et des trois voiles seules. **Auto-contrôle** : trois blocs de
+   trois lignes, la ligne « Somme des C_x », puis « Les calculs sont faits ». S'il s'arrête avant, il dit quel fichier
+   manque ou en quoi `bandes.yml` diffère de `trois-ailes-15deg.yml`.
 2. **Afficher l'adresse Windows du dossier** : `wslpath -w .` ; copiez l'adresse (**Ctrl+Maj+C**). Elle se termine
-   par `cas\trois-ailes`.
+   par `TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg`.
 3. **Charger l'état dans ParaView pour Windows** : *File > Load State…* ; dans *File name*, collez l'adresse,
-   **Entrée**, sélectionnez `TD3_trois-ailes.pvsm`, *OK*. Dans *Load State Options* : **Search files under specified
-   directory** ; *Data Directory* : laissez la valeur proposée (elle se termine par `trois-ailes`) ; *OK*.
+   **Entrée**, sélectionnez `vue.pvsm`, *OK*. Dans *Load State Options* : **Search files under specified directory** ;
+   *Data Directory* : laissez la valeur proposée (elle se termine par `manip4-6_trois-ailes-15deg`) ; *OK*.
 
 **Ce que vous devez voir** : un onglet *Trois ailes* avec deux vues (figure 1). Un chargement réussi n'ouvre **aucune**
 fenêtre *Output Messages*.
 
-- À gauche, les trois ailes **vues de dessus**, l'avant du navire en haut, deux fois : « 1. Bandes » à gauche,
-  « 2. NLL » à droite, chacune sur l'axe du navire (trait vert). Chaque élément a la couleur de son C_L (barre
-  « C_L (Cl) », signe de l'outil). La flèche orange est le **vent apparent**, à 15° de l'avant ; les traits gris sont
-  les tourbillons en fer à cheval de la NLL, qui partent dans le sens du vent.
-- À droite, **l'incidence de chaque élément** (valeur absolue) en fonction de sa hauteur : une couleur par voile,
-  trait plein pour la NLL, tirets pour la théorie des bandes.
+- À gauche, les trois ailes **vues en plongée, du côté d'où vient le vent**, l'avant du navire à droite, deux fois :
+  « 1. Bandes » en haut, « 2. NLL » en bas, chacune posée sur l'axe du navire (trait vert). Chaque élément a la couleur
+  de son C_L (barre « C_L (Cl) », signe de l'outil : vert foncé pour une voile qui porte, blanc pour C_L nul, bleu pour
+  un C_L de signe contraire). La flèche orange est le **vent apparent**, à 15° de l'avant ; les traits gris sont les
+  tourbillons en fer à cheval de la NLL, qui partent dans le sens du vent.
+- À droite, **l'incidence de chaque élément** en fonction de sa hauteur, **avec le signe de l'outil** (celui de la
+  colonne `AoA` de `results.csv`) : une couleur par voile, trait plein pour la NLL, tirets pour la théorie des bandes.
 
-![Figure 1 — La vue attendue dans ParaView : les trois ailes de l'exemple 9 vues de dessus, en théorie des bandes et en NLL, avec le vent apparent, et l'incidence de chaque élément selon sa hauteur](img/TD3_trois-ailes-paraview.png)
+![Figure 1 — La vue attendue dans ParaView : les trois ailes au près vues du côté du vent, en théorie des bandes et en NLL, avec le vent apparent, et l'incidence de chaque élément selon sa hauteur](../TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg/vue-attendue.png)
 
 Si l'onglet ne montre que les textes, ou si *Output Messages* affiche `Could not open file`, ParaView n'a pas trouvé
 les données : relancez l'étape 1, puis l'étape 3 en vérifiant le *Data Directory*. Repli, sans l'interface (ParaView
-de WSL), depuis le dossier du dépôt : `pvpython scripts/TD3_voir_trois-ailes.py`.
+de WSL), depuis le même dossier : `pvpython voir_sans-paraview.py`.
 
 **Deux questions d'observation** (deux ou trois lignes chacune) :
 
-- **T1.** *(en séance)* Entre la théorie des bandes et la NLL, quelle voile change, et laquelle ne change presque
-  pas ? La voile aval (voile 3) perd-elle de la portance dans les sorties de l'outil ?
-- **T2.** *(en séance)* Lisez l'incidence de chaque voile (manipulations 4 et 5, ou la vue de droite). Ouvrez ensuite
-  `trois-ailes.yml` et lisez une ligne `AoA:` de la table de profil (rubrique `foil data`, au Reynolds de 500 000 ou
-  de 1 000 000 : le Reynolds de chaque élément est dans la colonne `Re` des fichiers `*_elements.csv`). Entre quelles
-  incidences la table est-elle renseignée finement, et que fait-elle au-delà ? Les voiles travaillent-elles dans ce
-  domaine ? Que valent alors leurs C_L (souvenez-vous d'A07, TD 2) ? Regardez dans ParaView l'angle entre la corde des
-  voiles et le vent apparent.
+- **T1.** *(en séance)* Comparez, voile par voile, la NLL des trois voiles ensemble à la NLL de chaque voile seule
+  (sortie de `lancer.sh`) : laquelle perd le plus ? De combien la somme des C_x baisse-t-elle, en pourcentage ? Lisez
+  l'incidence effective des voiles 2 et 3 dans les deux calculs (colonne `AoA`, ou la vue de droite) : que fait la
+  voile 1 au vent que voient les voiles placées derrière elle ?
+- **T2.** *(en séance)* Le signe de cette perte est-il celui que Bordogna mesure au près sur deux DynaRigs (encadré
+  ci-dessous) ? La NLL calcule la déviation du vent par les tourbillons des voiles amont : quel effet sur la voile aval
+  ne calcule-t-elle pas (A15, question 1), et la perte réelle serait-elle plus grande ou plus petite ? Vérifiez enfin
+  que chaque voile travaille dans le domaine finement renseigné de sa table de profil : ouvrez `trois-ailes-15deg.yml`
+  et lisez une ligne `AoA:` de la rubrique `foil data`, au Reynolds de 500 000 ou de 1 000 000 (le Reynolds de chaque
+  élément est dans la colonne `Re` des fichiers `sorties/nll_voile-N_elements.csv`).
 
-> **Ce que dit la mesure.** Le LHEEA valide la NLL contre la mesure sur trois ailes alignées au près, à 15° du vent
-> apparent (Malmek, 2023 ; deck S03, diapo 28), et deux ailes du caboteur l'une derrière l'autre perdent 2,8 % de
+> **Ce que dit la mesure.** Le LHEEA valide la NLL contre la mesure sur ce cas de trois ailes alignées au près, à 15° du
+> vent apparent (Malmek, 2023 ; deck S03, diapo 28), et deux ailes du caboteur l'une derrière l'autre perdent 2,8 % de
 > poussée à 48 m d'écart (diapo 29). En soufflerie, sur deux voiles rigides (DynaRig), Bordogna (2020) trouve que
 > l'interaction est **favorable aux deux voiles aux allures moyennes**, et **défavorable à la voile aval aux petits et
 > aux grands angles** de vent apparent (au près et au vent arrière). Le signe de l'interaction dépend donc de l'allure :
 > on ne pose pas « une perte sous le vent » en règle.
 
-**Démonstration de l'enseignant (10 min)**, en fin de partie 2.
+**Démonstration de l'enseignant (5 min)**, en fin de partie 2.
+
+## Variante — Le fichier de l'exemple 9 tel que fourni : une leçon de lecture
+
+*(variante)* Le dossier `variante_trois-ailes-fichier-LHEEA/` contient `trois-ailes.yml`, copie à l'identique de
+l'exemple 9 du LHEEA (`2023_Malmek_3sails.yml`) : même vent, mêmes ailes, mais d'autres réglages (−80, −75 et −70°).
+
+```bash
+cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/variante_trois-ailes-fichier-LHEEA
+bash lancer.sh trois-ailes.yml
+```
+
+- **T3.** Relevez l'incidence effective de chaque voile (`sorties/trois-ailes_results.csv`, colonne `AoA`, signe de
+  l'outil) et comparez-la à la table de profil (même ligne `AoA:` qu'en T2). Que fait l'outil à ces incidences, et que
+  valent alors les C_L (souvenez-vous d'A07, TD 2) ? Calculez chaque voile seule comme à la manipulation 6 (copiez
+  `voile-N-seule.yml` de la manipulation 4 et remettez-y le réglage de ce fichier) : pourquoi ne lit-on dans ce
+  fichier aucune interaction exploitable ?
 
 # Question d'interprétation physique
 
-*(au compte rendu)* Dans l'exemple 9 tel que fourni, comparer la NLL à la théorie des bandes peut-il dire quelque
-chose de l'interaction entre les voiles ? Cette comparaison mêle-t-elle un seul effet ou plusieurs ? Quel calcul
-faudrait-il faire pour isoler l'effet de l'interaction seule, et à quelle condition sur l'incidence des voiles son
-résultat aurait-il un sens ?
+*(au compte rendu)* Vos manipulations 4 à 6 donnent trois calculs : la théorie des bandes, la NLL de chaque voile
+seule et la NLL des trois voiles ensemble. Quel effet mesure l'écart entre les deux premiers, et quel effet l'écart
+entre les deux derniers ? Pourquoi comparer seulement la théorie des bandes à la NLL des trois voiles ensemble ne
+dirait-il rien de l'interaction seule ? À quelle condition sur l'incidence des voiles ces comparaisons ont-elles un
+sens (variante, T3) ?
 
 # Ce qu'il faut rendre
 
 Un compte rendu (une à deux pages), selon les consignes de dépôt données par l'enseignant, avec :
 
-1. les réponses d'A11, A12, A14 et A15 (question 1), **calculs posés** et unités ; pour A12, un tableau par SR ;
+1. les réponses d'A11 (la question 1 traitée en travail personnel), A12, A14 et A15 (question 1), **calculs posés** et
+   unités ; pour A12, un tableau par SR ;
 2. les sorties relevées des manipulations : vitesse de rotation, taux de rotation et efforts de l'exemple 19 ; C_L, C_D
-   et convergence de l'exemple 7 avec et sans plaques, à côté de la mesure ; incidence, C_L, C_x et C_y par voile de
-   l'exemple 9 dans les deux modèles ; ou, si l'outil n'a pas pu tourner, la panne rencontrée et le message d'erreur ;
+   et convergence de l'exemple 7 avec et sans plaques, à côté de la mesure ; incidence, C_L, C_x et C_y par voile des
+   trois ailes au près, en théorie des bandes, en NLL ensemble et en NLL voile seule ; ou, si l'outil n'a pas pu
+   tourner, la panne rencontrée et le message d'erreur ;
 3. vos réponses à T1 et T2 (manipulation 6), avec une capture de la vue si vous le pouvez ;
 4. A15, question 3, et votre réponse à la question d'interprétation, en cinq lignes au plus ;
 5. la **synthèse du TD, aile ou rotor** : la question de synthèse donnée par l'enseignant, qui reprend vos valeurs
@@ -277,13 +324,13 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 # Sources
 
 - LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* : rotor Flettner, puissance de
-  rotation ; validation de l'exemple 9 (Malmek, 2023).
+  rotation ; validation de l'exemple 9 (Malmek, 2023), cas du vent apparent à 15° (réglages des manipulations 4 à 6).
 
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ;
-  exemples 7 (Badalamenti et Prince, 2008, avec ses mesures `data.csv`), 9 (Malmek, 2023, `2023_Malmek_3sails.yml`,
-  copié dans `cas/trois-ailes/trois-ailes.yml`) et 19 (`maxThrustPower`).
-- ParaView (Kitware, licence BSD) ; état `cas/trois-ailes/TD3_trois-ailes.pvsm`, script
-  `cas/trois-ailes/TD3_lancer_les_deux.sh` et repli `scripts/TD3_voir_trois-ailes.py` (ENSM).
+  exemples 7 (Badalamenti et Prince, 2008, avec ses mesures `data.csv`), 9 (Malmek, 2023, `2023_Malmek_3sails.yml`) et
+  19 (`maxThrustPower`), copiés dans `TD3_rotor-et-interactions/` (copies et variantes tracées dans `PROVENANCE.md`).
+- ParaView (Kitware, licence BSD) ; état `TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg/vue.pvsm`, scripts
+  `lancer.sh` et repli `voir_sans-paraview.py` du même dossier (ENSM).
 - C. Badalamenti et S. A. Prince, *The effects of endplates on a rotating cylinder in crossflow*, 26th AIAA Applied
   Aerodynamics Conference, Honolulu, 2008 (mesures reprises dans le `data.csv` de l'exemple 7).
 - K. Malmek, *Rapid Aerodynamic Method for Interacting Sails*, thèse de licence (*licentiate*), Chalmers University of
