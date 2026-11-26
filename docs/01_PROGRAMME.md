@@ -10,10 +10,10 @@ Chaque exercice porte un **niveau** : 1, application directe ; 2, plusieurs éta
 |---|---|---|---|---|---|
 | S1 | 2 h | Aérodynamique : vent apparent, profil 2D | A01, A02, A03, A04 (questions 1-2) | installation, aile elliptique, cas de l'aile du caboteur, vue ParaView du cas, tracé de la table | ce dépôt : [`TD-S1_Aerodynamique.md`](TD-S1_Aerodynamique.md) |
 | S2 | 4 h (2 × 2 h) | Aérodynamique, modélisation : théorie des bandes, ligne portante ; de l'aile du caboteur à la Wing 560 | A05, A06, A07, A08, A17 (variantes : A09, A10) | cas de l'aile du caboteur (bandes, NLL, pont en miroir, ParaView le long de l'envergure), balayage du réglage, exemples 1 et 3 | ce dépôt : [`TD-S2_Bandes-et-ligne-portante.md`](TD-S2_Bandes-et-ligne-portante.md) |
-| S3 | 2 h | Aérodynamique : rotor Flettner, interactions | A11, A12, A14, A15 (question 1) (variante : A13) | exemples 7, 9, 19 | ce dépôt (fiche publiée avant la séance) ; **énoncés d'A12 et d'A13 sur Vega** |
+| S3 | 2 h | Aérodynamique : le rotor Flettner (effet Magnus), et quand les unités se gênent | A11, A12, A14, A15 (question 1 en séance ; 2 en variante ; 3 au compte rendu) (variante : A13) | exemple 7 avec et sans plaques d'extrémité, exemple 19, exemple 9 (trois ailes : NLL, bandes, ParaView) | ce dépôt : [`TD-S3_Rotor-et-interactions.md`](TD-S3_Rotor-et-interactions.md) ; **énoncés d'A12 et d'A13 sur Vega** |
 | S4 | 2 h | Hydrodynamique : équilibre du navire | H01, H02, H03, H04 | — | ce dépôt (fiche publiée avant la séance) ; **énoncé d'H01 sur Vega** |
 | S5 | 1 h | Modélisation : table de performances, hélice, gain vélique | en séance : M01, M03, M05 ; **en travail personnel** : M02, M04 (rendus avec le compte rendu) | — | **énoncés sur Vega** |
-| S6 | — (0 h) | Modélisation : aile ou rotor | M06, **question de synthèse du compte rendu** (pas de séance) | — | ce dépôt (fiche publiée avant la séance) |
+| S6 | — (0 h) | Modélisation : aile ou rotor | M06, **question de synthèse du compte rendu** (pas de séance) | — | compte rendu (pas de séance) |
 | S7 | 1 h | Réglementation : analyse de risque | R01 | — | à venir |
 
 **Total : 12 h en séance** (2 + 4 + 2 + 2 + 1 + 1), comme au référentiel. Le TD 2 étant passé à 4 h, la séance S5
@@ -24,4 +24,4 @@ passe à 1 h : M02 et M04 se font en travail personnel, et M06 devient la questi
 formation non libres (lectures de courbes, tables, schémas) : ceux-là ne sont pas reproduits dans ce dépôt public,
 qui les annonce seulement. Les corrigés, en version courte, sont déposés sur Vega après chaque séance.
 
-**Les fiches des séances 2 à 7** entrent dans ce dépôt au fil des séances.
+**Les fiches des séances suivantes** entrent dans ce dépôt au fil des séances.

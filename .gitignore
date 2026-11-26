@@ -7,6 +7,8 @@ results.csv
 *_0000.csv
 cas/aile-caboteur/TD2_envergure/*.csv
 cas/aile-caboteur/TD2_envergure/*_construction.json
+cas/trois-ailes/*.csv
+cas/trois-ailes/*_construction.json
 *.vtk
 # Exception : la coque du caboteur n'est pas une sortie de l'outil, c'est une donnée du cas (Série 60, domaine public)
 !cas/aile-caboteur/caboteur-serie60.vtk
