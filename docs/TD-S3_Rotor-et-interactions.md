@@ -69,7 +69,7 @@ calcule pas).
 | 4 à 6 — trois ailes au près (exemple 9, cas à 15°) | `manip4-6_trois-ailes-15deg/` | `bash lancer.sh` (après la copie `bandes.yml`) |
 | Variante — le fichier de l'exemple 9 tel que fourni | `variante_trois-ailes-fichier-LHEEA/` | `bash lancer.sh trois-ailes.yml` |
 | Variante V-DynaRig — régler le mât arrière | `variante_dynarig-reglage-mat-arriere/` | `bash lancer.sh -75` (un réglage par calcul) |
-| Démonstration de l'enseignant — deux DynaRigs | `demo_dynarig-greenpeace/` | `bash lancer.sh` |
+| Démonstration de l'enseignant — deux DynaRigs ; fardage (compte rendu) | `demo_dynarig-greenpeace/` | `bash lancer.sh` ; `python3 fardage.py` |
 
 Table: Tableau 1 — Où travailler : un dossier par manipulation
 
@@ -345,7 +345,10 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 4. A15, question 3, et votre réponse à la question d'interprétation, en cinq lignes au plus ;
 5. la **synthèse du TD, aile ou rotor** : la question de synthèse donnée par l'enseignant, qui reprend vos valeurs
    d'A12 (SR = 2 et 3) et celles de l'aile du caboteur (TD 2) ;
-6. *(réservé)* le fardage du navire : question donnée avec la démonstration.
+6. **le fardage du navire de la démonstration** : dans `demo_dynarig-greenpeace/`, lancez `python3 fardage.py` (méthode
+   empirique de Fujiwara, Ueno et Ikeda, 2005, appliquée aux aires projetées de la coque générique et de ses
+   superstructures, au vent de la démonstration). Quelle est la force de fardage longitudinale, et quelle part de la
+   poussée des deux mâts (137 kN) retire-t-elle ? Que vaut la force latérale de fardage ? Deux lignes.
 
 # Sources
 

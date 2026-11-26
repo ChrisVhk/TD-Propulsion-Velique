@@ -47,7 +47,8 @@ TD-Propulsion-Velique/
 │   │                                     voile-N-seule.yml, lancer.sh, vue.pvsm, voir_sans-paraview.py, vue-attendue.png
 │   ├── variante_trois-ailes-fichier-LHEEA/  trois-ailes.yml (= exemple 9 tel que fourni), lancer.sh
 │   ├── variante_dynarig-reglage-mat-arriere/  V-DynaRig : régler le mât arrière (lancer.sh RÉGLAGE)
-│   └── demo_dynarig-greenpeace/          démonstration : deux DynaRigs d'école (polaire d'école, hypothèses), lancer.sh
+│   └── demo_dynarig-greenpeace/          démonstration : deux DynaRigs d'école (polaire d'école, hypothèses), coque
+│                                         générique, lancer.sh, vue.pvsm, voir_sans-paraview.py, fardage.py
 └── cas/
     ├── LICENSE_CN-AeroModels.txt         EPL 2.0
     ├── aile-caboteur/                    le cas ENSM : aile posée sur le pont du caboteur
