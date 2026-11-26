@@ -3,14 +3,14 @@
 """
 Voir l'aile du caboteur dans ParaView — TD Propulsion vélique (EGN-S7, ENSM)
 
-Repli de l'état ParaView vue.pvsm (même dossier, TD1_aerodynamique/manip2-3_aile-caboteur/) :
+Repli de l'état ParaView vue.pvsm (même dossier, TD1_aerodynamique/manip2-et-3_aile-caboteur/) :
 ce script construit la même vue sans passer par l'état. (L'état lui-même est fabriqué par l'enseignant dans
 l'interface graphique de ParaView pour Windows, à partir de la même fonction construire_vue : un état destiné
 à l'interface se fabrique et se teste dans l'interface.)
 
 UNE LIGNE, dans le terminal Ubuntu (WSL), depuis le dossier de la manipulation :
 
-    cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-3_aile-caboteur
+    cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-et-3_aile-caboteur
     pvpython voir_sans-paraview.py
 
 (pvpython vient avec ParaView de WSL : sudo apt install paraview)
@@ -38,7 +38,7 @@ Ce que fait le script :
 
 Options :
   --donnees DOSSIER   ne relance pas l'outil : lit les .vtk déjà écrits dans DOSSIER
-  --depot DOSSIER     dossier du dépôt du TD, si le script n'est pas rangé dans TD1_aerodynamique/manip2-3_aile-caboteur/
+  --depot DOSSIER     dossier du dépôt du TD, si le script n'est pas rangé dans TD1_aerodynamique/manip2-et-3_aile-caboteur/
   --png FICHIER       écrit une capture (1920 x 1080 par défaut)
   --sans-fenetre      n'ouvre pas de fenêtre (avec --png)
 
@@ -94,7 +94,7 @@ CAMERA_DIRECTION = [-0.296, 0.814, -0.500]
 CAMERA_DEMI_HAUTEUR = 42.0   # m (projection parallèle) ; 39 avant la 11 i : 42 garde le caboteur entier (110 m)
 
 
-CAS = ("TD1_aerodynamique", "manip2-3_aile-caboteur")   # dossier de la manipulation, dans le dépôt (session 17)
+CAS = ("TD1_aerodynamique", "manip2-et-3_aile-caboteur")   # dossier de la manipulation, dans le dépôt (session 17)
 
 
 def racine_depot(depot=None):

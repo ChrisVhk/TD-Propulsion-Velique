@@ -9,7 +9,7 @@ construire_vue : un état destiné à l'interface se fabrique et se teste dans l
 
 Avant : les deux calculs, dans le terminal Ubuntu (WSL) :
 
-    cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg
+    cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-a-6_trois-ailes-15deg
     bash lancer.sh
 
 Puis, UNE LIGNE, depuis le même dossier (pvpython vient avec ParaView de WSL : sudo apt install paraview) :

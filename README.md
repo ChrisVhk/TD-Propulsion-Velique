@@ -43,19 +43,19 @@ TD-Propulsion-Velique/
 │   └── exemples-LHEEA/                   exemples du dépôt de CN-AeroModels (LHEEA), intacts, noms d'origine ;
 │                                         LICENSE_CN-AeroModels.txt (EPL 2.0)
 ├── TD1_aerodynamique/
-│   ├── manip2-3_aile-caboteur/           aile-caboteur.yml (le cas ENSM : aile posée sur le pont du caboteur),
+│   ├── manip2-et-3_aile-caboteur/        aile-caboteur.yml (le cas ENSM : aile posée sur le pont du caboteur),
 │   │                                     lancer.sh, vue.pvsm, voir_sans-paraview.py, vue-attendue.png
 │   └── manip4_table-de-profil/           tracer_table.py
 ├── TD2_bandes-et-ligne-portante/
-│   ├── manip1-5_aile-caboteur/           aile-caboteur.yml (copie de celui du TD 1), lancer.sh (un calcul ; sans
+│   ├── manip1-a-5_aile-caboteur/         aile-caboteur.yml (copie de celui du TD 1), lancer.sh (un calcul ; sans
 │   │                                     fichier : les trois calculs de la manipulation 4), vue.pvsm,
 │   │                                     voir_sans-paraview.py, vue-attendue.png
 │   ├── manip6_une-bande-ou-dix/          lancer.sh (exemple 1 du LHEEA, lu dans communs/)
 │   └── variante_graf-2014/               lancer.sh (V2 : votre copie de l'exemple 3)
 └── TD3_rotor-et-interactions/
     ├── manip1_rotor-sans-vent/           35x5_flettner.yml (= exemple 19), lancer.sh
-    ├── manip2-3_rotor-plaques/           2008_Badalamenti.yml et data.csv (= exemple 7), lancer.sh
-    ├── manip4-6_trois-ailes-15deg/       trois ailes au près : trois-ailes-15deg.yml (exemple 9, réglages du cas à 15°),
+    ├── manip2-et-3_rotor-plaques/        2008_Badalamenti.yml et data.csv (= exemple 7), lancer.sh
+    ├── manip4-a-6_trois-ailes-15deg/     trois ailes au près : trois-ailes-15deg.yml (exemple 9, réglages du cas à 15°),
     │                                     voile-N-seule.yml, lancer.sh, vue.pvsm, voir_sans-paraview.py, vue-attendue.png
     ├── variante_trois-ailes-fichier-LHEEA/  trois-ailes.yml (= exemple 9 tel que fourni), lancer.sh
     ├── variante_dynarig-reglage-mat-arriere/  V-DynaRig : régler le mât arrière (lancer.sh RÉGLAGE)

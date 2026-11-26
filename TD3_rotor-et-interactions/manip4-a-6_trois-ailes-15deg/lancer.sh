@@ -2,7 +2,7 @@
 # TD 3 (EGN-S7, ENSM), manipulations 4 à 6 : les trois ailes de Malmek au près (vent apparent à 15° de l'avant),
 # en théorie des bandes, en NLL, puis chaque voile seule en NLL ; sorties pour ParaView.
 #
-#   cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg
+#   cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-a-6_trois-ailes-15deg
 #   bash lancer.sh
 #
 # Fichiers lus (ce dossier, non modifiés) :

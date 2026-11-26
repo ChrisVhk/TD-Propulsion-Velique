@@ -13,7 +13,7 @@ Le script relance CN-AeroModels sur deux cas, dans un dossier temporaire (rien n
 dans le dépôt), et compare le résultat à une valeur de référence :
 
   1. aile elliptique (communs/exemples-LHEEA/2- nonlinear lifting line/elliptic.yml) : C_L = 0,3655 ;
-  2. aile du caboteur (TD1_aerodynamique/manip2-3_aile-caboteur/aile-caboteur.yml)  : F_x = 45 015,9 N.
+  2. aile du caboteur (TD1_aerodynamique/manip2-et-3_aile-caboteur/aile-caboteur.yml)  : F_x = 45 015,9 N.
 
 Les deux valeurs de référence sont celles de l'outil v0.5.1, déjà données dans
 scripts/verifie_mon_install.py et dans la fiche du TD S1. Tolérance relative : 1e-3.
@@ -33,7 +33,7 @@ CL_ELLIPTIQUE = 0.3655       # aile elliptique, AR = 4 : sortie de CN-AeroModels
 FX_CABOTEUR = 45015.9        # aile du caboteur, F_x en N : sortie de CN-AeroModels v0.5.1
 
 CAS_ELLIPTIQUE = os.path.join(RACINE, "communs", "exemples-LHEEA", "2- nonlinear lifting line", "elliptic.yml")
-CAS_CABOTEUR = os.path.join(RACINE, "TD1_aerodynamique", "manip2-3_aile-caboteur", "aile-caboteur.yml")
+CAS_CABOTEUR = os.path.join(RACINE, "TD1_aerodynamique", "manip2-et-3_aile-caboteur", "aile-caboteur.yml")
 TABLE_PROFIL = os.path.join(RACINE, "communs", "exemples-LHEEA", "airfoil_data", "NACA0015_v2.yml")
 
 
@@ -74,7 +74,7 @@ def fx_caboteur():
     # Le cas lit sa table par le chemin relatif ../../../communs/exemples-LHEEA/airfoil_data/, depuis le dossier où
     # tourne l'outil (sorties/ du dossier de la manipulation, comme lancer.sh) : on reproduit cette arborescence.
     with tempfile.TemporaryDirectory() as d:
-        dossier_cas = os.path.join(d, "TD1_aerodynamique", "manip2-3_aile-caboteur")
+        dossier_cas = os.path.join(d, "TD1_aerodynamique", "manip2-et-3_aile-caboteur")
         dossier_sorties = os.path.join(dossier_cas, "sorties")
         dossier_table = os.path.join(d, "communs", "exemples-LHEEA", "airfoil_data")
         os.makedirs(dossier_sorties)

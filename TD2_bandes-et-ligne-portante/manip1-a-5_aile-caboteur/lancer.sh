@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # TD 2 (EGN-S7, ENSM), manipulations 1 à 5 : le cas de l'aile du caboteur et vos copies, sorties dans sorties/.
 #
-#   cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+#   cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur
 #   bash lancer.sh aile-caboteur.yml     # manipulations 1, 2, 3 et 5 : un calcul (nll.yml, pont.yml, balayage.yml…)
 #   bash lancer.sh                       # manipulation 4 : les trois calculs pour ParaView, puis vue.pvsm
 #

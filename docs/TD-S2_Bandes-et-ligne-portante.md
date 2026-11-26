@@ -60,11 +60,11 @@ vent vrai 10,288 m/s, navire à 7,2016 m/s ; AWS = 12,558 m/s, AWA = 55,01° ; r
 
 | Manipulation | Dossier (dans `~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/`) | Commande |
 |---|---|---|
-| 1 — relancer le cas de l'aile du caboteur | `manip1-5_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml` |
-| 2 — NLL, pied libre | `manip1-5_aile-caboteur/` | `bash lancer.sh nll.yml` (après la copie `nll.yml`) |
-| 3 — le pont en miroir | `manip1-5_aile-caboteur/` | `bash lancer.sh pont.yml` (après la copie `pont.yml`) |
-| 4 — la portance le long de l'envergure (ParaView) | `manip1-5_aile-caboteur/` | `bash lancer.sh` (sans fichier), puis `vue.pvsm` dans ParaView |
-| 5 — balayer le réglage | `manip1-5_aile-caboteur/` | `bash lancer.sh balayage.yml` (après la copie `balayage.yml`) |
+| 1 — relancer le cas de l'aile du caboteur | `manip1-a-5_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml` |
+| 2 — NLL, pied libre | `manip1-a-5_aile-caboteur/` | `bash lancer.sh nll.yml` (après la copie `nll.yml`) |
+| 3 — le pont en miroir | `manip1-a-5_aile-caboteur/` | `bash lancer.sh pont.yml` (après la copie `pont.yml`) |
+| 4 — la portance le long de l'envergure (ParaView) | `manip1-a-5_aile-caboteur/` | `bash lancer.sh` (sans fichier), puis `vue.pvsm` dans ParaView |
+| 5 — balayer le réglage | `manip1-a-5_aile-caboteur/` | `bash lancer.sh balayage.yml` (après la copie `balayage.yml`) |
 | 6 — l'exemple 1 : une bande ou dix | `manip6_une-bande-ou-dix/` | `bash lancer.sh 1_element.yml`, puis `bash lancer.sh 10_elements.yml` |
 | Variante V2 — Graf 2014 (exemple 3) | `variante_graf-2014/` | `bash lancer.sh graf.yml` (après la copie `graf.yml`) |
 
@@ -99,10 +99,10 @@ Gardez d'une séance à l'autre vos fichiers `nll.yml` et `pont.yml` et les vale
 > jamais** le chemin : dans le terminal Ubuntu, placez-vous dans le dossier voulu, tapez `wslpath -w .`, puis copiez
 > l'adresse affichée (sélection à la souris, **Ctrl+Maj+C**) et collez-la. Un chemin retapé se trompe facilement d'une
 > majuscule, et Linux distingue `aile-caboteur` de `Aile-caboteur` : le fichier est alors « introuvable ». Dans ParaView, à
-> *Load State*, le *Data Directory* est le **dossier de la manipulation** (il se termine par `manip1-5_aile-caboteur`).
+> *Load State*, le *Data Directory* est le **dossier de la manipulation** (il se termine par `manip1-a-5_aile-caboteur`).
 
 ```bash
-cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur
 bash lancer.sh aile-caboteur.yml
 ```
 
@@ -113,11 +113,11 @@ absolues).
 ## Manipulation 2 — Le cas de l'aile du caboteur en ligne portante non linéaire (pour A06, question 3)
 
 ```bash
-cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur
 cp aile-caboteur.yml nll.yml
 ```
 
-Dans `manip1-5_aile-caboteur/`, vous avez copié `aile-caboteur.yml` en `nll.yml` ; dans `nll.yml` :
+Dans `manip1-a-5_aile-caboteur/`, vous avez copié `aile-caboteur.yml` en `nll.yml` ; dans `nll.yml` :
 
 1. remplacez la ligne `        model: strip theory` par les trois lignes suivantes (même indentation que la ligne
    remplacée, puis quatre espaces de plus) :
@@ -160,11 +160,11 @@ du pied, comme le ferait un miroir. L'outil le représente par un **plan de sym�
 de l'aile, et calcule les vitesses induites par les deux.
 
 ```bash
-cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur
 cp nll.yml pont.yml
 ```
 
-Dans `manip1-5_aile-caboteur/`, vous avez copié `nll.yml` (à 20 éléments, fin de la manipulation 2) en `pont.yml`. Dans
+Dans `manip1-a-5_aile-caboteur/`, vous avez copié `nll.yml` (à 20 éléments, fin de la manipulation 2) en `pont.yml`. Dans
 `pont.yml`, sous la ligne `        control: commands`, insérez le bloc suivant, en alignant `plane of symmetry:` sur
 `control:` (huit espaces) :
 
@@ -203,7 +203,7 @@ lancé sans fichier, les lance l'un après l'autre dans un dossier de calcul à 
 1. **Lancer les trois calculs**, dans le terminal Ubuntu :
 
    ```bash
-   cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+   cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur
    bash lancer.sh
    ```
 
@@ -211,10 +211,10 @@ lancé sans fichier, les lance l'un après l'autre dans un dossier de calcul à 
    (F_x = 32136.3 N) et `nll_pont` (F_x = 39530 N), puis « Les trois calculs sont faits ». S'il s'arrête avant, il
    dit quel fichier manque ou n'est pas à 20 éléments.
 2. **Afficher l'adresse Windows du dossier**, toujours dans le terminal : `wslpath -w .` ; copiez l'adresse affichée
-   (sélection à la souris, **Ctrl+Maj+C**). Elle se termine par `TD2_bandes-et-ligne-portante\manip1-5_aile-caboteur`.
+   (sélection à la souris, **Ctrl+Maj+C**). Elle se termine par `TD2_bandes-et-ligne-portante\manip1-a-5_aile-caboteur`.
 3. **Charger l'état dans ParaView pour Windows** : *File > Load State…* ; dans le champ *File name*, collez l'adresse,
    **Entrée**, sélectionnez `vue.pvsm`, *OK*. Dans *Load State Options* : **Search files under specified
-   directory** ; *Data Directory* : laissez la valeur proposée (elle se termine par `manip1-5_aile-caboteur` ;
+   directory** ; *Data Directory* : laissez la valeur proposée (elle se termine par `manip1-a-5_aile-caboteur` ;
    ParaView y cherche les `.vtk`, jusque dans `sorties/`) ; *OK*.
 
 **Ce que vous devez voir** : un onglet *Envergure* avec deux vues (figure 1). Un chargement réussi n'ouvre **aucune**
@@ -228,7 +228,7 @@ fenêtre *Output Messages*.
 - À droite, **une courbe par calcul** : |C_L| de chaque élément (axe horizontal) en fonction de sa hauteur au-dessus
   du pont (axe vertical). Un point par élément.
 
-![Figure 1 — La vue attendue dans ParaView : les trois ailes (théorie des bandes, NLL pied libre, NLL pont en miroir) colorées par le C_L de chaque élément, et |C_L| en fonction de la hauteur au-dessus du pont](../TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur/vue-attendue.png)
+![Figure 1 — La vue attendue dans ParaView : les trois ailes (théorie des bandes, NLL pied libre, NLL pont en miroir) colorées par le C_L de chaque élément, et |C_L| en fonction de la hauteur au-dessus du pont](../TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur/vue-attendue.png)
 
 Si l'onglet ne montre que les textes, sans ailes, ou si *Output Messages* affiche `Could not open file`, ParaView n'a
 pas trouvé les données : relancez l'étape 1, puis l'étape 3 en vérifiant le *Data Directory*.
@@ -281,11 +281,11 @@ Table: Tableau 1 — L'aile du caboteur et la Wing 560 (sources de la Wing 560 :
 ## Manipulation 5 — Balayer le réglage (pour A07)
 
 ```bash
-cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur
 cp aile-caboteur.yml balayage.yml
 ```
 
-Dans `manip1-5_aile-caboteur/`, vous avez copié `aile-caboteur.yml` en `balayage.yml`. La ligne `setting`, à la fin du fichier, fixe le réglage :
+Dans `manip1-a-5_aile-caboteur/`, vous avez copié `aile-caboteur.yml` en `balayage.yml`. La ligne `setting`, à la fin du fichier, fixe le réglage :
 
 ```yaml
     setting: {unit: deg, values: [34.4, 34.4]}
@@ -370,7 +370,7 @@ Facultatives : seulement si votre binôme a fini A05 à A08 et A17 (questions 1 
 
 ## V1 — Convergence de la NLL selon le nombre d'éléments
 
-Dans `manip1-5_aile-caboteur/`, reprenez `nll.yml` (manipulation 2, pied libre ; `bash lancer.sh nll.yml`) et faites varier `number of elements` : 3, 5, 10, 20 et 40. Tracez
+Dans `manip1-a-5_aile-caboteur/`, reprenez `nll.yml` (manipulation 2, pied libre ; `bash lancer.sh nll.yml`) et faites varier `number of elements` : 3, 5, 10, 20 et 40. Tracez
 F_x en fonction du nombre d'éléments. À partir de combien d'éléments F_x ne bouge-t-il plus de plus de 0,1 % ? Où
 vous arrêteriez-vous, et pourquoi ?
 
@@ -430,9 +430,9 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `airfoil_data/NACA0015_v2.yml`, exemple 1 (`1_element.yml`, `10_elements.yml`).
-- ParaView (Kitware, licence BSD) ; état `TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur/vue.pvsm`, script
+- ParaView (Kitware, licence BSD) ; état `TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur/vue.pvsm`, script
   `lancer.sh` et repli `voir_sans-paraview.py`, même dossier (ENSM).
-- Cas de l'aile du caboteur, `TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur/aile-caboteur.yml` (ENSM, construit
+- Cas de l'aile du caboteur, `TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur/aile-caboteur.yml` (ENSM, construit
   sur l'exemple 1 ; copie à l'identique de celui du TD 1) ;
   mêmes forces que le tutoriel 1 de la formation du LHEEA ; moments différents, l'aile étant posée sur le pont.
 - Support d'exercices CN-AeroModels de l'ENSM : document interne, non distribué ; les valeurs d'A08, question 3 en

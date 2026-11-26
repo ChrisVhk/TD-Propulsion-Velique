@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # TD 1 (EGN-S7, ENSM), manipulations 2 et 3 : lancer CN-AeroModels sur le cas de l'aile du caboteur, sorties dans sorties/.
 #
-#   cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-3_aile-caboteur
+#   cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-et-3_aile-caboteur
 #   bash lancer.sh aile-caboteur.yml            # manipulation 2
 #   bash lancer.sh aile-caboteur.yml --vtk 1    # manipulation 3 : en plus, les fichiers .vtk pour ParaView
 #

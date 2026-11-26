@@ -65,8 +65,8 @@ calcule pas).
 | Manipulation | Dossier (dans `~/TD-Propulsion-Velique/TD3_rotor-et-interactions/`) | Commande |
 |---|---|---|
 | 1 — rotor sans vent (exemple 19) | `manip1_rotor-sans-vent/` | `bash lancer.sh 35x5_flettner.yml` |
-| 2 et 3 — rotor avec et sans plaques (exemple 7) | `manip2-3_rotor-plaques/` | `bash lancer.sh 2008_Badalamenti.yml`, puis `bash lancer.sh sans-plaques.yml` |
-| 4 à 6 — trois ailes au près (exemple 9, cas à 15°) | `manip4-6_trois-ailes-15deg/` | `bash lancer.sh` (après la copie `bandes.yml`) |
+| 2 et 3 — rotor avec et sans plaques (exemple 7) | `manip2-et-3_rotor-plaques/` | `bash lancer.sh 2008_Badalamenti.yml`, puis `bash lancer.sh sans-plaques.yml` |
+| 4 à 6 — trois ailes au près (exemple 9, cas à 15°) | `manip4-a-6_trois-ailes-15deg/` | `bash lancer.sh` (après la copie `bandes.yml`) |
 | Variante — le fichier de l'exemple 9 tel que fourni | `variante_trois-ailes-fichier-LHEEA/` | `bash lancer.sh trois-ailes.yml` |
 | Variante V-DynaRig — régler le mât arrière | `variante_dynarig-reglage-mat-arriere/` | `bash lancer.sh -75` (un réglage par calcul) |
 | Démonstration de l'enseignant — deux DynaRigs ; fardage (compte rendu) | `demo_dynarig-greenpeace/` | `bash lancer.sh` ; `python3 fardage.py` |
@@ -85,7 +85,7 @@ la copie et lancez l'outil sur la copie, dans le dossier de la manipulation.
 > jamais** le chemin : dans le terminal Ubuntu, placez-vous dans le dossier voulu, tapez `wslpath -w .`, puis copiez
 > l'adresse affichée (sélection à la souris, **Ctrl+Maj+C**) et collez-la. Linux distingue `trois-ailes` de
 > `Trois-ailes` : un chemin retapé donne vite un fichier « introuvable ». Dans ParaView, à *Load State*, le *Data
-> Directory* est le **dossier de la manipulation** (ici, il se termine par `manip4-6_trois-ailes-15deg`).
+> Directory* est le **dossier de la manipulation** (ici, il se termine par `manip4-a-6_trois-ailes-15deg`).
 
 # Déroulé de la séance
 
@@ -120,7 +120,7 @@ la colonne `AoA/SR` le taux de rotation ; `sorties/35x5_flettner_results.csv` do
 ## Manipulation 2 — Exemple 7 : le rotor de Badalamenti et Prince, avec ses plaques (pour A11)
 
 ```bash
-cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip2-3_rotor-plaques
+cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip2-et-3_rotor-plaques
 bash lancer.sh 2008_Badalamenti.yml
 ```
 
@@ -190,7 +190,7 @@ retenu est-il dans la table du rotor (lisez un des avertissements) ?
 
 ## Manipulation 4 — Trois ailes de Malmek au près, les trois ensemble en NLL
 
-Le dossier `manip4-6_trois-ailes-15deg/` contient `trois-ailes-15deg.yml` : trois ailes de type Oceanbird à l'échelle
+Le dossier `manip4-a-6_trois-ailes-15deg/` contient `trois-ailes-15deg.yml` : trois ailes de type Oceanbird à l'échelle
 de la soufflerie (1,385 m de haut), alignées le long de l'axe x, l'aile 1 à l'avant, dans un vent de 25 m/s qui arrive
 à 15° de l'avant, navire à l'arrêt. C'est une **copie de l'exemple 9 du LHEEA** (`2023_Malmek_3sails.yml`) dont seuls
 les trois réglages changent : ce sont ceux du cas « vent apparent à 15° » du tutoriel du LHEEA, validé contre la
@@ -199,7 +199,7 @@ le pont du TD 2). Le dossier contient aussi `voile-1-seule.yml`, `voile-2-seule.
 fichier avec **une seule voile**, à la même place et au même réglage. Lancez d'abord les trois voiles ensemble :
 
 ```bash
-cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg
+cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-a-6_trois-ailes-15deg
 mkdir -p sorties && cd sorties && CN-AeroModels ../trois-ailes-15deg.yml; cd ..
 ```
 
@@ -211,7 +211,7 @@ et −15** (colonne `setting`) ; ce sont les données du fichier.
 
 ## Manipulation 5 — Le même cas en théorie des bandes
 
-Dans `manip4-6_trois-ailes-15deg/`, copiez `trois-ailes-15deg.yml` en `bandes.yml` ; dans `bandes.yml`, remplacez la
+Dans `manip4-a-6_trois-ailes-15deg/`, copiez `trois-ailes-15deg.yml` en `bandes.yml` ; dans `bandes.yml`, remplacez la
 ligne `      - model: nonlinear lifting line` par `      - model: strip theory` (même indentation, rien d'autre),
 puis :
 
@@ -229,7 +229,7 @@ l'incidence géométrique) ; l'incidence effective est dans `sorties/results.csv
 1. **Lancer tous les calculs avec les sorties ParaView**, dans le terminal Ubuntu :
 
    ```bash
-   cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg
+   cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/manip4-a-6_trois-ailes-15deg
    bash lancer.sh
    ```
 
@@ -239,10 +239,10 @@ l'incidence géométrique) ; l'incidence effective est dans `sorties/results.csv
    trois lignes, la ligne « Somme des C_x », puis « Les calculs sont faits ». S'il s'arrête avant, il dit quel fichier
    manque ou en quoi `bandes.yml` diffère de `trois-ailes-15deg.yml`.
 2. **Afficher l'adresse Windows du dossier** : `wslpath -w .` ; copiez l'adresse (**Ctrl+Maj+C**). Elle se termine
-   par `TD3_rotor-et-interactions\manip4-6_trois-ailes-15deg`.
+   par `TD3_rotor-et-interactions\manip4-a-6_trois-ailes-15deg`.
 3. **Charger l'état dans ParaView pour Windows** : *File > Load State…* ; dans *File name*, collez l'adresse,
    **Entrée**, sélectionnez `vue.pvsm`, *OK*. Dans *Load State Options* : **Search files under specified directory** ;
-   *Data Directory* : laissez la valeur proposée (elle se termine par `manip4-6_trois-ailes-15deg`) ; *OK*.
+   *Data Directory* : laissez la valeur proposée (elle se termine par `manip4-a-6_trois-ailes-15deg`) ; *OK*.
 
 **Ce que vous devez voir** : deux onglets, *Interaction* et *Bandes et NLL*, chacun avec deux vues ; cliquez sur
 l'onglet *Interaction* s'il n'est pas devant (figure 1). Un chargement réussi n'ouvre **aucune** fenêtre *Output Messages*.
@@ -268,7 +268,7 @@ par voile, trait plein pour la NLL, tirets pour la théorie des bandes. Dans cet
 et en bas, pas les voiles entre elles** : les couleurs de la rangée « Bandes » diffèrent déjà par les réglages (−5,
 −10 et −15°), pas par l'interaction.
 
-![Figure 1 — La vue attendue dans ParaView, onglet Interaction : les trois voiles colorées par l'écart d'incidence NLL − bandes, le bilan des C_x, et, vu de dessus, le vent apparent local de chaque voile en bandes et en NLL](../TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg/vue-attendue.png)
+![Figure 1 — La vue attendue dans ParaView, onglet Interaction : les trois voiles colorées par l'écart d'incidence NLL − bandes, le bilan des C_x, et, vu de dessus, le vent apparent local de chaque voile en bandes et en NLL](../TD3_rotor-et-interactions/manip4-a-6_trois-ailes-15deg/vue-attendue.png)
 
 Si l'onglet ne montre que les textes, ou si *Output Messages* affiche `Could not open file`, ParaView n'a pas trouvé
 les données : relancez l'étape 1, puis l'étape 3 en vérifiant le *Data Directory*. Repli, sans l'interface (ParaView
@@ -379,7 +379,7 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ;
   exemples 7 (Badalamenti et Prince, 2008, avec ses mesures `data.csv`), 9 (Malmek, 2023, `2023_Malmek_3sails.yml`) et
   19 (`maxThrustPower`), copiés dans `TD3_rotor-et-interactions/` (copies et variantes tracées dans `PROVENANCE.md`).
-- ParaView (Kitware, licence BSD) ; état `TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg/vue.pvsm`, scripts
+- ParaView (Kitware, licence BSD) ; état `TD3_rotor-et-interactions/manip4-a-6_trois-ailes-15deg/vue.pvsm`, scripts
   `lancer.sh` et repli `voir_sans-paraview.py` du même dossier (ENSM).
 - C. Badalamenti et S. A. Prince, *The effects of endplates on a rotating cylinder in crossflow*, 26th AIAA Applied
   Aerodynamics Conference, Honolulu, 2008 (mesures reprises dans le `data.csv` de l'exemple 7).

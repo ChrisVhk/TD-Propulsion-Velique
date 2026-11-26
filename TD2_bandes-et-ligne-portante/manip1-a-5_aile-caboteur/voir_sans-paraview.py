@@ -3,13 +3,13 @@
 """
 Voir la portance le long de l'envergure dans ParaView — TD 2 Propulsion vélique (EGN-S7, ENSM), manipulation 4
 
-Repli de l'état ParaView vue.pvsm (même dossier, TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur/) : ce script construit la même vue sans passer par l'état.
+Repli de l'état ParaView vue.pvsm (même dossier, TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur/) : ce script construit la même vue sans passer par l'état.
 (L'état lui-même est enregistré par l'interface graphique de ParaView pour Windows, à partir de la même fonction
 construire_vue : un état destiné à l'interface se fabrique et se teste dans l'interface.)
 
 Avant : les trois calculs, dans le terminal Ubuntu (WSL) :
 
-    cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+    cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur
     bash lancer.sh
 
 Puis, UNE LIGNE, depuis le même dossier (pvpython vient avec ParaView de WSL : sudo apt install paraview) :
@@ -69,7 +69,7 @@ Z_VISEE = -5.0                        # m : centre de l'écran (place pour le ti
 def dossier_par_defaut():
     ici = os.path.dirname(os.path.abspath(__file__))
     for c in (os.path.join(ici, "sorties"),
-              os.path.expanduser("~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur/sorties")):
+              os.path.expanduser("~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-a-5_aile-caboteur/sorties")):
         if os.path.isdir(c):
             return c
     sys.exit("Dossier sorties/ introuvable : lancez d'abord  bash lancer.sh  (sans argument) dans ce dossier.")

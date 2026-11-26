@@ -69,8 +69,8 @@ qui se fait dans **ParaView pour Windows**.
 |---|---|---|
 | 0 — installer l'environnement et l'outil | dossier du dépôt (`scripts/`) | `bash scripts/installer_cnaero.sh` |
 | 1 — vérifier l'installation (aile elliptique) | dossier du dépôt (`scripts/`) | `python3 scripts/verifie_mon_install.py` |
-| 2 — le cas de l'aile du caboteur | `TD1_aerodynamique/manip2-3_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml` |
-| 3 — le cas dans ParaView | `TD1_aerodynamique/manip2-3_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml --vtk 1`, puis `vue.pvsm` dans ParaView |
+| 2 — le cas de l'aile du caboteur | `TD1_aerodynamique/manip2-et-3_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml` |
+| 3 — le cas dans ParaView | `TD1_aerodynamique/manip2-et-3_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml --vtk 1`, puis `vue.pvsm` dans ParaView |
 | 4 — tracer la table de profil | `TD1_aerodynamique/manip4_table-de-profil/` | `python3 tracer_table.py` |
 
 Table: Tableau 1 — Où travailler : un dossier par manipulation
@@ -135,7 +135,7 @@ pour le TD ». Sinon, voir `docs/00b_CA_NA_PAS_MARCHE.md`, et renvoyez le bloc e
 Faire d'abord l'exercice A02 à la main, puis :
 
 ```bash
-cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-3_aile-caboteur
+cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-et-3_aile-caboteur
 bash lancer.sh aile-caboteur.yml
 ```
 
@@ -167,7 +167,7 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
    manipulation :
 
    ```bash
-   cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-3_aile-caboteur
+   cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-et-3_aile-caboteur
    bash lancer.sh aile-caboteur.yml --vtk 1
    ls sorties/*.vtk
    ```
@@ -183,7 +183,7 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
    wslpath -w .
    ```
 
-   Le terminal affiche une adresse du type `\\wsl.localhost\Ubuntu\home\<votre nom>\TD-Propulsion-Velique\TD1_aerodynamique\manip2-3_aile-caboteur`
+   Le terminal affiche une adresse du type `\\wsl.localhost\Ubuntu\home\<votre nom>\TD-Propulsion-Velique\TD1_aerodynamique\manip2-et-3_aile-caboteur`
    (le nom `Ubuntu` peut varier selon votre installation). C'est par cette adresse que Windows voit les fichiers de WSL.
    Sélectionnez-la à la souris et copiez-la avec **Ctrl+Maj+C** (dans le terminal, un clic droit sans sélection
    *colle* au lieu de copier) ; ne copiez pas le retour à la ligne.
@@ -194,7 +194,7 @@ des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un �
 5. **Dire à ParaView où sont les données.** Une fenêtre *Load State Options* s'ouvre :
    - *Load State Data File Options* : choisir **Search files under specified directory** ;
    - *Data Directory* : **laissez la valeur proposée**. C'est le dossier de l'état ; ParaView y cherche les `.vtk`,
-     jusque dans `sorties/` ; elle se termine par `manip2-3_aile-caboteur` (sinon, effacez le champ et collez
+     jusque dans `sorties/` ; elle se termine par `manip2-et-3_aile-caboteur` (sinon, effacez le champ et collez
      l'adresse de l'étape 2) ;
    - laissez la case *Only Use Files In Data Directory* telle quelle ;
    - *OK*.
@@ -218,7 +218,7 @@ La légende est ici :
   Todd, 1963, domaine public), sans bulbe ; la flottaison est à z = 0, le pont 2,5 m plus haut : l'aile part du pont, rien d'elle n'est sous le
   pont.
 
-![Figure 1 — La vue attendue dans ParaView : le caboteur (Série 60, à l'échelle), l'aile posée sur le pont colorée par C_L, les efforts par bande (vert) et le vent vrai (gris), repère NED](../TD1_aerodynamique/manip2-3_aile-caboteur/vue-attendue.png)
+![Figure 1 — La vue attendue dans ParaView : le caboteur (Série 60, à l'échelle), l'aile posée sur le pont colorée par C_L, les efforts par bande (vert) et le vent vrai (gris), repère NED](../TD1_aerodynamique/manip2-et-3_aile-caboteur/vue-attendue.png)
 
 **Le repère des fichiers est le repère NED** : x vers le nord (l'avant du navire, au cap 000°), y vers l'est (tribord),
 z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son pied est à
@@ -237,7 +237,7 @@ Les boutons ±X et ±Y montrent l'aile la tête en bas : ParaView y met +z en ha
 **Si l'onglet ne montre que le titre, la barre de couleur et le repère x, y, z, sans aile, sans mer, sans navire et
 sans flèches**, ou si une fenêtre *Output Messages* s'ouvre avec `Could not open file`, ParaView n'a pas trouvé les
 données : vérifiez que `ls sorties/*.vtk` affiche bien les cinq fichiers (étape 1), puis recommencez *File > Load State* (étape 4) en vérifiant
-que *Data Directory* se termine par `manip2-3_aile-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
+que *Data Directory* se termine par `manip2-et-3_aile-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
 fenêtre *Output Messages*.
 
 **Deux questions d'observation, et une troisième facultative** (aucune valeur à calculer pour P1 et P2 ; une division
@@ -285,7 +285,7 @@ C_L ≈ 0 à AoA = 0°. Sans Python : copiez les listes d'un ou deux nombres de 
 
 **Objectif.** Lire la convention NED d'un fichier d'entrée (`aile-caboteur.yml` : `direction: 90`).
 
-Le cas de l'aile du caboteur (`TD1_aerodynamique/manip2-3_aile-caboteur/aile-caboteur.yml`) donne un vent uniforme de 10,288 m/s, de direction 90° (NED), et un navire au cap 000° à
+Le cas de l'aile du caboteur (`TD1_aerodynamique/manip2-et-3_aile-caboteur/aile-caboteur.yml`) donne un vent uniforme de 10,288 m/s, de direction 90° (NED), et un navire au cap 000° à
 7,2016 m/s ; le réglage de l'aile est de 34,4°.
 
 a) D'où vient le vent ?
@@ -346,11 +346,11 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 - LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 5-9, 21-26 (p. 26 : fichiers
   `.vtk` et visualisation dans ParaView).
 - ParaView, Kitware, <https://www.paraview.org> (logiciel libre, licence BSD) ; état de la vue
-  `TD1_aerodynamique/manip2-3_aile-caboteur/vue.pvsm` et repli `voir_sans-paraview.py`, même dossier (ENSM).
+  `TD1_aerodynamique/manip2-et-3_aile-caboteur/vue.pvsm` et repli `voir_sans-paraview.py`, même dossier (ENSM).
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `1_element.yml` de l'exemple 1 (point de départ du cas de l'aile du caboteur), `airfoil_data/NACA0015_v2.yml`,
   `elliptic.yml` de l'exemple 2.
-- Cas de l'aile du caboteur, `TD1_aerodynamique/manip2-3_aile-caboteur/aile-caboteur.yml` (ENSM) ; mêmes forces que le
+- Cas de l'aile du caboteur, `TD1_aerodynamique/manip2-et-3_aile-caboteur/aile-caboteur.yml` (ENSM) ; mêmes forces que le
   tutoriel 1 de la formation du LHEEA ; moments différents, l'aile étant posée sur le pont.
 - Cours EGN-S7 du 23/11, deck S03 « Aérodynamique et passage au TD » (Vega).
 - Banque d'exercices EGN-S7, exercices A01 à A04 ; dépôt public du TD, `TD-Propulsion-Velique` (pré-vol, scripts,
