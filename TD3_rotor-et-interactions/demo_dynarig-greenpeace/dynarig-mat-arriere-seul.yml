@@ -1,0 +1,429 @@
+# Deux DynaRigs d'école sur un navire générique aux dimensions publiées du navire de Greenpeace (TD 3, ENSM).
+# Fichier écrit par fabriquer_cas.py : hypothèses d'école en tête de ce script ; polaire d'école plaque-cambree.yml.
+# 1 mât(s), 40 éléments par mât, réglages : mat_arriere -70.0°.
+rotations convention: [psi, theta', phi'']
+
+environmental constants:
+    g: {value: 9.8067, unit: m/s^2}
+    rho: {value: 1025., unit: kg/m^3}
+    nu: {value: 1.48e-5, unit: m^2/s}
+    air rho: {value: 1.225, unit: kg/m^3}
+
+environment models:
+  - model: power law wind profile
+    velocity: {unit: m/s, value: 12.0}
+    direction: {unit: deg, value: 270.0}
+    reference height: {unit: m, value: 10.0}
+    alpha: 0.143
+    output:
+        frame of reference: NED
+        mesh:
+            xmin: {value: -45., unit: m}
+            xmax: {value: 45., unit: m}
+            nx: 7
+            ymin: {value: -20., unit: m}
+            ymax: {value: 20., unit: m}
+            ny: 3
+            zmin: {value: 0., unit: m}
+            zmax: {value: -58., unit: m}
+            nz: 6
+  - model: no waves
+    constant sea elevation in NED frame: {value: 0, unit: m}
+
+bodies:
+  - name: ship
+    position of body frame relative to mesh:
+        frame: mesh
+        x: {value: 0., unit: m}
+        y: {value: 0, unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 3.1415926535, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial position of body frame relative to NED:
+        frame: NED
+        x: {value: 0., unit: m}
+        y: {value: 0., unit: m}
+        z: {value: 0., unit: m}
+        phi: {value: 0, unit: rad}
+        theta: {value: 0, unit: rad}
+        psi: {value: 0, unit: rad}
+    initial velocity of body frame relative to NED:
+        frame: ship
+        u: {value: 5.144, unit: m/s}
+        v: {value: 0, unit: m/s}
+        w: {value: 0, unit: m/s}
+        p: {value: 0, unit: rad/s}
+        q: {value: 0, unit: rad/s}
+        r: {value: 0, unit: rad/s}
+    dynamics:
+        hydrodynamic forces calculation point in body frame:
+            x: {value: 0., unit: m}
+            y: {value: 0., unit: m}
+            z: {value: 0., unit: m}
+        centre of inertia:
+            frame: ship
+            x: {value: 0, unit: m}
+            y: {value: 0, unit: m}
+            z: {value: 0., unit: m}
+        rigid body inertia matrix at the center of gravity and projected in the body frame:
+            row 1: [1E6,0,0,0,0,0]
+            row 2: [0,1E6,0,0,0,0]
+            row 3: [0,0,1E6,0,0,0]
+            row 4: [0,0,0,1E6,0,0]
+            row 5: [0,0,0,0,1E6,0]
+            row 6: [0,0,0,0,0,1E6]
+        added mass matrix at the center of gravity and projected in the body frame:
+            row 1: [0,0,0,0,0,0]
+            row 2: [0,0,0,0,0,0]
+            row 3: [0,0,0,0,0,0]
+            row 4: [0,0,0,0,0,0]
+            row 5: [0,0,0,0,0,0]
+            row 6: [0,0,0,0,0,0]
+    external forces:
+      - model: nonlinear lifting line
+        name: dynarig
+        control: commands
+        options:
+            useAWSsquare: false
+            useBentHorseshoeVortex: false
+            verbose: false
+        plane of symmetry:
+            point:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -3.0, unit: m}
+            normal vector:
+                x: {value: 0., unit: m}
+                y: {value: 0., unit: m}
+                z: {value: -1., unit: m}
+            frame: ship
+        wind propulsion system:
+          - name: mat_arriere
+            geometry: 3D
+            data:
+              - element: 1
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -7.6000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 2
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -8.8000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 3
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -10.0000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 4
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -11.2000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 5
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -12.4000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 6
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -13.6000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 7
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -14.8000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 8
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -16.0000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 9
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -17.2000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 10
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -18.4000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 11
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -19.6000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 12
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -20.8000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 13
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -22.0000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 14
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -23.2000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 15
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -24.4000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 16
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -25.6000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 17
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -26.8000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 18
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -28.0000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 19
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -29.2000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 20
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -30.4000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 21
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -31.6000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 22
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -32.8000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 23
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -34.0000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 24
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -35.2000, unit: m}
+                chord: {value: 19.7690, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 25
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -36.4000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 26
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -37.6000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 27
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -38.8000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 28
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -40.0000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 29
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -41.2000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 30
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -42.4000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 31
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -43.6000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 32
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -44.8000, unit: m}
+                chord: {value: 17.7921, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 33
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -46.0000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 34
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -47.2000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 35
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -48.4000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 36
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -49.6000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 37
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -50.8000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 38
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -52.0000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 39
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -53.2000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+              - element: 40
+                center:
+                    x: {value: -15.0, unit: m}
+                    y: {value: 0., unit: m}
+                    z: {value: -54.4000, unit: m}
+                chord: {value: 13.8383, unit: m}
+                foil data:
+                  - file: plaque-cambree.yml
+
+commands:
+  - name: mat_arriere
+    t: [0, 100]
+    setting: {unit: deg, values: [-70.0, -70.0]}

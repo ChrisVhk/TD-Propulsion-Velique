@@ -45,7 +45,8 @@ TD-Propulsion-Velique/
 │   ├── manip2-3_rotor-plaques/           2008_Badalamenti.yml et data.csv (= exemple 7), lancer.sh
 │   ├── manip4-6_trois-ailes-15deg/       trois ailes au près : trois-ailes-15deg.yml (exemple 9, réglages du cas à 15°),
 │   │                                     voile-N-seule.yml, lancer.sh, vue.pvsm, voir_sans-paraview.py, vue-attendue.png
-│   └── variante_trois-ailes-fichier-LHEEA/  trois-ailes.yml (= exemple 9 tel que fourni), lancer.sh
+│   ├── variante_trois-ailes-fichier-LHEEA/  trois-ailes.yml (= exemple 9 tel que fourni), lancer.sh
+│   └── demo_dynarig-greenpeace/          démonstration : deux DynaRigs d'école (polaire d'école, hypothèses), lancer.sh
 └── cas/
     ├── LICENSE_CN-AeroModels.txt         EPL 2.0
     ├── aile-caboteur/                    le cas ENSM : aile posée sur le pont du caboteur
