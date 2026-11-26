@@ -308,8 +308,9 @@ bash lancer.sh trois-ailes.yml
 
 *(variante)* Les deux DynaRigs d'école de la démonstration, au travers : mât avant fixe à −70°, réglage du mât arrière
 au choix. Chaque commande `bash lancer.sh RÉGLAGE` fait un calcul NLL (40 éléments par mât, quelques secondes) et ajoute
-une ligne à `sorties/balayage.csv` (réglage, incidences, F_x de chaque mât et F_x total). Balayez de −90° à −50° par
-pas de 5° :
+une ligne à `sorties/balayage.csv` (réglage, incidences, F_x de chaque mât et F_x total ; séparateur `;`, décimales
+avec un point : à préciser à l'import dans le tableur). Un calcul relancé ajoute une ligne de plus : effacez
+`sorties/balayage.csv` avant de recommencer un balayage. Balayez de −90° à −50° par pas de 5° :
 
 ```bash
 cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/variante_dynarig-reglage-mat-arriere
@@ -317,11 +318,14 @@ for r in -90 -85 -80 -75 -70 -65 -60 -55 -50; do bash lancer.sh $r; done
 ```
 
 - **V1.** Tracez F_x total en fonction du réglage du mât arrière (`sorties/balayage.csv`, dans un tableur). Quel
-  réglage donne la plus grande poussée ? De combien dépasse-t-elle celle des réglages égaux (−70° et −70°) ?
+  réglage donne la plus grande poussée ? De combien (en kN et en %) dépasse-t-elle celle du mât arrière réglé
+  comme le mât avant, à −70° ?
 - **V2.** Au réglage égal, comparez l'incidence du mât arrière à celle du mât avant. Pourquoi le mât arrière ne se
-  règle-t-il pas comme le mât avant ?
+  règle-t-il pas comme le mât avant ? (Souvenez-vous de T1 : ce que fait une voile au vent que voient les voiles
+  placées derrière elle.)
 - **V3.** Refaites le réglage optimal et le réglage égal avec 80 éléments par mât (`bash lancer.sh -55 80`,
-  `bash lancer.sh -70 80`). Le calcul a-t-il convergé dans les deux cas ? Que retenez-vous de l'optimum trouvé ?
+  `bash lancer.sh -70 80`). Le calcul a-t-il convergé dans les deux cas (on le dit convergé si F_x total change de
+  moins de 2 % de 40 à 80 éléments ; l'outil ne signale rien) ? Que retenez-vous de l'optimum trouvé ?
 
 # Question d'interprétation physique
 
