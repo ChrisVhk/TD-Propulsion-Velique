@@ -68,6 +68,8 @@ calcule pas).
 | 2 et 3 — rotor avec et sans plaques (exemple 7) | `manip2-3_rotor-plaques/` | `bash lancer.sh 2008_Badalamenti.yml`, puis `bash lancer.sh sans-plaques.yml` |
 | 4 à 6 — trois ailes au près (exemple 9, cas à 15°) | `manip4-6_trois-ailes-15deg/` | `bash lancer.sh` (après la copie `bandes.yml`) |
 | Variante — le fichier de l'exemple 9 tel que fourni | `variante_trois-ailes-fichier-LHEEA/` | `bash lancer.sh trois-ailes.yml` |
+| Variante V-DynaRig — régler le mât arrière | `variante_dynarig-reglage-mat-arriere/` | `bash lancer.sh -75` (un réglage par calcul) |
+| Démonstration de l'enseignant — deux DynaRigs | `demo_dynarig-greenpeace/` | `bash lancer.sh` |
 
 Table: Tableau 1 — Où travailler : un dossier par manipulation
 
@@ -279,7 +281,12 @@ de WSL), depuis le même dossier : `pvpython voir_sans-paraview.py`.
 > aux grands angles** de vent apparent (au près et au vent arrière). Le signe de l'interaction dépend donc de l'allure :
 > on ne pose pas « une perte sous le vent » en règle.
 
-**Démonstration de l'enseignant (5 min)**, en fin de partie 2.
+**Démonstration de l'enseignant (5 min)**, en fin de partie 2 : deux DynaRigs d'école sur un navire générique aux
+dimensions publiées du navire de Greenpeace (dossier `demo_dynarig-greenpeace/`). Les dimensions publiées (longueur,
+largeur, tirant d'eau, tirant d'air, surface de voilure) sont celles de l'armateur et de l'architecte ; tout le reste
+(forme de la voilure, hauteurs, positions des mâts, vent) est une **hypothèse d'école**, écrite en tête de
+`fabriquer_cas.py`. La section de voile est une **polaire d'école, hypothèse : aucune polaire de section de DynaRig
+n'est publiée** (`fabriquer_polaire.py`).
 
 ## Variante — Le fichier de l'exemple 9 tel que fourni : une leçon de lecture
 
@@ -296,6 +303,25 @@ bash lancer.sh trois-ailes.yml
   valent alors les C_L (souvenez-vous d'A07, TD 2) ? Calculez chaque voile seule comme à la manipulation 6 (copiez
   `voile-N-seule.yml` de la manipulation 4 et remettez-y le réglage de ce fichier) : pourquoi ne lit-on dans ce
   fichier aucune interaction exploitable ?
+
+## Variante V-DynaRig — Régler le mât arrière (groupes rapides)
+
+*(variante)* Les deux DynaRigs d'école de la démonstration, au travers : mât avant fixe à −70°, réglage du mât arrière
+au choix. Chaque commande `bash lancer.sh RÉGLAGE` fait un calcul NLL (40 éléments par mât, quelques secondes) et ajoute
+une ligne à `sorties/balayage.csv` (réglage, incidences, F_x de chaque mât et F_x total). Balayez de −90° à −50° par
+pas de 5° :
+
+```bash
+cd ~/TD-Propulsion-Velique/TD3_rotor-et-interactions/variante_dynarig-reglage-mat-arriere
+for r in -90 -85 -80 -75 -70 -65 -60 -55 -50; do bash lancer.sh $r; done
+```
+
+- **V1.** Tracez F_x total en fonction du réglage du mât arrière (`sorties/balayage.csv`, dans un tableur). Quel
+  réglage donne la plus grande poussée ? De combien dépasse-t-elle celle des réglages égaux (−70° et −70°) ?
+- **V2.** Au réglage égal, comparez l'incidence du mât arrière à celle du mât avant. Pourquoi le mât arrière ne se
+  règle-t-il pas comme le mât avant ?
+- **V3.** Refaites le réglage optimal et le réglage égal avec 80 éléments par mât (`bash lancer.sh -55 80`,
+  `bash lancer.sh -70 80`). Le calcul a-t-il convergé dans les deux cas ? Que retenez-vous de l'optimum trouvé ?
 
 # Question d'interprétation physique
 

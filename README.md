@@ -46,6 +46,7 @@ TD-Propulsion-Velique/
 │   ├── manip4-6_trois-ailes-15deg/       trois ailes au près : trois-ailes-15deg.yml (exemple 9, réglages du cas à 15°),
 │   │                                     voile-N-seule.yml, lancer.sh, vue.pvsm, voir_sans-paraview.py, vue-attendue.png
 │   ├── variante_trois-ailes-fichier-LHEEA/  trois-ailes.yml (= exemple 9 tel que fourni), lancer.sh
+│   ├── variante_dynarig-reglage-mat-arriere/  V-DynaRig : régler le mât arrière (lancer.sh RÉGLAGE)
 │   └── demo_dynarig-greenpeace/          démonstration : deux DynaRigs d'école (polaire d'école, hypothèses), lancer.sh
 └── cas/
     ├── LICENSE_CN-AeroModels.txt         EPL 2.0
