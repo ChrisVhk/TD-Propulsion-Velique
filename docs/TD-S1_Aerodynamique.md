@@ -56,13 +56,28 @@ Tout se fait dans **Ubuntu sous Windows (WSL)**, dans le terminal Ubuntu, sauf l
 qui se fait dans **ParaView pour Windows**.
 
 - **Le dépôt du TD**, `TD-Propulsion-Velique` (public, GitHub) : la fiche de chaque séance (`docs/`), les scripts
-  d'installation et de tracé (`scripts/`), et les fichiers d'entrée des cas de l'outil (`cas/`).
+  d'installation et de vérification (`scripts/`), un dossier par TD (ici `TD1_aerodynamique/`, un sous-dossier par
+  manipulation : tableau ci-dessous) et ce qui sert à plusieurs TD (`communs/` : exemples du LHEEA, coque du caboteur).
 - **L'outil CN-AeroModels, version v0.5.1, binaire Linux** (LHEEA, Centrale Nantes / CNRS ; licence Eclipse Public
   License 2.0). Le script `scripts/installer_cnaero.sh` le télécharge sur la page *Releases* officielle,
   <https://gitlab.com/lheea/CN-AeroModels/-/releases>, et l'installe ; l'enseignant ne redistribue pas le binaire.
 - **Python 3** avec les modules `yaml` et `matplotlib` (installés par le même script), ou à défaut un tableur.
 - **ParaView pour Windows** (logiciel libre de visualisation, Kitware), installé selon le pré-vol (étape ⑤).
 - Une calculatrice.
+
+| Manipulation | Dossier (dans `~/TD-Propulsion-Velique/`) | Commande |
+|---|---|---|
+| 0 — installer l'environnement et l'outil | dossier du dépôt (`scripts/`) | `bash scripts/installer_cnaero.sh` |
+| 1 — vérifier l'installation (aile elliptique) | dossier du dépôt (`scripts/`) | `python3 scripts/verifie_mon_install.py` |
+| 2 — le cas de l'aile du caboteur | `TD1_aerodynamique/manip2-3_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml` |
+| 3 — le cas dans ParaView | `TD1_aerodynamique/manip2-3_aile-caboteur/` | `bash lancer.sh aile-caboteur.yml --vtk 1`, puis `vue.pvsm` dans ParaView |
+| 4 — tracer la table de profil | `TD1_aerodynamique/manip4_table-de-profil/` | `python3 tracer_table.py` |
+
+Table: Tableau 1 — Où travailler : un dossier par manipulation
+
+Chaque dossier contient ce que sa manipulation demande ; **les sorties de calcul vont dans son sous-dossier
+`sorties/`** : `lancer.sh` lance l'outil dans `sorties/`, affiche tout ce qu'il écrit à l'écran et garde cette sortie
+écran dans `sorties/<fichier>_ecran.txt` (pour y chercher un message).
 
 **Déroulé de la séance.** De 0:00 à 0:40, un membre du binôme installe (manipulations 0 et 1) pendant que l'autre
 commence A01 et A02 à la main ; puis la manipulation 2 et, juste après, la manipulation 3 (ParaView, 15 min) ;
@@ -104,10 +119,11 @@ CN-AeroModels
 Depuis le dossier du dépôt :
 
 ```bash
+cd ~/TD-Propulsion-Velique
 python3 scripts/verifie_mon_install.py
 ```
 
-Le script lance l'outil sur l'aile elliptique (`cas/exemples/2- nonlinear lifting line/elliptic.yml`) et compare le
+Le script lance l'outil sur l'aile elliptique (`communs/exemples-LHEEA/2- nonlinear lifting line/elliptic.yml`) et compare le
 résultat à la valeur de référence, C_L = 0,3655 (sortie de l'outil v0.5.1 pour cette aile, accord avec la
 théorie de Prandtl).
 
@@ -119,12 +135,14 @@ pour le TD ». Sinon, voir `docs/00b_CA_NA_PAS_MARCHE.md`, et renvoyez le bloc e
 Faire d'abord l'exercice A02 à la main, puis :
 
 ```bash
-cd ~/TD-Propulsion-Velique/cas/aile-caboteur
-CN-AeroModels aile-caboteur.yml
+cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-3_aile-caboteur
+bash lancer.sh aile-caboteur.yml
 ```
 
-Toujours **se placer dans le dossier du cas** : l'outil écrit ses sorties dans le dossier courant, et le cas lit
-sa table de profil par un chemin relatif à ce dossier (`../exemples/airfoil_data/NACA0015_v2.yml`). Mettre des guillemets autour des noms qui contiennent des espaces.
+Toujours **se placer dans le dossier de la manipulation** et lancer l'outil par `lancer.sh` : le script fait tourner
+l'outil dans le sous-dossier `sorties/`, où l'outil écrit ses sorties (le dossier courant de l'outil), et le cas lit sa
+table de profil par un chemin relatif à ce dossier-là (`../../../communs/exemples-LHEEA/airfoil_data/NACA0015_v2.yml`).
+Mettre des guillemets autour des noms qui contiennent des espaces.
 
 **Le cas.** Une aile rigide NACA0015 de 33 m de haut et 11 m de corde (AR = 3, 363 m²), réglée à 34,4°, sur le caboteur à
 14 nœuds, vent vrai de 20 nœuds par le travers bâbord. Le pied de l'aile est **posé sur le pont**, 2,5 m au-dessus de la
@@ -135,9 +153,9 @@ sur l'axe, à la flottaison.
 `results.csv`, **45,0159** et **34,2037 kN** (le fichier donne les efforts en kN, l'écran en N). Comparez ensuite
 les colonnes `AWS`, `AWA` et `AoA/SR` de la **ligne `WPU-1`** de l'écran à vos réponses de l'exercice A02 (la ligne
 `Total` affiche l'AWA dans la colonne `AoA/SR`, pas l'angle d'attaque) : les signes suivent les conventions de l'outil,
-comparez des valeurs absolues.
+comparez des valeurs absolues. `results.csv` est dans `sorties/`.
 
-L'outil écrit aussi dans le dossier du cas un fichier par aile, `aile-caboteur_WPU-1_0000.csv` (une ligne par bande,
+L'outil écrit aussi dans `sorties/` un fichier par aile, `aile-caboteur_WPU-1_0000.csv` (une ligne par bande,
 séparateur `;`) : gardez-le, la question 2 d'A04 s'en sert.
 
 ## Manipulation 3 — Voir le cas dans ParaView (15 min, juste après la manipulation 2)
@@ -145,37 +163,39 @@ séparateur `;`) : gardez-le, la question 2 d'A04 s'en sert.
 Il faut **ParaView pour Windows** (pré-vol, étape ⑤). On relance le même cas en demandant à l'outil d'écrire, en plus,
 des fichiers de visualisation `.vtk` ; puis on les ouvre dans ParaView avec un état préparé (une vue déjà réglée).
 
-1. **Relancer le cas avec l'option `--vtk 1`**, dans le terminal Ubuntu, toujours depuis le dossier du cas :
+1. **Relancer le cas avec l'option `--vtk 1`**, dans le terminal Ubuntu, toujours depuis le dossier de la
+   manipulation :
 
    ```bash
-   cd ~/TD-Propulsion-Velique/cas/aile-caboteur
-   CN-AeroModels aile-caboteur.yml --vtk 1
-   ls *.vtk
+   cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-3_aile-caboteur
+   bash lancer.sh aile-caboteur.yml --vtk 1
+   ls sorties/*.vtk
    ```
 
    **Auto-contrôle** : l'écran redonne exactement F_x = 45 015,9 N et F_y = 34 203,7 N (l'option ne change pas le
    calcul) ; `ls` affiche cinq fichiers : les quatre que l'outil vient d'écrire, `aile-caboteur_WPU-1_0000.vtk`
    (l'aile et ses bandes), `aile-caboteur_WPU-1_force_0000.vtk` (les efforts par bande), `wind_0000.vtk` (le vent vrai)
-   et `FreeSurface_0000.vtk` (la surface de la mer), plus `caboteur-serie60.vtk` (la coque du navire), fourni avec le
-   cas : l'outil ne l'écrit pas.
-2. **Afficher l'adresse Windows du dossier du cas**, toujours dans le terminal Ubuntu :
+   et `FreeSurface_0000.vtk` (la surface de la mer), plus `caboteur-serie60.vtk` (la coque du navire), que `lancer.sh`
+   copie depuis `communs/` : l'outil ne l'écrit pas.
+2. **Afficher l'adresse Windows du dossier de la manipulation**, toujours dans le terminal Ubuntu :
 
    ```bash
    wslpath -w .
    ```
 
-   Le terminal affiche une adresse du type `\\wsl.localhost\Ubuntu\home\<votre nom>\TD-Propulsion-Velique\cas\aile-caboteur`
+   Le terminal affiche une adresse du type `\\wsl.localhost\Ubuntu\home\<votre nom>\TD-Propulsion-Velique\TD1_aerodynamique\manip2-3_aile-caboteur`
    (le nom `Ubuntu` peut varier selon votre installation). C'est par cette adresse que Windows voit les fichiers de WSL.
    Sélectionnez-la à la souris et copiez-la avec **Ctrl+Maj+C** (dans le terminal, un clic droit sans sélection
    *colle* au lieu de copier) ; ne copiez pas le retour à la ligne.
 3. **Ouvrir ParaView** (pour Windows, depuis le menu Démarrer).
 4. **Charger l'état** : menu *File > Load State…*. Dans le champ du nom de fichier (*File name*), collez l'adresse
-   copiée à l'étape 2 et appuyez sur **Entrée** : la boîte affiche le contenu du dossier du cas. Sélectionnez
-   `TD1_vue.pvsm` (il est à côté des `.vtk`), puis cliquez sur *OK*.
+   copiée à l'étape 2 et appuyez sur **Entrée** : la boîte affiche le contenu du dossier de la manipulation.
+   Sélectionnez `vue.pvsm` (les `.vtk` sont dans son sous-dossier `sorties/`), puis cliquez sur *OK*.
 5. **Dire à ParaView où sont les données.** Une fenêtre *Load State Options* s'ouvre :
    - *Load State Data File Options* : choisir **Search files under specified directory** ;
-   - *Data Directory* : **laissez la valeur proposée**. C'est le dossier de l'état, qui est aussi celui des `.vtk` ;
-     elle se termine par `aile-caboteur` (sinon, effacez le champ et collez l'adresse de l'étape 2) ;
+   - *Data Directory* : **laissez la valeur proposée**. C'est le dossier de l'état ; ParaView y cherche les `.vtk`,
+     jusque dans `sorties/` ; elle se termine par `manip2-3_aile-caboteur` (sinon, effacez le champ et collez
+     l'adresse de l'étape 2) ;
    - laissez la case *Only Use Files In Data Directory* telle quelle ;
    - *OK*.
 
@@ -198,7 +218,7 @@ La légende est ici :
   Todd, 1963, domaine public), sans bulbe ; la flottaison est à z = 0, le pont 2,5 m plus haut : l'aile part du pont, rien d'elle n'est sous le
   pont.
 
-![Figure 1 — La vue attendue dans ParaView : le caboteur (Série 60, à l'échelle), l'aile posée sur le pont colorée par C_L, les efforts par bande (vert) et le vent vrai (gris), repère NED](img/TD1_vue-paraview.png)
+![Figure 1 — La vue attendue dans ParaView : le caboteur (Série 60, à l'échelle), l'aile posée sur le pont colorée par C_L, les efforts par bande (vert) et le vent vrai (gris), repère NED](../TD1_aerodynamique/manip2-3_aile-caboteur/vue-attendue.png)
 
 **Le repère des fichiers est le repère NED** : x vers le nord (l'avant du navire, au cap 000°), y vers l'est (tribord),
 z vers le **bas**. La vue a été retournée (haut de l'écran = −z) pour montrer l'aile debout : son pied est à
@@ -216,8 +236,8 @@ Les boutons ±X et ±Y montrent l'aile la tête en bas : ParaView y met +z en ha
 
 **Si l'onglet ne montre que le titre, la barre de couleur et le repère x, y, z, sans aile, sans mer, sans navire et
 sans flèches**, ou si une fenêtre *Output Messages* s'ouvre avec `Could not open file`, ParaView n'a pas trouvé les
-données : vérifiez que `ls *.vtk` affiche bien les cinq fichiers (étape 1), puis recommencez *File > Load State* (étape 4) en vérifiant
-que *Data Directory* se termine par `aile-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
+données : vérifiez que `ls sorties/*.vtk` affiche bien les cinq fichiers (étape 1), puis recommencez *File > Load State* (étape 4) en vérifiant
+que *Data Directory* se termine par `manip2-3_aile-caboteur` (étape 5). Un chargement réussi n'ouvre **aucune**
 fenêtre *Output Messages*.
 
 **Deux questions d'observation, et une troisième facultative** (aucune valeur à calculer pour P1 et P2 ; une division
@@ -233,22 +253,22 @@ pour P3 ; deux ou trois lignes chacune) :
 
 ## Manipulation 4 — Tracer la table de coefficients du profil (pour A04)
 
-Le fichier `cas/exemples/airfoil_data/NACA0015_v2.yml` est la table de profil que l'outil utilise pour le cas de l'aile du caboteur. Ouvrez-le dans un éditeur de
+Le fichier `communs/exemples-LHEEA/airfoil_data/NACA0015_v2.yml` est la table de profil que l'outil utilise pour le cas de l'aile du caboteur. Ouvrez-le dans un éditeur de
 texte : il commence par le nom du profil (`type: NACA0015`), puis donne, **pour chaque nombre de Reynolds** (`Re`), la
 liste des angles d'attaque (`AoA`, en degrés), des coefficients de portance (`lift coefficient`) et de traînée
 (`drag coefficient`). Le commentaire en fin de ligne `Re` indique l'origine des valeurs (`xfoil` ou `CFD`).
 
-Depuis le dossier du dépôt :
+Depuis le dossier de la manipulation :
 
 ```bash
-cd ~/TD-Propulsion-Velique
-python3 scripts/tracer_table.py
+cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip4_table-de-profil
+python3 tracer_table.py
 ```
 
 Le script (à lire : une trentaine de lignes) trace C_L(AoA) et la finesse C_L/C_D, une courbe par nombre de Reynolds.
 
 **Auto-contrôle** : le script affiche `7 tables tracées` (sept nombres de Reynolds, de 5 · 10⁴ à 1,5 · 10⁷, comme
-l'annonce l'énoncé d'A04) et écrit `table_NACA0015_v2.png` ; le profil est symétrique, donc chaque courbe de C_L part de
+l'annonce l'énoncé d'A04) et écrit `sorties/table_NACA0015_v2.png` ; le profil est symétrique, donc chaque courbe de C_L part de
 C_L ≈ 0 à AoA = 0°. Sans Python : copiez les listes d'un ou deux nombres de Reynolds dans un tableur et tracez-les.
 
 # Énoncés
@@ -265,7 +285,7 @@ C_L ≈ 0 à AoA = 0°. Sans Python : copiez les listes d'un ou deux nombres de 
 
 **Objectif.** Lire la convention NED d'un fichier d'entrée (`aile-caboteur.yml` : `direction: 90`).
 
-Le cas de l'aile du caboteur (`cas/aile-caboteur/aile-caboteur.yml`) donne un vent uniforme de 10,288 m/s, de direction 90° (NED), et un navire au cap 000° à
+Le cas de l'aile du caboteur (`TD1_aerodynamique/manip2-3_aile-caboteur/aile-caboteur.yml`) donne un vent uniforme de 10,288 m/s, de direction 90° (NED), et un navire au cap 000° à
 7,2016 m/s ; le réglage de l'aile est de 34,4°.
 
 a) D'où vient le vent ?
@@ -326,12 +346,12 @@ Un compte rendu (une à deux pages), selon les consignes de dépôt données par
 - LHEEA (Centrale Nantes / CNRS), support de formation *CN-AeroModels Training* (LH), p. 5-9, 21-26 (p. 26 : fichiers
   `.vtk` et visualisation dans ParaView).
 - ParaView, Kitware, <https://www.paraview.org> (logiciel libre, licence BSD) ; état de la vue
-  `cas/aile-caboteur/TD1_vue.pvsm` et script `scripts/TD1_voir_cas.py` (ENSM).
+  `TD1_aerodynamique/manip2-3_aile-caboteur/vue.pvsm` et repli `voir_sans-paraview.py`, même dossier (ENSM).
 - CN-AeroModels v0.5.1, A. Babarit et M. Charlou, LHEEA, <https://gitlab.com/lheea/CN-AeroModels> (EPL 2.0) ; fichiers
   `1_element.yml` de l'exemple 1 (point de départ du cas de l'aile du caboteur), `airfoil_data/NACA0015_v2.yml`,
   `elliptic.yml` de l'exemple 2.
-- Cas de l'aile du caboteur, `cas/aile-caboteur/aile-caboteur.yml` (ENSM) ; mêmes forces que le
+- Cas de l'aile du caboteur, `TD1_aerodynamique/manip2-3_aile-caboteur/aile-caboteur.yml` (ENSM) ; mêmes forces que le
   tutoriel 1 de la formation du LHEEA ; moments différents, l'aile étant posée sur le pont.
 - Cours EGN-S7 du 23/11, deck S03 « Aérodynamique et passage au TD » (Vega).
 - Banque d'exercices EGN-S7, exercices A01 à A04 ; dépôt public du TD, `TD-Propulsion-Velique` (pré-vol, scripts,
-  cas).
+  dossiers des manipulations).

@@ -3,18 +3,18 @@
 """
 Voir la portance le long de l'envergure dans ParaView — TD 2 Propulsion vélique (EGN-S7, ENSM), manipulation 4
 
-Repli de l'état ParaView cas/aile-caboteur/TD2_envergure/TD2_envergure.pvsm : ce script construit la même vue sans passer par l'état.
+Repli de l'état ParaView vue.pvsm (même dossier, TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur/) : ce script construit la même vue sans passer par l'état.
 (L'état lui-même est enregistré par l'interface graphique de ParaView pour Windows, à partir de la même fonction
 construire_vue : un état destiné à l'interface se fabrique et se teste dans l'interface.)
 
 Avant : les trois calculs, dans le terminal Ubuntu (WSL) :
 
-    cd ~/TD-Propulsion-Velique/cas/aile-caboteur/TD2_envergure
-    bash lancer_les_trois.sh
+    cd ~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur
+    bash lancer.sh
 
-Puis, UNE LIGNE, depuis le dossier du dépôt (pvpython vient avec ParaView de WSL : sudo apt install paraview) :
+Puis, UNE LIGNE, depuis le même dossier (pvpython vient avec ParaView de WSL : sudo apt install paraview) :
 
-    pvpython scripts/TD2_voir_envergure.py
+    pvpython voir_sans-paraview.py
 
 Ce que montre la vue (deux vues côte à côte, dans un layout « Envergure ») :
   - à gauche, les trois ailes côte à côte, chacune découpée en ses éléments et colorée par le C_L de chaque élément
@@ -24,10 +24,10 @@ Ce que montre la vue (deux vues côte à côte, dans un layout « Envergure ») 
   - à droite, 7 · |C_L| de chaque élément en fonction de sa hauteur au-dessus du pont, une courbe par calcul :
     la perte en bout d'aile et l'effet du pont au pied se lisent sur les courbes ;
   - 8 · le titre.
-Les fichiers lus sont ceux qu'écrit lancer_les_trois.sh : 1_bandes_*, 2_nll-pied-libre_*, 3_nll-pont_*.
+Les fichiers lus sont ceux qu'écrit lancer.sh sans argument, dans sorties/ : bandes_*, nll_pied-libre_*, nll_pont_*.
 
 Options :
-  --donnees DOSSIER   dossier des .vtk (défaut : cas/aile-caboteur/TD2_envergure du dépôt)
+  --donnees DOSSIER   dossier des .vtk (défaut : sorties/ de ce dossier)
   --png FICHIER       écrit une capture du layout (1920 x 1080 par défaut)
   --sans-fenetre      n'ouvre pas de fenêtre (avec --png)
 
@@ -53,10 +53,10 @@ GRIS_CLAIR = _rgb("#D9D9D9")
 PLAGE_CL = [-2.0, 2.0]   # palette de C_L du TD 1 (symétrique : le signe de l'outil se lit dans la couleur)
 Z_PONT = -2.5            # pont du caboteur (NED, z vers le bas), pied de l'aile
 
-# Les trois calculs : préfixe des fichiers (lancer_les_trois.sh), nom affiché, couleur de la courbe.
-CALCULS = (("1_bandes", "Bandes", GREY),
-           ("2_nll-pied-libre", "NLL, pied libre", TEAL),
-           ("3_nll-pont", "NLL, pont", MARINE))
+# Les trois calculs : préfixe des fichiers (lancer.sh), nom affiché, couleur de la courbe.
+CALCULS = (("bandes", "Bandes", GREY),
+           ("nll_pied-libre", "NLL, pied libre", TEAL),
+           ("nll_pont", "NLL, pont", MARINE))
 COURT = ("Bandes", "NLL libre", "NLL pont")
 # Corde de l'aile au réglage du cas, dans le plan horizontal (lue dans les .vtk : du bord d'attaque au bord de fuite).
 CORDE = (-0.8257, 0.5641, 0.0)
@@ -68,18 +68,18 @@ Z_VISEE = -5.0                        # m : centre de l'écran (place pour le ti
 
 def dossier_par_defaut():
     ici = os.path.dirname(os.path.abspath(__file__))
-    for c in (os.path.join(os.path.dirname(ici), "cas", "aile-caboteur", "TD2_envergure"),
-              os.path.expanduser("~/TD-Propulsion-Velique/cas/aile-caboteur/TD2_envergure")):
+    for c in (os.path.join(ici, "sorties"),
+              os.path.expanduser("~/TD-Propulsion-Velique/TD2_bandes-et-ligne-portante/manip1-5_aile-caboteur/sorties")):
         if os.path.isdir(c):
             return c
-    sys.exit("Dossier cas/aile-caboteur/TD2_envergure introuvable : lancez le script depuis le dépôt TD-Propulsion-Velique.")
+    sys.exit("Dossier sorties/ introuvable : lancez d'abord  bash lancer.sh  (sans argument) dans ce dossier.")
 
 
 def fichiers_attendus():
     f = []
     for pre, _, _ in CALCULS:
         f += [pre + "_aile.vtk", pre + "_force.vtk"]
-    return f + ["3_nll-pont_mirror.vtk"]
+    return f + ["nll_pont_mirror.vtk"]
 
 
 def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, taille_noms=26):
@@ -87,7 +87,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
     `vue`, `courbe` : vues déjà rangées dans un layout (interface graphique) ; sinon, vues et layout sont créés."""
     manque = [f for f in fichiers_attendus() if not os.path.isfile(os.path.join(dossier, f))]
     if manque:
-        sys.exit("Fichiers absents dans %s : %s\n(lancez d'abord : bash lancer_les_trois.sh)" % (dossier, ", ".join(manque)))
+        sys.exit("Fichiers absents dans %s : %s\n(lancez d'abord : bash lancer.sh, sans fichier, dans ce dossier)" % (dossier, ", ".join(manque)))
     lire = lambda nom: LegacyVTKReader(registrationName=nom, FileNames=[os.path.join(dossier, nom)])
 
     if vue is None:
@@ -156,7 +156,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
         rc.SeriesMarkerSize = ["hauteur au-dessus du pont (m)", "8"]
         if k == 2:   # aile image du pont en miroir, sous le pont, à la place de l'aile 3
             img = Transform(registrationName="4 · Aile image sous le pont (calcul 3)",
-                            Input=MergeBlocks(registrationName="(calcul) aile image", Input=lire("3_nll-pont_mirror.vtk")))
+                            Input=MergeBlocks(registrationName="(calcul) aile image", Input=lire("nll_pont_mirror.vtk")))
             img.Transform = "Transform"
             img.Transform.Translate = decalage
             ri = Show(img, vue)
@@ -236,7 +236,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
 
 def main():
     ap = argparse.ArgumentParser(description="C_L le long de l'envergure : bandes, NLL pied libre, NLL pont (ParaView).")
-    ap.add_argument("--donnees", help="dossier des .vtk (défaut : cas/aile-caboteur/TD2_envergure du dépôt)")
+    ap.add_argument("--donnees", help="dossier des .vtk (défaut : sorties/ de ce dossier)")
     ap.add_argument("--png", help="écrit une capture PNG du layout")
     ap.add_argument("--sans-fenetre", action="store_true", help="n'ouvre pas de fenêtre")
     ap.add_argument("--largeur", type=int, default=1920)

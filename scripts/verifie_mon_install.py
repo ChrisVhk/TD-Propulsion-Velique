@@ -8,7 +8,7 @@ UNE SEULE LIGNE À LANCER, dans le terminal Ubuntu (WSL), depuis le dossier du d
     python3 scripts/verifie_mon_install.py
 
 Le script ne casse jamais : il liste ce qui va et ce qui ne va pas, en clair, lance
-CN-AeroModels sur l'aile elliptique (cas/exemples/2- nonlinear lifting line/elliptic.yml)
+CN-AeroModels sur l'aile elliptique (communs/exemples-LHEEA/2- nonlinear lifting line/elliptic.yml)
 dans un dossier temporaire, compare le C_L obtenu à la valeur de référence (0,3655 : sortie de l'outil v0.5.1
 pour ce cas, en accord avec la théorie de Prandtl), puis
 affiche un bloc à recopier et à renvoyer à l'enseignant.
@@ -72,7 +72,7 @@ else:
     dit(OK, f"CN-AeroModels trouvé : {binaire}", "CN-AeroModels OK")
 
 # 5. Le cas de contrôle : aile elliptique
-cas = os.path.join(RACINE, "cas", "exemples", "2- nonlinear lifting line", "elliptic.yml")
+cas = os.path.join(RACINE, "communs", "exemples-LHEEA", "2- nonlinear lifting line", "elliptic.yml")
 if binaire and os.path.isfile(cas):
     with tempfile.TemporaryDirectory() as d:
         shutil.copy(cas, d)
@@ -97,7 +97,7 @@ if binaire and os.path.isfile(cas):
         dit(KO, f"aile elliptique : C_L = {cl:.4f} au lieu de {CL_REF} — vérifiez la version (v0.5.1)",
             f"elliptic C_L {cl:.4f} FAUX")
 elif not os.path.isfile(cas):
-    dit(KO, "cas/…/elliptic.yml introuvable — lancez le script depuis le dossier du dépôt", "cas introuvable")
+    dit(KO, "communs/…/elliptic.yml introuvable — lancez le script depuis le dossier du dépôt", "cas introuvable")
 
 # Bilan
 print("\n" + "=" * 64)

@@ -4,10 +4,11 @@
 Trace une table de profil de CN-AeroModels : C_L(AoA) et finesse C_L/C_D, une courbe par nombre de Reynolds.
 TD Propulsion vélique (EGN-S7, ENSM), TD 1, manipulation 4 (pour A04).
 
-Usage, depuis le dossier du dépôt :
-    python3 scripts/tracer_table.py                    # table du cas de l'aile du caboteur (NACA0015_v2.yml)
-    python3 scripts/tracer_table.py cas/exemples/airfoil_data/NACA0015_v1.yml
-Écrit table_NACA0015_v2.png (ou table_<nom>.png) dans le dossier courant et affiche le nombre de tables tracées.
+Usage, depuis le dossier de la manipulation (TD1_aerodynamique/manip4_table-de-profil/) :
+    python3 tracer_table.py                    # table du cas de l'aile du caboteur (NACA0015_v2.yml)
+    python3 tracer_table.py ../../communs/exemples-LHEEA/airfoil_data/NACA0015_v1.yml
+Écrit sorties/table_NACA0015_v2.png (ou sorties/table_<nom>.png, dossier sorties/ de ce dossier) et affiche le nombre
+de tables tracées.
 Modules : pyyaml, matplotlib (installés par scripts/installer_cnaero.sh).
 """
 import os
@@ -18,8 +19,9 @@ matplotlib.use("Agg")                      # pas de fenêtre : on écrit un fich
 import matplotlib.pyplot as plt
 import yaml
 
-RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-chemin = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RACINE, "cas", "exemples", "airfoil_data", "NACA0015_v2.yml")
+ICI = os.path.dirname(os.path.abspath(__file__))
+RACINE = os.path.dirname(os.path.dirname(ICI))
+chemin = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RACINE, "communs", "exemples-LHEEA", "airfoil_data", "NACA0015_v2.yml")
 nom = os.path.splitext(os.path.basename(chemin))[0]
 
 # 1er élément du fichier : le nom du profil ; ensuite, une table par Re
@@ -40,6 +42,7 @@ ax1.grid()
 ax2.set_xlabel("AoA (deg)")
 ax2.set_ylabel("C_L / C_D")
 ax2.grid()
-sortie = "table_%s.png" % nom
+os.makedirs(os.path.join(ICI, "sorties"), exist_ok=True)
+sortie = os.path.join(ICI, "sorties", "table_%s.png" % nom)
 fig.savefig(sortie, dpi=120)
-print(len(tables), "tables tracées ->", sortie)
+print(len(tables), "tables tracées ->", os.path.relpath(sortie))

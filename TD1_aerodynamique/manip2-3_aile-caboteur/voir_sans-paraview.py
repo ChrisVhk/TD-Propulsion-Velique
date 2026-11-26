@@ -3,21 +3,22 @@
 """
 Voir l'aile du caboteur dans ParaView — TD Propulsion vélique (EGN-S7, ENSM)
 
-Repli de l'état ParaView cas/aile-caboteur/TD1_vue.pvsm :
+Repli de l'état ParaView vue.pvsm (même dossier, TD1_aerodynamique/manip2-3_aile-caboteur/) :
 ce script construit la même vue sans passer par l'état. (L'état lui-même est fabriqué par l'enseignant dans
 l'interface graphique de ParaView pour Windows, à partir de la même fonction construire_vue : un état destiné
 à l'interface se fabrique et se teste dans l'interface.)
 
-UNE LIGNE, dans le terminal Ubuntu (WSL), depuis le dossier du dépôt :
+UNE LIGNE, dans le terminal Ubuntu (WSL), depuis le dossier de la manipulation :
 
-    pvpython scripts/TD1_voir_cas.py
+    cd ~/TD-Propulsion-Velique/TD1_aerodynamique/manip2-3_aile-caboteur
+    pvpython voir_sans-paraview.py
 
 (pvpython vient avec ParaView de WSL : sudo apt install paraview)
 
 Ce que fait le script :
   1. il copie le cas de l'aile du caboteur et sa table de profil dans un dossier temporaire
      (rien n'est écrit dans le dépôt) et y lance CN-AeroModels avec l'option --vtk 1 ;
-  2. il ouvre les quatre fichiers .vtk écrits par l'outil, plus la coque caboteur-serie60.vtk (fournie avec le cas),
+  2. il ouvre les quatre fichiers .vtk écrits par l'outil, plus la coque caboteur-serie60.vtk (communs/),
      et construit la vue :
        - l'aile, découpée en trois bandes, colorée par le coefficient de portance C_L (Cl) ;
        - une flèche d'effort par bande (dForce, effort par unité de surface, N/m^2) ;
@@ -26,7 +27,7 @@ Ce que fait le script :
          domaine public), mise à l'échelle du caboteur d'EGN-S9 (L 110 m, B 17,5 m, T 6,5 m, D 9,0 m), sans bulbe ;
          flottaison en z = 0, pont en z = -2,5 m, quille en z = +6,5 m ; l'aile part du pont (pied en z = -2,5 m,
          sommet en z = -35,5 m : le cas lui-même place l'aile sur le pont, session 11 j, ARB-EGN-S7-038 ; avant,
-         elle partait de la flottaison). Fichier caboteur-serie60.vtk, versionné dans le dossier du cas
+         elle partait de la flottaison). Fichier caboteur-serie60.vtk, versionné dans communs/ (session 17)
          (ce n'est pas une sortie de l'outil) ; construit par construire_coque_serie60.py (dépôt de l'enseignant) ;
        - le repère : les fichiers sont en NED (x vers le nord = l'avant, y vers l'est = tribord,
          z vers le BAS) ; la vue est donc retournée (haut de l'écran = -z) pour voir l'aile debout ;
@@ -37,7 +38,7 @@ Ce que fait le script :
 
 Options :
   --donnees DOSSIER   ne relance pas l'outil : lit les .vtk déjà écrits dans DOSSIER
-  --depot DOSSIER     dossier du dépôt du TD, si le script n'est pas rangé dans son dossier scripts/
+  --depot DOSSIER     dossier du dépôt du TD, si le script n'est pas rangé dans TD1_aerodynamique/manip2-3_aile-caboteur/
   --png FICHIER       écrit une capture (1920 x 1080 par défaut)
   --sans-fenetre      n'ouvre pas de fenêtre (avec --png)
 
@@ -93,12 +94,15 @@ CAMERA_DIRECTION = [-0.296, 0.814, -0.500]
 CAMERA_DEMI_HAUTEUR = 42.0   # m (projection parallèle) ; 39 avant la 11 i : 42 garde le caboteur entier (110 m)
 
 
+CAS = ("TD1_aerodynamique", "manip2-3_aile-caboteur")   # dossier de la manipulation, dans le dépôt (session 17)
+
+
 def racine_depot(depot=None):
-    """Dossier du dépôt TD-Propulsion-Velique (celui qui contient cas/aile-caboteur)."""
+    """Dossier du dépôt TD-Propulsion-Velique (celui qui contient TD1_aerodynamique/ et communs/)."""
     ici = os.path.dirname(os.path.abspath(__file__))
-    candidats = [depot] if depot else [os.path.dirname(ici), os.path.expanduser("~/TD-Propulsion-Velique")]
+    candidats = [depot] if depot else [os.path.dirname(os.path.dirname(ici)), os.path.expanduser("~/TD-Propulsion-Velique")]
     for c in candidats:
-        if os.path.isfile(os.path.join(c, "cas", "aile-caboteur", "aile-caboteur.yml")):
+        if os.path.isfile(os.path.join(c, *CAS, "aile-caboteur.yml")):
             return c
     sys.exit("Cas de l'aile du caboteur introuvable : lancez le script depuis le dépôt TD-Propulsion-Velique.")
 
@@ -110,20 +114,25 @@ def trouver_binaire():
     c = os.path.expanduser("~/outils/CN-AeroModels/bin/CN-AeroModels")
     if os.path.isfile(c):
         return c
-    sys.exit("CN-AeroModels introuvable : lancez d'abord  bash scripts/installer_cnaero.sh")
+    sys.exit("CN-AeroModels introuvable : lancez d'abord  bash scripts/installer_cnaero.sh  (depuis le dossier du dépôt)")
 
 
 def lancer_cas(depot=None):
-    """Copie le cas dans un dossier temporaire, lance l'outil avec --vtk 1, renvoie le dossier des .vtk."""
+    """Copie le cas dans un dossier temporaire, lance l'outil avec --vtk 1, renvoie le dossier des .vtk.
+
+    On reproduit l'arborescence du dépôt : l'outil tourne dans sorties/ et lit la table de profil par le chemin
+    relatif ../../../communs/exemples-LHEEA/airfoil_data/ (comme lancer.sh)."""
     racine = racine_depot(depot)
     tmp = tempfile.mkdtemp(prefix="aile-caboteur_vtk_")
-    dossier_cas = os.path.join(tmp, "cas", "aile-caboteur")
-    os.makedirs(dossier_cas)
-    for f in ("aile-caboteur.yml", FICHIERS["coque"]):   # la coque est un fichier du cas, pas une sortie de l'outil
-        shutil.copy(os.path.join(racine, "cas", "aile-caboteur", f), dossier_cas)
-    shutil.copytree(os.path.join(racine, "cas", "exemples", "airfoil_data"),
-                    os.path.join(tmp, "cas", "exemples", "airfoil_data"))
-    p = subprocess.run([trouver_binaire(), "aile-caboteur.yml", "--vtk", "1"], cwd=dossier_cas,
+    dossier_cas = os.path.join(tmp, *CAS)
+    dossier_sorties = os.path.join(dossier_cas, "sorties")
+    os.makedirs(dossier_sorties)
+    shutil.copy(os.path.join(racine, *CAS, "aile-caboteur.yml"), dossier_cas)
+    shutil.copy(os.path.join(racine, "communs", FICHIERS["coque"]), dossier_sorties)   # une donnée, pas une sortie
+    shutil.copytree(os.path.join(racine, "communs", "exemples-LHEEA", "airfoil_data"),
+                    os.path.join(tmp, "communs", "exemples-LHEEA", "airfoil_data"))
+    dossier_cas = dossier_sorties
+    p = subprocess.run([trouver_binaire(), "../aile-caboteur.yml", "--vtk", "1"], cwd=dossier_cas,
                        capture_output=True, text=True, timeout=300)
     if p.returncode != 0:
         sys.exit("CN-AeroModels a échoué :\n" + p.stdout + p.stderr)

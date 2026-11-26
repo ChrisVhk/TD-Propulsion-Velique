@@ -62,7 +62,7 @@ python3 scripts/verifie_mon_install.py
 ```
 
 Le script vérifie Python, WSL, les modules, trouve CN-AeroModels, le lance sur l'aile elliptique
-(`cas/exemples/2- nonlinear lifting line/elliptic.yml`) et compare le résultat à la valeur de référence, C_L = 0,3655 (sortie de l'outil v0.5.1 pour cette aile, accord avec la
+(`communs/exemples-LHEEA/2- nonlinear lifting line/elliptic.yml`) et compare le résultat à la valeur de référence, C_L = 0,3655 (sortie de l'outil v0.5.1 pour cette aile, accord avec la
 théorie de Prandtl).
 Il affiche un bilan en clair (`[ OK ]` / `[ MANQUE ]` / `[ NOTE ]`) puis un **bloc encadré** à copier et à renvoyer à
 l'enseignant.
@@ -94,7 +94,7 @@ Une version 6.x déjà installée convient : l'état du TD a été chargé sans 
 sudo apt install paraview
 ```
 
-(plusieurs centaines de Mo), puis, depuis le dossier du dépôt, `pvpython scripts/TD1_voir_cas.py` : le script
+(plusieurs centaines de Mo), puis, depuis `TD1_aerodynamique/manip2-3_aile-caboteur/`, `pvpython voir_sans-paraview.py` : le script
 relance le cas avec `--vtk 1` dans un dossier temporaire et ouvre la même vue dans une fenêtre.
 
 ## En binôme : une machine qui marche suffit

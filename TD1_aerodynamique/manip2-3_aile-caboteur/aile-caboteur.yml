@@ -1,12 +1,13 @@
 # Cas ENSM : aile du caboteur (TD Propulsion vélique, EGN-S7).
-# Cas ENSM, construit sur l'exemple 1 de CN-AeroModels (cas/exemples/1- 2D model/1_element.yml, EPL 2.0) ;
+# Cas ENSM, construit sur l'exemple 1 de CN-AeroModels (communs/exemples-LHEEA/1- 2D model/1_element.yml, EPL 2.0) ;
 # le LHEEA propose un cas voisin dans sa formation.
 # Vent uniforme de 10,288 m/s (20 nœuds), direction 90° (NED, voir l'exercice A02).
 # Navire (le caboteur d'EGN-S9) à 7,2016 m/s (14 nœuds), cap 000°.
 # Aile NACA0015, 33 m de haut, AR = 3, trois bandes (théorie des bandes), réglage 34,4°.
 # Pied de l'aile posé sur le pont (2,5 m au-dessus de la flottaison), sommet à 35,5 m (ARB-EGN-S7-038).
-# Table de profil : cas/exemples/airfoil_data/NACA0015_v2.yml (dépôt de CN-AeroModels, EPL 2.0).
-# Lancer depuis ce dossier : CN-AeroModels aile-caboteur.yml
+# Table de profil : communs/exemples-LHEEA/airfoil_data/NACA0015_v2.yml (dépôt de CN-AeroModels, EPL 2.0).
+# Lancer depuis ce dossier : bash lancer.sh aile-caboteur.yml (l'outil tourne dans sorties/ : le chemin de la table
+# ci-dessous est relatif au dossier où tourne l'outil, sorties/)
 rotations convention: [psi, theta', phi''] 
 
 environmental constants:
@@ -106,7 +107,7 @@ bodies: # All bodies have NED as parent frame
                 discretization: 
                     number of elements: 3
                 foil data: 
-                  - file: ../exemples/airfoil_data/NACA0015_v2.yml
+                  - file: ../../../communs/exemples-LHEEA/airfoil_data/NACA0015_v2.yml
 
 commands:
   - name: WPU-1

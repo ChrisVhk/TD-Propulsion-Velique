@@ -12,8 +12,8 @@ UNE SEULE LIGNE À LANCER, dans le terminal Ubuntu (WSL), depuis le dossier du d
 Le script relance CN-AeroModels sur deux cas, dans un dossier temporaire (rien n'est écrit
 dans le dépôt), et compare le résultat à une valeur de référence :
 
-  1. aile elliptique (cas/exemples/2- nonlinear lifting line/elliptic.yml) : C_L = 0,3655 ;
-  2. aile du caboteur (cas/aile-caboteur/aile-caboteur.yml)  : F_x = 45 015,9 N.
+  1. aile elliptique (communs/exemples-LHEEA/2- nonlinear lifting line/elliptic.yml) : C_L = 0,3655 ;
+  2. aile du caboteur (TD1_aerodynamique/manip2-3_aile-caboteur/aile-caboteur.yml)  : F_x = 45 015,9 N.
 
 Les deux valeurs de référence sont celles de l'outil v0.5.1, déjà données dans
 scripts/verifie_mon_install.py et dans la fiche du TD S1. Tolérance relative : 1e-3.
@@ -32,9 +32,9 @@ TOLERANCE = 1e-3
 CL_ELLIPTIQUE = 0.3655       # aile elliptique, AR = 4 : sortie de CN-AeroModels v0.5.1
 FX_CABOTEUR = 45015.9        # aile du caboteur, F_x en N : sortie de CN-AeroModels v0.5.1
 
-CAS_ELLIPTIQUE = os.path.join(RACINE, "cas", "exemples", "2- nonlinear lifting line", "elliptic.yml")
-CAS_CABOTEUR = os.path.join(RACINE, "cas", "aile-caboteur", "aile-caboteur.yml")
-TABLE_PROFIL = os.path.join(RACINE, "cas", "exemples", "airfoil_data", "NACA0015_v2.yml")
+CAS_ELLIPTIQUE = os.path.join(RACINE, "communs", "exemples-LHEEA", "2- nonlinear lifting line", "elliptic.yml")
+CAS_CABOTEUR = os.path.join(RACINE, "TD1_aerodynamique", "manip2-3_aile-caboteur", "aile-caboteur.yml")
+TABLE_PROFIL = os.path.join(RACINE, "communs", "exemples-LHEEA", "airfoil_data", "NACA0015_v2.yml")
 
 
 def trouver_binaire():
@@ -71,15 +71,17 @@ def cl_elliptique():
 
 
 def fx_caboteur():
-    # Le cas lit sa table par le chemin relatif ../exemples/airfoil_data/ : on reproduit cette arborescence.
+    # Le cas lit sa table par le chemin relatif ../../../communs/exemples-LHEEA/airfoil_data/, depuis le dossier où
+    # tourne l'outil (sorties/ du dossier de la manipulation, comme lancer.sh) : on reproduit cette arborescence.
     with tempfile.TemporaryDirectory() as d:
-        dossier_cas = os.path.join(d, "cas", "aile-caboteur")
-        dossier_table = os.path.join(d, "cas", "exemples", "airfoil_data")
-        os.makedirs(dossier_cas)
+        dossier_cas = os.path.join(d, "TD1_aerodynamique", "manip2-3_aile-caboteur")
+        dossier_sorties = os.path.join(dossier_cas, "sorties")
+        dossier_table = os.path.join(d, "communs", "exemples-LHEEA", "airfoil_data")
+        os.makedirs(dossier_sorties)
         os.makedirs(dossier_table)
         shutil.copy(CAS_CABOTEUR, dossier_cas)
         shutil.copy(TABLE_PROFIL, dossier_table)
-        sortie = lancer(dossier_cas, "aile-caboteur.yml")
+        sortie = lancer(dossier_sorties, "../aile-caboteur.yml")
     return float(lire_ligne(sortie, "WPU-1")[3].split(",")[0])
 
 
