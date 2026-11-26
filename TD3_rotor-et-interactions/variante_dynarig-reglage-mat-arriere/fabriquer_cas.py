@@ -10,11 +10,14 @@ démonstration de l'enseignant et variante V-DynaRig. Écrit les fichiers d'entr
 CHIFFRES PUBLIÉS (lus le 26/11/2026) : longueur 74,95 m, largeur 13,35 m, tirant d'eau 5,5 m, tirant d'air 57,85 m,
 1 746 m² de voilure (Foundation Zero, « Greenpeace », 12/10/2026) ; deux mâts DynaRig tournants, 1 746 m²
 (Dykstra Naval Architects, billet du 25/11/2026). Chiffres d'armateur et d'architecte, présentés comme tels.
-La hauteur des mâts (60 m, annoncée par Southern Spars) et le « plus de 2 000 m² » attribué à Dykstra n'ont pas été
-retrouvés le 26/11/2026 : à vérifier, non utilisés.
+Relus le 26/11/2026 (session 17) : 2 000 m² annoncés en 2024, au contrat (Southern Spars, contrat avec Greenpeace
+International du 6 août 2024, « sail area of 2000 square metres, supplied by North Sails ») ; 1 746 m² publiés en 2026
+(Foundation Zero ; chantier Freire). Deux mâts de 60 m chacun, construits par Southern Spars en Pologne (Yacht,
+S. Gehlhaus, 15/08/2026) ; contre 57,85 m de tirant d'air, la longueur du mât compte sans doute sa partie sous le pont
+(hypothèse). Voir README.md. On garde 1 746 m² ; 2 000 m² donneraient environ +15 %.
 
 HYPOTHÈSES D'ÉCOLE (aucun plan de gréement n'est publié ; rien ici n'est le navire réel) :
-  - voilure : 1 746 m² retenus, soit 873 m² par mât ; « plus de 2 000 m² » donnerait environ +15 % ;
+  - voilure : 1 746 m² retenus, soit 873 m² par mât ; 2 000 m² (chiffre de 2024) donneraient environ +15 % ;
   - cinq panneaux par mât, de même hauteur (9,6 m) : trois bas identiques, deux hauts plus étroits, cordes dans le
     rapport 1 / 1 / 1 / 0,9 / 0,7 (forme décrite par M. Reche-Vilanova) : corde des panneaux bas 19,77 m ;
   - franc-bord 3,0 m ; pied de la voilure 4 m au-dessus du pont (écart de l'étude de Reche-Vilanova, J2) ; hauteur de
