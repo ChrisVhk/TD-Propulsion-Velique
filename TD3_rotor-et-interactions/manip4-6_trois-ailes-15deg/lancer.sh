@@ -12,7 +12,8 @@
 #                          la même NLL avec une seule voile, même place et même réglage (pas d'interaction)
 # Fichiers écrits dans sorties/ (ignoré par Git) : bandes_voile-N_*, nll_voile-N_* (.vtk pour ParaView, dont les
 # tourbillons en fer à cheval et l'image sous le plan de symétrie en NLL ; .csv par élément), bandes_results.csv,
-# nll_results.csv, nll-seule_voile-N_results.csv. Puis vue.pvsm s'ouvre dans ParaView (File > Load State).
+# nll_results.csv, nll-seule_voile-N_results.csv ; puis les données de l'onglet « Interaction » (fabriquer_interaction.py :
+# interaction_voile-N.vtk, vent-local_*.vtk, interaction_bilan.csv). Puis vue.pvsm s'ouvre dans ParaView (File > Load State).
 # L'outil écrit des fichiers de même nom (test 9_sail_*) à chaque calcul : on les lance l'un après l'autre dans un
 # dossier de calcul temporaire et on ramène les sorties renommées.
 set -u
@@ -67,4 +68,6 @@ for n in 1 2 3; do
 done
 somme() { awk -F';' 'FNR > 1 { s += $10 } END { printf "%.4f", s }' "$@"; }
 echo "Somme des C_x : nll ensemble $(somme "$S/nll_results.csv") ; nll voiles seules $(somme "$S"/nll-seule_voile-?_results.csv)"
+# Données de l'onglet « Interaction » de la vue (session 17) : écart d'incidence NLL − bandes, vent local, bilan
+python3 "$ICI/fabriquer_interaction.py" --sortie "$S" || { echo "fabriquer_interaction.py a échoué (l'onglet Interaction sera vide)"; ok=0; }
 [ $ok = 1 ] && echo "Les calculs sont faits (sorties/). Dans ParaView : File > Load State > vue.pvsm (ce dossier)."

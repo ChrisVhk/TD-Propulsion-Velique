@@ -244,18 +244,31 @@ l'incidence géométrique) ; l'incidence effective est dans `sorties/results.csv
    **Entrée**, sélectionnez `vue.pvsm`, *OK*. Dans *Load State Options* : **Search files under specified directory** ;
    *Data Directory* : laissez la valeur proposée (elle se termine par `manip4-6_trois-ailes-15deg`) ; *OK*.
 
-**Ce que vous devez voir** : un onglet *Trois ailes* avec deux vues (figure 1). Un chargement réussi n'ouvre **aucune**
-fenêtre *Output Messages*.
+**Ce que vous devez voir** : deux onglets, *Interaction* et *Bandes et NLL*, chacun avec deux vues ; cliquez sur
+l'onglet *Interaction* s'il n'est pas devant (figure 1). Un chargement réussi n'ouvre **aucune** fenêtre *Output Messages*.
 
-- À gauche, les trois ailes **vues en plongée, du côté d'où vient le vent**, l'avant du navire à droite, deux fois :
-  « 1. Bandes » en haut, « 2. NLL » en bas, chacune posée sur l'axe du navire (trait vert). Chaque élément a la couleur
-  de son C_L (barre « C_L (Cl) », signe de l'outil : vert foncé pour une voile qui porte, blanc pour C_L nul, bleu pour
-  un C_L de signe contraire). La flèche orange est le **vent apparent**, à 15° de l'avant ; les traits gris sont les
-  tourbillons en fer à cheval de la NLL, qui partent dans le sens du vent.
-- À droite, **l'incidence de chaque élément** en fonction de sa hauteur, **avec le signe de l'outil** (celui de la
-  colonne `AoA` de `results.csv`) : une couleur par voile, trait plein pour la NLL, tirets pour la théorie des bandes.
+Onglet *Interaction* (pour T1 et T2) :
 
-![Figure 1 — La vue attendue dans ParaView : les trois ailes au près vues du côté du vent, en théorie des bandes et en NLL, avec le vent apparent, et l'incidence de chaque élément selon sa hauteur](../TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg/vue-attendue.png)
+- À gauche, les trois voiles (NLL) **vues en plongée, du côté d'où vient le vent**, l'avant du navire à droite, sur
+  l'axe du navire (trait vert). **La couleur est l'interaction** : l'écart d'incidence de chaque élément entre la NLL
+  et la théorie des bandes (barre « incidence NLL − bandes (deg) », centrée sur 0 : blanc, rien n'a changé ; orange,
+  l'élément a perdu de l'incidence). Les réglages, différents d'une voile à l'autre, n'y sont plus : ici, **on peut
+  comparer les voiles entre elles**. En bas, le **bilan chiffré** : le C_x de chaque voile seule et ensemble (NLL), et
+  la perte.
+- À droite, la **vue de dessus**, l'avant en haut : à mi-hauteur de chaque voile, au quart de corde, le **vent apparent
+  local** que voit l'élément (colonnes `ApparentVelocity` des sorties par élément de l'outil, vitesses induites
+  comprises), en théorie des bandes (flèche grise : la même pour les trois voiles) et en NLL (flèche bleue : elle tourne
+  de voile en voile), avec l'angle dont il a tourné. Les voiles sont vues par la tranche.
+
+Onglet *Bandes et NLL* (la vue des sessions précédentes) : à gauche, les trois ailes deux fois, « 1. Bandes » en haut,
+« 2. NLL » en bas, chaque élément à la couleur de son C_L (barre « C_L (Cl) », signe de l'outil), le **vent apparent**
+(flèche orange, à 15° de l'avant) et les tourbillons en fer à cheval de la NLL (traits gris) ; à droite, **l'incidence
+de chaque élément** en fonction de sa hauteur, avec le signe de l'outil (colonne `AoA` de `results.csv`) : une couleur
+par voile, trait plein pour la NLL, tirets pour la théorie des bandes. Dans cette vue, **comparez la même voile en haut
+et en bas, pas les voiles entre elles** : les couleurs de la rangée « Bandes » diffèrent déjà par les réglages (−5,
+−10 et −15°), pas par l'interaction.
+
+![Figure 1 — La vue attendue dans ParaView, onglet Interaction : les trois voiles colorées par l'écart d'incidence NLL − bandes, le bilan des C_x, et, vu de dessus, le vent apparent local de chaque voile en bandes et en NLL](../TD3_rotor-et-interactions/manip4-6_trois-ailes-15deg/vue-attendue.png)
 
 Si l'onglet ne montre que les textes, ou si *Output Messages* affiche `Could not open file`, ParaView n'a pas trouvé
 les données : relancez l'étape 1, puis l'étape 3 en vérifiant le *Data Directory*. Repli, sans l'interface (ParaView
@@ -265,10 +278,11 @@ de WSL), depuis le même dossier : `pvpython voir_sans-paraview.py`.
 
 - **T1.** *(en séance)* Comparez, voile par voile, la NLL des trois voiles ensemble à la NLL de chaque voile seule
   (sortie de `lancer.sh`) : laquelle perd le plus ? De combien la somme des C_x baisse-t-elle, en pourcentage ? Lisez
-  l'incidence effective des voiles 2 et 3 dans les deux calculs (colonne `AoA`, ou la vue de droite) : que fait la
+  l'incidence effective des voiles 2 et 3 dans les deux calculs (colonne `AoA`, ou l'onglet *Interaction*) : que fait la
   voile 1 au vent que voient les voiles placées derrière elle ?
 - **T2.** *(en séance)* Le signe de cette perte est-il celui que Bordogna mesure au près sur deux DynaRigs (encadré
-  ci-dessous) ? La NLL calcule la déviation du vent par les tourbillons des voiles amont : quel effet sur la voile aval
+  ci-dessous) ? La NLL calcule la déviation du vent par les tourbillons des voiles amont (flèches bleues de la vue de
+  dessus, onglet *Interaction*) : quel effet sur la voile aval
   ne calcule-t-elle pas (A15, question 1), et la perte réelle serait-elle plus grande ou plus petite ? Vérifiez enfin
   que chaque voile travaille dans le domaine finement renseigné de sa table de profil : ouvrez `trois-ailes-15deg.yml`
   et lisez une ligne `AoA:` de la rubrique `foil data`, au Reynolds de 500 000 ou de 1 000 000 (le Reynolds de chaque
