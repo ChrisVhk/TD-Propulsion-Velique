@@ -14,14 +14,17 @@ Avant, dans le terminal Ubuntu (WSL) :
 Puis, depuis le même dossier : pvpython voir_sans-paraview.py   (options : --png FICHIER, --sans-fenetre)
 
 Ce que montre la vue (deux vues côte à côte, layout « DynaRigs ») :
-  - à gauche, 1 · la coque générique et 2 · les superstructures en blocs (hypothèses d'école, fabriquer_coque.py),
-    3 · les deux voilures d'école colorées par leur C_L (signe de l'outil), 4 · les tourbillons en fer à cheval de la
+  - à gauche, 1 · la coque (Série 60 à l'échelle, pont, pavois, ceinture « glace » suggérée) et 2 · les superstructures
+    en blocs (hypothèses d'école, fabriquer_coque.py) ; 9 · le gréement d'habillage (fabriquer_greement.py) : mâts,
+    six vergues courbes par mât, voiles creuses, en couleurs neutres ; 3 · les deux surfaces de calcul (planes, celles
+    de la ligne portante) colorées par leur C_L (signe de l'outil) ; 4 · les tourbillons en fer à cheval de la
     NLL, 5 · le vent apparent à mi-hauteur de la voilure, 6 · les noms des mâts et les poussées calculées ; vue de
-    trois-quarts arrière, côté tribord (d'où vient le vent), face aux voiles, un peu plongeante ;
+    trois-quarts arrière, côté tribord (d'où vient le vent), face aux voiles, un peu plongeante.
+    Le calcul porte sur la ligne portante (3) ; le rendu (1, 2, 9) montre le gréement, il ne change aucun effort ;
   - à droite, 7 · l'incidence de chaque élément (signe de l'outil) en fonction de sa hauteur au-dessus de l'eau, pour
     le mât avant et le mât arrière : le mât arrière travaille à plus faible incidence (vent dévié par le mât avant) ;
   - 8 · le titre.
-Navire générique et voilure d'école : ce n'est pas le navire réel. Aucune image, aucun plan d'origine.
+Navire générique et voilure d'école : ce n'est pas le navire réel. Aucune image, aucun plan, aucune livrée, aucun logo.
 Couleurs : charte ENSM (MARINE #1A346D, TEALD #147A6D, TEAL #1A9988, GREY #595959), fond blanc.
 CN-AeroModels v0.5.1, LHEEA (Centrale Nantes / CNRS), EPL 2.0 ; vue et script : ENSM, Apache 2.0.
 """
@@ -60,8 +63,20 @@ def dossier_par_defaut():
     sys.exit("Dossier %s introuvable : lancez d'abord bash lancer.sh dans ce dossier." % c)
 
 
+HABILLAGE = (  # (fichier, nom affiché, couleur, opacité) : couleurs neutres (ARB-EGN-S7-072, point 4)
+    ("coque.vtk", "1 · Coque (Série 60 à l'échelle)", _rgb("#3A3F47"), 1.0),
+    ("ceinture-glace.vtk", "1 · Coque : ceinture « glace » (suggérée)", _rgb("#22262B"), 1.0),
+    ("pont.vtk", "1 · Coque : pont", _rgb("#D9D4C7"), 1.0),
+    ("pavois.vtk", "1 · Coque : pavois", _rgb("#4A505A"), 1.0),
+    ("superstructures.vtk", "2 · Superstructures (blocs)", _rgb("#F4F4F2"), 1.0),
+    ("mats.vtk", "9 · Gréement : mâts", _rgb("#BFC3C7"), 1.0),
+    ("vergues.vtk", "9 · Gréement : vergues courbes", _rgb("#8C9196"), 1.0),
+    ("voiles.vtk", "9 · Gréement : voiles creuses", _rgb("#F2EFE6"), 0.55),
+)
+
+
 def fichiers_attendus():
-    f = ["coque.vtk", "superstructures.vtk"]
+    f = [h[0] for h in HABILLAGE]
     for m, _, _, _ in MATS:
         f += ["%s_mat-%s_%s.vtk" % (PREFIXE, m, s) for s in ("voile", "force", "horseshoeVortex")]
     return f
@@ -104,16 +119,14 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
     lut.RGBPoints = [PLAGE_CL[0], *MARINE, 0.0, *BLANC, PLAGE_CL[1], *TEALD]
     lut.AutomaticRescaleRangeMode = "Never"
 
-    # 1 et 2 : coque et superstructures (hypothèses d'école)
-    for num, nom, coul, op in (("1", "coque", [0.80, 0.80, 0.80], 0.9), ("2", "superstructures", [0.65, 0.65, 0.65], 1.0)):
-        o = MergeBlocks(registrationName=f"{num} · {'Coque générique' if nom == 'coque' else 'Superstructures (blocs)'}",
-                        Input=lire(nom + ".vtk"))
+    # 1, 2 et 9 : coque, superstructures et gréement d'habillage (hypothèses d'école ; aucun effort n'en dépend)
+    for fichier, nom, coul, op in HABILLAGE:
+        o = MergeBlocks(registrationName=nom, Input=lire(fichier))
         r = Show(o, vue)
-        r.SetRepresentationType("Surface With Edges")
+        r.SetRepresentationType("Surface")
         r.ColorArrayName = ["POINTS", ""]
         r.AmbientColor = coul
         r.DiffuseColor = coul
-        r.EdgeColor = GREY
         r.Opacity = op
 
     premier = True
@@ -124,12 +137,13 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
         cl = PointDatasetInterpolator(registrationName=f"(calcul) {nom} : C_L porté sur la voile", Input=centres,
                                       Source=lire("%s_mat-%s_voile.vtk" % (PREFIXE, m)))
         cl.Kernel = "VoronoiKernel"
-        v = MergeBlocks(registrationName=f"3 · Voilure du {nom}", Input=cl)
+        v = MergeBlocks(registrationName=f"3 · Surface de calcul du {nom}", Input=cl)
         rv = Show(v, vue)
         rv.SetRepresentationType("Surface With Edges")
         rv.EdgeColor = [0.8, 0.8, 0.8]
         rv.Ambient = 1.0
         rv.Diffuse = 0.0
+        rv.Opacity = 0.75          # la voile creuse (habillage) se devine derrière la surface plane du calcul
         ColorBy(rv, ("POINTS", "Cl"))
         if premier:
             rv.SetScalarBarVisibility(vue, True)
@@ -169,7 +183,7 @@ def construire_vue(dossier, largeur=1920, hauteur=1080, vue=None, courbe=None, t
         t.Text = nom if p is None else "%s : %.1f kN" % (nom, p[k])
         rt_ = Show(t, vue)
         rt_.TextPropMode = "Billboard 3D Text"
-        rt_.BillboardPosition = [x - 4.0, 16.0, -4.0]      # au pied du mât, côté tribord (vers la caméra)
+        rt_.BillboardPosition = [x - 4.0, 16.0, -6.0]      # au pied du mât, côté tribord (vers la caméra)
         rt_.FontSize = taille_noms
         rt_.Bold = 1
         rt_.Color = coul

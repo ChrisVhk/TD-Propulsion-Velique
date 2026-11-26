@@ -43,3 +43,26 @@ Pages relues le 26/11/2026 : southernspars.com (page du contrat ; brochure DynaR
 freireshipyard.com (page « Greenpeace International ») ; dykstra-na.nl (« 75 m Greenpeace / Dynarig Vessel »). Le
 chiffre de 1 746 m² chez afloat.ie (« two rotating masts carrying a combined 1,746 square metres of sail ») : page non
 relue le 26/11 par l'agent, à vérifier.
+
+## Le rendu : une couche d'habillage (session 17, ARB-EGN-S7-072)
+
+**Le calcul porte sur la ligne portante, le rendu montre le gréement.** Dans la vue, la surface plane colorée par C_L
+est celle que l'outil calcule (une par mât, 40 éléments) ; tout le reste est un habillage construit par script, qui ne
+change aucun effort (137,1 kN au total, valeurs inchangées). Scripts : `fabriquer_coque.py` (coque, pont, pavois,
+superstructures), `fabriquer_greement.py` (mâts, vergues, voiles), lancés par `lancer.sh` après le calcul.
+
+| Élément | Ce qui est relevé (source) | Ce qui est inventé (hypothèse d'école) |
+|---|---|---|
+| Coque | longueur 74,95 m, largeur 13,35 m, tirant d'eau 5,5 m (Foundation Zero ; Freire) | la forme : Série 60, C_B = 0,65 (Todd, 1963, domaine public ; celle du caboteur, `communs/caboteur-serie60.vtk`, construite par `communs/construire_coque_serie60.py`), mise à l'échelle par morceaux ; franc-bord 3,0 m ; pont plat ; pavois de 1,0 m |
+| Classe glace | « Polar Class 7 » (Freire), « ice-class vessel » (Dykstra) | une ceinture plus sombre à la flottaison sur le quart avant, qui la **suggère** ; l'étrave réelle n'est pas représentée |
+| Superstructures | **rien** : les rendus publics (pages de Dykstra et de Foundation Zero) n'ont pas pu être regardés dans cette session ; proportions à vérifier par l'enseignant | rouf bas entre les mâts (24 × 10 × 2,6 m) et timonerie à l'arrière (8 × 10 × 5,6 m), positions et tailles de la session 16 b, gardées |
+| Mâts | deux mâts tournants (Dykstra) ; 60 m de long chacun (*Yacht*, 15/08/2026) | cylindres de 1,0 m de rayon, du pont à 57 m au-dessus de l'eau (sous le tirant d'air publié, 57,85 m) ; placés au quart de la corde, là où l'outil met l'axe de la voile |
+| Vergues | **six par mât**, courbes, fixées au mât, aux limites de cinq voiles sans jour entre elles : Maltese Falcon (« Each of Maltese Falcon's masts supports six yards, which [...] have built-in camber of 12% », Wikipedia, « Maltese Falcon (yacht) », lu le 26/11/2026) ; Southern Spars, brochure DynaRig (juillet 2026) : « curved yard arms », cinq voiles par mât, « one sail per yard arm ». Pour le navire de Greenpeace, le nombre n'est pas publié : six **par analogie** avec le Maltese Falcon | cambrure des vergues 10 %, celle de la polaire d'école (le Maltese Falcon : 12 %) ; tubes de 0,35 m de rayon |
+| Voiles | 1 746 m² au total (voir plus haut) | cinq panneaux par mât, cordes 19,77 / 19,77 / 19,77 / 17,79 / 13,84 m, 9,6 m de haut (ceux du calcul) ; voiles creuses en arc de cambrure 10 % (polaire d'école), creux vers l'avant, au réglage de la démonstration (−70°) |
+| Couleurs | — | neutres : coque sombre, pont clair, superstructures blanches, voiles claires ; C_L en couleur sur la surface de calcul seulement ; **aucune livrée, aucun logo** |
+
+**Fardage refait** (`fardage.py`, compte rendu, point 6). Le pavois élève la coque vue de côté et de face de 1,0 m :
+A_L 332,1 → 375,0 m², A_F 96,1 → 99,4 m² (C, H_C changent un peu ; A_OD et H_BR non). Au vent de la démonstration :
+**X_A = −2,14 kN** (contre −2,6 kN en session 16 b : 1,6 % de la poussée des deux mâts, contre 1,9 %) et
+**Y_A = 27,5 kN** (contre 23,2 kN). La coque Série 60, vue de côté et de face, a les mêmes aires que la coque de la
+session 16 b (elle s'arrête aux perpendiculaires, sans tonture) : seul le pavois change le fardage.

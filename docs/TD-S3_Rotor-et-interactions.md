@@ -286,7 +286,10 @@ dimensions publiées du navire de Greenpeace (dossier `demo_dynarig-greenpeace/`
 largeur, tirant d'eau, tirant d'air, surface de voilure) sont celles de l'armateur et de l'architecte ; tout le reste
 (forme de la voilure, hauteurs, positions des mâts, vent) est une **hypothèse d'école**, écrite en tête de
 `fabriquer_cas.py`. La section de voile est une **polaire d'école, hypothèse : aucune polaire de section de DynaRig
-n'est publiée** (`fabriquer_polaire.py`).
+n'est publiée** (`fabriquer_polaire.py`). **Le calcul porte sur la ligne portante, le rendu montre le gréement** : dans
+la vue, la surface plane colorée par C_L est celle du calcul ; la coque, les mâts, les six vergues courbes de chaque
+mât et les voiles creuses sont un habillage construit par script, qui ne change aucun effort (ce qui est relevé et ce
+qui est inventé : `README.md` du dossier).
 
 ## Variante — Le fichier de l'exemple 9 tel que fourni : une leçon de lecture
 

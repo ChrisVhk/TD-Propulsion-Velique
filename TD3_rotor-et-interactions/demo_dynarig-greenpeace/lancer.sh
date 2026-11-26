@@ -8,8 +8,8 @@
 # Fichiers lus (ce dossier, non modifiés) : dynarig-deux-mats.yml, dynarig-mat-avant-seul.yml,
 # dynarig-mat-arriere-seul.yml (écrits par fabriquer_cas.py) et plaque-cambree.yml (polaire d'école, hypothèse :
 # fabriquer_polaire.py). Fichiers écrits dans sorties/ (ignoré par Git) : nll-deux-mats_* (.vtk pour ParaView, .csv
-# par élément, results.csv), nll-avant-seul_results.csv, nll-arriere-seul_results.csv ; la coque générique
-# (sorties/coque.vtk, sorties/superstructures.vtk) est écrite par fabriquer_coque.py si ce script est présent.
+# par élément, results.csv), nll-avant-seul_results.csv, nll-arriere-seul_results.csv ; l'habillage de la vue (coque,
+# pont, pavois, superstructures : fabriquer_coque.py ; mâts, vergues, voiles : fabriquer_greement.py), en .vtk.
 # L'outil lit la polaire par rapport au dossier où il tourne : on la copie dans le dossier de calcul temporaire.
 set -u
 ICI="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -45,7 +45,9 @@ done
 mv -f "$TRAV/wind_0000.vtk" "$S/nll-deux-mats_vent.vtk"
 calcul dynarig-mat-avant-seul.yml nll-avant-seul
 calcul dynarig-mat-arriere-seul.yml nll-arriere-seul
-[ -f "$ICI/fabriquer_coque.py" ] && python3 "$ICI/fabriquer_coque.py" --sortie "$S" >/dev/null
+# Habillage de la vue (session 17) : coque Série 60 à l'échelle, superstructures, gréement ; aucun effort n'en dépend.
+python3 "$ICI/fabriquer_coque.py" --sortie "$S" >/dev/null || echo "   attention : fabriquer_coque.py a échoué (la vue sera incomplète)"
+python3 "$ICI/fabriquer_greement.py" --sortie "$S" >/dev/null || echo "   attention : fabriquer_greement.py a échoué (la vue sera incomplète)"
 
 A2="$(fx "$S/nll-deux-mats_results.csv" 1)"; R2="$(fx "$S/nll-deux-mats_results.csv" 2)"
 A1="$(fx "$S/nll-avant-seul_results.csv" 1)"; R1="$(fx "$S/nll-arriere-seul_results.csv" 1)"
