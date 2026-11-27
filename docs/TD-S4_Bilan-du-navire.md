@@ -81,7 +81,7 @@ où b est le bras de levier, du centre de l'aile au centre du plan de dérive de
 
 | Manipulation | Dossier (dans `~/TD-Propulsion-Velique/TD4_bilan-du-navire/`) | Commande |
 |---|---|---|
-| Figure 1 — les forces sur le navire (H01) | `TD4_bilan-du-navire/` lui-même | à ouvrir : `forces-sur-le-navire.png` |
+| Figure 1 — les forces sur le navire (H01) | — (à la racine de `TD4_bilan-du-navire/`) | à ouvrir : `forces-sur-le-navire.png` |
 | Polaire en arrière-plan (début de séance) | `variante_polaire-aile-caboteur/` | `bash lancer.sh FOND` |
 | Où en est la polaire ? | `variante_polaire-aile-caboteur/` | `bash lancer.sh ETAT` |
 | Variante V-polaire — un angle de plus | `variante_polaire-aile-caboteur/` | `bash lancer.sh 90` |
@@ -127,7 +127,7 @@ en est le calcul, à tout moment, dans le même dossier :
 bash lancer.sh ETAT
 ```
 
-Il répond « Polaire en cours : N angles finis sur 16 », puis « Polaire finie » ; le tracé est alors dans
+Il répond « Polaire en cours : N angles finis sur 16 » (avec l'heure de lancement), puis « Polaire finie » ; le tracé est alors dans
 `sorties/polaire.png`. Ce que le script affiche pendant le calcul est dans `sorties/polaire_ecran.txt`.
 
 # Partie 1 — La carène
