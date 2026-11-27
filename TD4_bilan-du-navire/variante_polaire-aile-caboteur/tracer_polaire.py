@@ -66,7 +66,10 @@ titre = ("Polaire de l'aile du caboteur : navire à 14 nœuds, vent vrai de 20 n
 if rates:
     titre += f"\nangles sans résultat : {', '.join(rates)}°"
 ax.set_title(titre, fontsize=9)
-fig.tight_layout()
+fig.text(0.5, 0.01, "maxThrust cherche le réglage par un algorithme génétique, tiré au hasard : d'un lancement à l'autre, $F_x$ "
+         "varie de quelques %.\nUn creux isolé de la courbe (sur la polaire de référence, à 70°) vient de l'optimiseur, "
+         "pas de la physique.", ha="center", va="bottom", fontsize=7.5, color="0.3")
+fig.tight_layout(rect=(0, 0.05, 1, 1))
 fig.savefig(sortie + ".png", dpi=150)
 fig.savefig(sortie + ".svg")
 print(f"{len(twa)} angles tracés, {len(rates)} sans résultat ; poussée maximale {fr(fx[i])} kN à TWA {twa[i]:.0f}° "

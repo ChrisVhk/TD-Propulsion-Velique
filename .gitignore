@@ -14,6 +14,9 @@ TD*/**/*_construction.json
 !communs/caboteur-serie60.vtk
 # Exception : la figure de référence de chaque manipulation (vue attendue dans ParaView)
 !TD*/**/vue-attendue.png
+# TD 4 (session 18) : la polaire attendue de la variante V-polaire, et la figure des forces de la fiche (H01)
+!TD*/**/polaire-attendue.png
+!TD4_bilan-du-navire/forces-sur-le-navire.png
 
 # Éditeurs / OS
 .vscode/

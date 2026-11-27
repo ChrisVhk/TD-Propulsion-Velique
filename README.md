@@ -12,7 +12,7 @@ La théorie est dans le **cours**, sur Vega. Ce dépôt contient le TD seulement
 |---|---|
 | élève, avant le TD 1 | [`docs/00_PRE-VOL_Installation.md`](docs/00_PRE-VOL_Installation.md), puis lancez `python3 scripts/verifie_mon_install.py` |
 | élève, ça bloque | [`docs/00b_CA_NA_PAS_MARCHE.md`](docs/00b_CA_NA_PAS_MARCHE.md), et lancez `python3 scripts/test_valeurs_connues.py` : collez sa sortie dans votre message à l'enseignant |
-| élève, en séance | la fiche de la séance dans `docs/` (TD 1 : [`docs/TD-S1_Aerodynamique.md`](docs/TD-S1_Aerodynamique.md) ; TD 2 : [`docs/TD-S2_Bandes-et-ligne-portante.md`](docs/TD-S2_Bandes-et-ligne-portante.md) ; TD 3 : [`docs/TD-S3_Rotor-et-interactions.md`](docs/TD-S3_Rotor-et-interactions.md) ; les suivantes sont publiées au fil des séances) |
+| élève, en séance | la fiche de la séance dans `docs/` (TD 1 : [`docs/TD-S1_Aerodynamique.md`](docs/TD-S1_Aerodynamique.md) ; TD 2 : [`docs/TD-S2_Bandes-et-ligne-portante.md`](docs/TD-S2_Bandes-et-ligne-portante.md) ; TD 3 : [`docs/TD-S3_Rotor-et-interactions.md`](docs/TD-S3_Rotor-et-interactions.md) ; TD 4 : [`docs/TD-S4_Bilan-du-navire.md`](docs/TD-S4_Bilan-du-navire.md) ; les suivantes sont publiées au fil des séances) |
 | enseignant / curieux | [`docs/01_PROGRAMME.md`](docs/01_PROGRAMME.md) |
 
 ## Structure
@@ -32,7 +32,8 @@ TD-Propulsion-Velique/
 │   ├── 01_PROGRAMME.md                   les sept séances
 │   ├── TD-S1_Aerodynamique.md            fiche du TD 1
 │   ├── TD-S2_Bandes-et-ligne-portante.md fiche du TD 2
-│   └── TD-S3_Rotor-et-interactions.md    fiche du TD 3
+│   ├── TD-S3_Rotor-et-interactions.md    fiche du TD 3
+│   └── TD-S4_Bilan-du-navire.md          fiche du TD 4
 ├── scripts/                              installation et vérifications (TD 1, manipulations 0 et 1)
 │   ├── installer_cnaero.sh               installe CN-AeroModels et les modules Python
 │   ├── verifie_mon_install.py            vérification à renvoyer (pré-vol, étape ④)
@@ -52,16 +53,21 @@ TD-Propulsion-Velique/
 │   │                                     voir_sans-paraview.py, vue-attendue.png
 │   ├── manip6_une-bande-ou-dix/          lancer.sh (exemple 1 du LHEEA, lu dans communs/)
 │   └── variante_graf-2014/               lancer.sh (V2 : votre copie de l'exemple 3)
-└── TD3_rotor-et-interactions/
-    ├── manip1_rotor-sans-vent/           35x5_flettner.yml (= exemple 19), lancer.sh
-    ├── manip2-et-3_rotor-plaques/        2008_Badalamenti.yml et data.csv (= exemple 7), lancer.sh
-    ├── manip4-a-6_trois-ailes-15deg/     trois ailes au près : trois-ailes-15deg.yml (exemple 9, réglages du cas à 15°),
-    │                                     voile-N-seule.yml, lancer.sh, vue.pvsm, voir_sans-paraview.py, vue-attendue.png
-    ├── variante_trois-ailes-fichier-LHEEA/  trois-ailes.yml (= exemple 9 tel que fourni), lancer.sh
-    ├── variante_dynarig-reglage-mat-arriere/  V-DynaRig : régler le mât arrière (lancer.sh RÉGLAGE)
-    └── demo_dynarig-greenpeace/          démonstration : deux DynaRigs d'école (polaire d'école, hypothèses) ; habillage
-                                          (coque Série 60 à l'échelle, gréement) ; lancer.sh, vue.pvsm,
-                                          voir_sans-paraview.py, fardage.py, README.md
+├── TD3_rotor-et-interactions/
+│   ├── manip1_rotor-sans-vent/           35x5_flettner.yml (= exemple 19), lancer.sh
+│   ├── manip2-et-3_rotor-plaques/        2008_Badalamenti.yml et data.csv (= exemple 7), lancer.sh
+│   ├── manip4-a-6_trois-ailes-15deg/     trois ailes au près : trois-ailes-15deg.yml (exemple 9, réglages du cas à 15°),
+│   │                                     voile-N-seule.yml, lancer.sh, vue.pvsm, voir_sans-paraview.py, vue-attendue.png
+│   ├── variante_trois-ailes-fichier-LHEEA/  trois-ailes.yml (= exemple 9 tel que fourni), lancer.sh
+│   ├── variante_dynarig-reglage-mat-arriere/  V-DynaRig : régler le mât arrière (lancer.sh RÉGLAGE)
+│   └── demo_dynarig-greenpeace/          démonstration : deux DynaRigs d'école (polaire d'école, hypothèses) ; habillage
+│                                         (coque Série 60 à l'échelle, gréement) ; lancer.sh, vue.pvsm,
+│                                         voir_sans-paraview.py, fardage.py, README.md
+└── TD4_bilan-du-navire/
+    ├── forces-sur-le-navire.png, .svg    figure 1 de la fiche : les forces sur le caboteur et son aile (H01)
+    └── variante_polaire-aile-caboteur/   V-polaire (M07) : aile-caboteur-polaire.yml (NLL, maxThrust), lancer.sh
+                                          (FOND, ETAT, un angle, CONVERGENCE), tracer_polaire.py,
+                                          polaire-de-reference.csv, polaire-attendue.png
 ```
 
 ## Rien de sensible
